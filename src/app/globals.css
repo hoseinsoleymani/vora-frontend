@@ -1,0 +1,9 @@
+@import "@unocss/reset/tailwind.css";
+@import "../styles/uno.css";
+@unocss all;
+
+*,
+*::before,
+*::after {
+	@apply font-sans;
+}
