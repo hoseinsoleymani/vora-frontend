@@ -11,6 +11,7 @@
 		"build:css": "unocss -c unocss.config.ts -o src/styles/uno.css src/**"
 	},
 	"dependencies": {
+		"@fluentui/react-icons": "^2.0.279",
 		"@radix-ui/react-slot": "^1.1.2",
 		"next": "15.2.2",
 		"react": "^19.0.0",
