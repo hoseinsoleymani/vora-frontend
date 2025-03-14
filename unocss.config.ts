@@ -1,4 +1,4 @@
-import { defineConfig, presetAttributify, presetWebFonts, presetWind3 } from 'unocss'
+import { defineConfig, presetAttributify, presetWind3 } from 'unocss'
 import presetAnimations from 'unocss-preset-animations'
 import { presetShadcn } from 'unocss-preset-shadcn'
 
@@ -13,6 +13,7 @@ export default defineConfig({
 		presetWind3(),
 		presetAttributify(),
 		presetShadcn(),
+    presetAnimations()
 	],
 	content: {
 		pipeline: {
