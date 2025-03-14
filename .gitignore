@@ -44,3 +44,4 @@ next-env.d.ts
 .swp
 
 src/styles/uno.css
+.aider*
