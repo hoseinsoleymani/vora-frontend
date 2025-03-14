@@ -4,15 +4,12 @@ import { presetShadcn } from 'unocss-preset-shadcn'
 
 export default defineConfig({
   cli: {
-    entry: [
-      {
-        patterns: ['src/**/*'],
-        outFile: 'src/styles/uno.css'
-      }
-    ]
-    
+    entry: {
+      patterns: ['src/**/*.{ts,tsx,js,jsx}'],
+      exclude: ['src/styles/uno.css']
+    }
   },
- presets: [
+  presets: [
 		presetWind3(),
 		presetAttributify(),
 		presetShadcn(),
@@ -21,6 +18,6 @@ export default defineConfig({
 		pipeline: {
 			include: [/\.(vue|svelte|[jt]s|[jt]sx|mdx?|astro|elm|php|phtml|html)($|\?)/],
 		},
-		filesystem: ["src/**/*.{html,js,ts,jsx,tsx,vue,svelte,astro}"],
+		filesystem: ["src/**/*.{ts,tsx,js,jsx}"],
     }
 })

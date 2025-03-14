@@ -7,7 +7,7 @@
 		"build": "next build",
 		"start": "next start",
 		"lint": "next lint",
-		"dev:css": "unocss -c unocss.config.ts -o src/styles/uno.css -w src/**",
+		"dev:css": "unocss -c unocss.config.ts -o src/styles/uno.css --watch",
 		"build:css": "unocss -c unocss.config.ts -o src/styles/uno.css src/**"
 	},
 	"dependencies": {
