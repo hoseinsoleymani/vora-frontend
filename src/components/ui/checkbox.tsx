@@ -1,30 +1,47 @@
-"use client"
+import * as React from "react";
+import * as CheckboxPrimitive from "@radix-ui/react-checkbox";
+import { cn } from "@/lib/utils";
+import { cva, type VariantProps } from "class-variance-authority";
 
-import * as React from "react"
-import * as CheckboxPrimitive from "@radix-ui/react-checkbox"
-import { Check } from "lucide-react"
+const checkboxVariants = cva(
+  "flex items-center space-x-2 cursor-pointer",
+  {
+    variants: {
+      variant: {
+        basic: "text-black", 
+        gray: "text-gray-300", 
+      },
+    },
+    defaultVariants: {
+      variant: "basic",
+    },
+  }
+);
 
-import { cn } from "@/lib/utils"
+export interface CheckboxProps {
+  label: string;
+  variant?: "basic" | "gray";
+}
 
-const Checkbox = React.forwardRef<
-  React.ElementRef<typeof CheckboxPrimitive.Root>,
-  React.ComponentPropsWithoutRef<typeof CheckboxPrimitive.Root>
->(({ className, ...props }, ref) => (
-  <CheckboxPrimitive.Root
-    ref={ref}
-    className={cn(
-      "peer h-4 w-4 shrink-0 rounded-sm border border-primary ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground",
-      className
-    )}
-    {...props}
-  >
-    <CheckboxPrimitive.Indicator
-      className={cn("flex items-center justify-center text-current")}
-    >
-      <Check className="h-4 w-4" />
-    </CheckboxPrimitive.Indicator>
-  </CheckboxPrimitive.Root>
-))
-Checkbox.displayName = CheckboxPrimitive.Root.displayName
+const Checkbox: React.FC<CheckboxProps> = ({ label, variant = "basic" }) => {
+  return (
+    <label className={cn(checkboxVariants({ variant }))}>
+      <CheckboxPrimitive.Root
+        className="relative w-5 h-5 border rounded transition-all focus:outline-none"
+        style={{
+          borderColor: "red",
+          backgroundColor: variant === "basic" ? "#FBDAD9" : "black", // پس‌زمینه‌ی متغیر
+        }}
+      >
+        <CheckboxPrimitive.Indicator className="absolute inset-0 flex items-center justify-center">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="red">
+            <path d="M20.285 5.285a1.5 1.5 0 0 0-2.12 0l-8.96 8.96-3.96-3.96a1.5 1.5 0 0 0-2.12 2.12l5 5a1.5 1.5 0 0 0 2.12 0l10-10a1.5 1.5 0 0 0 0-2.12z" />
+          </svg>
+        </CheckboxPrimitive.Indicator>
+      </CheckboxPrimitive.Root>
+      <span>{label}</span>
+    </label>
+  );
+};
 
-export { Checkbox }
+export { Checkbox };
