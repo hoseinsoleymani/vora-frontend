@@ -30,7 +30,7 @@ const Checkbox: React.FC<CheckboxProps> = ({ label, variant = "basic" }) => {
         className="relative w-5 h-5 border rounded transition-all focus:outline-none"
         style={{
           borderColor: "red",
-          backgroundColor: variant === "basic" ? "#FBDAD9" : "black", // پس‌زمینه‌ی متغیر
+          backgroundColor: variant === "basic" ? "#FBDAD9" : "black",
         }}
       >
         <CheckboxPrimitive.Indicator className="absolute inset-0 flex items-center justify-center">
