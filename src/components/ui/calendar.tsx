@@ -1,3 +1,5 @@
+'use client'
+
 import * as React from "react"
 import { ChevronLeft24Regular , ChevronRight24Regular } from '@fluentui/react-icons';
 import { DayPicker } from "react-day-picker"
