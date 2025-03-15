@@ -1,4 +1,4 @@
-import { Button, Input, Slider } from "@/components/ui";
+import { Button, CustomCheckbox, Input, Slider , RadioGroup } from "@/components/ui";
 
 export default function Home() {
   return (
@@ -29,6 +29,7 @@ export default function Home() {
         variant="gray"
         type="single"
       />
+
     </div>
   );
 }
