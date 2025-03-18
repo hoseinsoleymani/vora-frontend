@@ -1,11 +1,19 @@
-import { Button } from "@/components/ui";
+import Offer from "./components/offer";
+import PageIntro from "./components/pageIntro";
+import TransportOptions from "./components/transportOptions";
 
 export default function Home() {
-	return (
-		<div className="text-red-100">
-			<div className="pl-3">test div hello</div>
-
-			<Button>Hello This is Button</Button>
-		</div>
-	);
+  return (
+    <div className="max-w-screen-xl mx-auto mt-16">
+      <section>
+        <PageIntro />
+      </section>
+      <section className="mt-8">
+        <TransportOptions />
+      </section>
+      <section className="mt-60">
+        <Offer />
+      </section>
+    </div>
+  );
 }
