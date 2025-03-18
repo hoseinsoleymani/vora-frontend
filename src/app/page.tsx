@@ -1,3 +1,4 @@
+import Faq from "./components/faq";
 import Offer from "./components/offer";
 import PageIntro from "./components/pageIntro";
 import TransportOptions from "./components/transportOptions";
@@ -14,6 +15,9 @@ export default function Home() {
       <section className="mt-60">
         <Offer />
       </section>
+	  <section className="mt-60">
+		<Faq />
+	  </section>
     </div>
   );
 }
