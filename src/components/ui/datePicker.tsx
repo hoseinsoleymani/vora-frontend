@@ -7,7 +7,7 @@
     CollapsibleTrigger,
   } from "@/components/ui/collapsible";
   import { ChevronDown24Regular } from "@fluentui/react-icons";
-  import { DatePickerProps, DateTab } from "./dateTab";
+  import { DatePickerProps, DateTab } from "@/components/ui/dateTab";
 
   function DatePicker({ date, setDate, title, icon }: DatePickerProps) {
     const [isOpen, setIsOpen] = React.useState(false);
