@@ -1,6 +1,7 @@
 import Offer from "./components/offer";
 import PageIntro from "./components/pageIntro";
 import TransportOptions from "./components/transportOptions";
+import TravelBanner from "./components/travelBanner";
 
 export default function Home() {
   return (
@@ -13,6 +14,9 @@ export default function Home() {
       </section>
       <section className="mt-60">
         <Offer />
+      </section>
+      <section className="mt-60">
+        <TravelBanner />
       </section>
     </div>
   );
