@@ -4,6 +4,7 @@ import PageIntro from "./components/pageIntro";
 import SearchBar from "./components/searchSection/searchBar";
 
 
+
 export default function Home() {
 	return (
 		<div className="text-red-100">
