@@ -45,7 +45,7 @@ function AirplaneSearch() {
         </div>
 
         {/* Return Ticket */}
-        <div className="flex items-center gap-2 border border-dotted rounded-full px-4 py-3 flex-1">
+        <div className="flex items-center gap-2 border-dotted border-2 rounded-full px-4 py-3 flex-1">
           <div className="border w-6 h-6 rounded-full flex items-center justify-center">
             <Add16Regular className="text-gray-500" />
           </div>
@@ -65,8 +65,8 @@ function AirplaneSearch() {
       {/* Search Button (Small Size) */}
       <div className="flex items-center">
         <Button
-          className="text-white w-10 h-10 rounded-full flex-none"
-          aria-label="Search flights"
+          className="text-white w-12 h-12 rounded-full flex-none bg-gray-800 hover:bg-gray-700"
+          aria-label="Search hotels"
         >
           <Search16Regular className="text-white" />
         </Button>

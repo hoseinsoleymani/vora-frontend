@@ -52,8 +52,8 @@ function HotelSearch() {
       {/* Search Button (Small Size) */}
       <div className="flex items-center">
         <Button
-          className="text-white w-10 h-10 rounded-full flex-none"
-          aria-label="Search flights"
+          className="text-white w-12 h-12 rounded-full flex-none bg-gray-800 hover:bg-gray-700"
+          aria-label="Search hotels"
         >
           <Search16Regular className="text-white" />
         </Button>
