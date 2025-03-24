@@ -8,7 +8,7 @@ import Faq from "./components/faq";
 export default function Home() {
 	return (
 		<div className="max-w-screen-xl mx-auto mt-16">
-      <section className="mt-60">
+      <section className="mt-8">
         <PageIntro />
       </section>
       <section className="mt-60">
