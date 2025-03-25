@@ -1,6 +1,7 @@
 import Offer from "./components/offer";
 import PageIntro from "./components/pageIntro";
-import TransportOptions from "./components/transportOptions";
+import SearchBar from "./components/searchSection/searchBar";
+
 import TravelBanner from "./components/travelBanner";
 
 export default function Home() {
@@ -9,8 +10,8 @@ export default function Home() {
       <section>
         <PageIntro />
       </section>
-      <section className="mt-8">
-        <TransportOptions />
+      <section className="mt-60">
+        <SearchBar />
       </section>
       <section className="mt-60">
         <Offer />
