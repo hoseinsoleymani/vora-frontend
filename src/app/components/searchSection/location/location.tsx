@@ -5,8 +5,10 @@ import {
   DropdownMenuItem,
   Button,
 } from "@/components/ui";
-import { Search20Regular , Dismiss16Regular } from "@fluentui/react-icons";
+import { Search20Regular, Dismiss16Regular } from "@fluentui/react-icons";
 import React, { useEffect, useState } from "react";
+import HeaderAirportSearch from "./headerAirportSearch";
+import AirportName from "./airportName";
 
 interface LocationProps {
   title: "From" | "Destination";
@@ -15,9 +17,28 @@ interface LocationProps {
   location: string;
 }
 
+interface Address {
+  cityName: string;
+  cityCode: string;
+  countryName: string;
+  countryCode: string;
+  stateCode?: string;
+}
+
+export interface Location {
+  address: Address;
+  detailedName: string;
+  iataCode: string;
+  id: string;
+  name: string;
+  subType: string;
+  timeZoneOffset: string;
+  type: string;
+}
+
 function Location({ title, icon, setLocation, location }: LocationProps) {
   const [searchLocation, setSearchLocation] = useState("");
-  const [searchResults, setSearchResults] = useState([]);
+  const [searchResults, setSearchResults] = useState<Location[]>([]);
 
   const getLocation = async () => {
     try {
@@ -45,16 +66,18 @@ function Location({ title, icon, setLocation, location }: LocationProps) {
     }
   }, [searchLocation]);
 
-  const handleLocationSelect = (selectedLocation: string) => {
-    setLocation(selectedLocation);
-    setSearchLocation(selectedLocation);
+  const handleLocationSelect = (selectedLocation: Location) => {
+    setLocation(selectedLocation.name);
+    setSearchLocation(selectedLocation.name);
     setSearchResults([]);
   };
+
   const handleRemoveLocation = () => {
     setLocation("");
     setSearchLocation("");
     setSearchResults([]);
   };
+
   return (
     <div>
       <DropdownMenu>
@@ -75,7 +98,7 @@ function Location({ title, icon, setLocation, location }: LocationProps) {
             </div>
           </div>
         </DropdownMenuTrigger>
-        <DropdownMenuContent className="mt-10 w-[320px] px-4 py-3 rounded-xl overflow-hidden">
+        <DropdownMenuContent className="mt-10 w-[360px] px-4 py-3 rounded-xl overflow-hidden">
           <DropdownMenuItem>
             <div className="flex items-center justify-between gap-2 w-full">
               <div className="flex items-center gap-2">
@@ -89,7 +112,11 @@ function Location({ title, icon, setLocation, location }: LocationProps) {
                 <p className="font-bold">{title}</p>
               </div>
             </div>
-            {location && <Button variant={"outline"} onClick={handleRemoveLocation}><Dismiss16Regular /> Remove</Button>}
+            {location && (
+              <Button variant={"outline"} onClick={handleRemoveLocation}>
+                <Dismiss16Regular /> Remove
+              </Button>
+            )}
           </DropdownMenuItem>
           <hr className="w-full border-gray-300 my-4" />
           <div className="relative">
@@ -102,18 +129,19 @@ function Location({ title, icon, setLocation, location }: LocationProps) {
               onChange={(e) => setSearchLocation(e.target.value)}
             />
           </div>
+
           {searchResults.length > 0 && (
-            <div className="mt-2 max-h-[200px] overflow-y-auto">
-              {searchResults.map((result: any, index: number) => (
-                <DropdownMenuItem
-                  key={index}
-                  onClick={() => handleLocationSelect(result.name)}
-                  className="cursor-pointer hover:bg-gray-100 p-2 rounded-lg"
-                >
-                  {result.name}
-                </DropdownMenuItem>
-              ))}
-            </div>
+            <>
+              <hr className="w-full border-gray-300 my-4" />
+              <HeaderAirportSearch
+                data={searchResults[0]}
+                setLocation={handleLocationSelect}
+              />
+              <AirportName
+                data={searchResults}
+                setLocation={handleLocationSelect}
+              />
+            </>
           )}
         </DropdownMenuContent>
       </DropdownMenu>

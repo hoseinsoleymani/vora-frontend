@@ -1,4 +1,5 @@
 "use client";
+//Todo: refactor this component to server action
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   Airplane16Regular,
@@ -8,9 +9,16 @@ import {
 } from "@fluentui/react-icons";
 import AirplaneSearch from "./airplaineSearch";
 import HotelSearch from "./hotelSearch";
-function searchBar() {
+import { useState } from "react";
+
+function SearchBar() {
+  const [fromLocation, setFromLocation] = useState("");
+  const [destinationLocation, setDestinationLocation] = useState("");
+  const [date, setDate] = useState<Date | undefined>(new Date());
+  const [returnDate, setReturnDate] = useState<Date | undefined>();
+
   return (
-    <div>
+    <div className="transition-all duration-1000 ease-in-out">
       <Tabs defaultValue="Airplaine" className="w-full">
         <TabsList className="bg-white px-4 py-10 rounded-full">
           <TabsTrigger value="Airplaine">
@@ -27,10 +35,25 @@ function searchBar() {
           </TabsTrigger>
         </TabsList>
         <div className="mt-4">
-          <TabsContent value="Airplaine">
-            <AirplaneSearch />
+          <TabsContent
+            value="Airplaine"
+            className="animate-in fade-in-50 slide-in-from-right-4 duration-700 ease-in-out"
+          >
+            <AirplaneSearch
+              fromLocation={fromLocation}
+              setFromLocation={setFromLocation}
+              destinationLocation={destinationLocation}
+              setDestinationLocation={setDestinationLocation}
+              date={date}
+              setDate={setDate}
+              returnDate={returnDate}
+              setReturnDate={setReturnDate}
+            />
           </TabsContent>
-          <TabsContent value="Stay">
+          <TabsContent
+            value="Stay"
+            className="animate-in fade-in-50 slide-in-from-right-4 duration-700 ease-in-out"
+          >
             <HotelSearch />
           </TabsContent>
         </div>
@@ -39,4 +62,4 @@ function searchBar() {
   );
 }
 
-export default searchBar;
+export default SearchBar;
