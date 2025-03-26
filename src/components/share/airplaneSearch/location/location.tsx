@@ -86,9 +86,11 @@ function Location({ title, icon, setLocation, location }: LocationProps) {
             <div
               className={`border ${
                 title === "From" ? "rounded-full" : "rounded-lg"
-              } w-8 h-8 flex items-center justify-center`}
+              } min-w-[32px] max-w-[32px] h-8 flex items-center justify-center overflow-hidden`}
             >
-              {icon}
+              <div className="flex items-center justify-center w-full h-full">
+                {icon}
+              </div>
             </div>
             <div>
               <p className="font-bold">{title}</p>
@@ -105,9 +107,11 @@ function Location({ title, icon, setLocation, location }: LocationProps) {
                 <div
                   className={`border ${
                     title === "From" ? "rounded-full" : "rounded-lg"
-                  } w-8 h-8 flex items-center justify-center`}
+                  } min-w-[32px] max-w-[32px] h-8 flex items-center justify-center overflow-hidden`}
                 >
-                  {icon}
+                  <div className="flex items-center justify-center w-full h-full">
+                    {icon}
+                  </div>
                 </div>
                 <p className="font-bold">{title}</p>
               </div>
