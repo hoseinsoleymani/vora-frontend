@@ -1,7 +1,9 @@
-import PageIntro from "./components/pageIntro";
+import PageIntro from "./components/pageIntro/pageIntro";
 import SearchBar from "./components/searchBar";
-import Offer from "./components/offer";
-import Faq from "./components/faq";
+import Offer from "./components/offer/offer";
+import Faq from "./components/faq"; 
+
+
 
 export default function Home() {
   return (

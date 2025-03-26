@@ -7,7 +7,7 @@ import {
   type CarouselApi,
 } from "@/components/ui/carousel";
 import Image from "next/image";
-import Image1 from "../../../public/img/marissa-grootes-TVllFyGaLEA-unsplash 1 (1).png";
+import Image1 from "../../../../public/img/marissa-grootes-TVllFyGaLEA-unsplash 1 (1).png";
 
 function Slider() {
     const [activeIndex, setActiveIndex] = useState(0);

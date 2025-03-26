@@ -1,7 +1,7 @@
 import React from "react";
 import OfferCard from "./offerCard";
-import Image1 from "../../../public/img/68ee8542d61bd1710771b66f6a9e8d35_1.jpg";
-import Image3 from "../../../public/img/a7b7b2f590b0f6996143133a81c8d2c7.jpg";
+import Image1 from "../../../../public/img/68ee8542d61bd1710771b66f6a9e8d35_1.jpg";
+import Image3 from "../../../../public/img/a7b7b2f590b0f6996143133a81c8d2c7.jpg";
 
 function Offer() {
   return (
