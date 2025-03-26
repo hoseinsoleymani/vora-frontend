@@ -4,6 +4,7 @@ import Offer from "./components/offer/offer";
 import Faq from "./components/faq"; 
 
 
+import TravelBanner from "./components/travelBanner";
 
 export default function Home() {
   return (
@@ -18,7 +19,7 @@ export default function Home() {
         <Offer />
       </section>
       <section className="mt-60">
-        <Faq />
+        <TravelBanner />
       </section>
     </div>
   );
