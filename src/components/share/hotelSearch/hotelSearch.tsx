@@ -49,7 +49,7 @@ function HotelSearch() {
         </div>
       </div>
 
-      {/* Search Button (Small Size) */}
+     
       <div className="flex items-center">
         <Button
           className="text-white w-12 h-12 rounded-full flex-none bg-gray-800 hover:bg-gray-700"

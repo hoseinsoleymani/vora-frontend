@@ -36,9 +36,12 @@ export interface Location {
   type: string;
 }
 
-function Location({ title, icon, setLocation, location }: LocationProps) {
+function Location({ title, icon, setLocation }: LocationProps) {
   const [searchLocation, setSearchLocation] = useState("");
   const [searchResults, setSearchResults] = useState<Location[]>([]);
+  const [selectedLocation, setSelectedLocation] = useState<Location | null>(
+    null
+  );
 
   const getLocation = async () => {
     try {
@@ -67,14 +70,16 @@ function Location({ title, icon, setLocation, location }: LocationProps) {
   }, [searchLocation]);
 
   const handleLocationSelect = (selectedLocation: Location) => {
-    setLocation(selectedLocation.name);
+    setLocation(selectedLocation.address.cityCode);
     setSearchLocation(selectedLocation.name);
+    setSelectedLocation(selectedLocation);
     setSearchResults([]);
   };
 
   const handleRemoveLocation = () => {
     setLocation("");
     setSearchLocation("");
+    setSelectedLocation(null);
     setSearchResults([]);
   };
 
@@ -95,7 +100,9 @@ function Location({ title, icon, setLocation, location }: LocationProps) {
             <div>
               <p className="font-bold">{title}</p>
               <p className="text-sm mt-1 text-gray-500">
-                {location ? location : "City or Airport"}
+                {selectedLocation
+                  ? `${selectedLocation.name}`
+                  : "City or Airport"}
               </p>
             </div>
           </div>
@@ -116,7 +123,7 @@ function Location({ title, icon, setLocation, location }: LocationProps) {
                 <p className="font-bold">{title}</p>
               </div>
             </div>
-            {location && (
+            {selectedLocation && (
               <Button variant={"outline"} onClick={handleRemoveLocation}>
                 <Dismiss16Regular /> Remove
               </Button>

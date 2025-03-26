@@ -9,11 +9,11 @@ import {
 } from "@fluentui/react-icons";
 import { useState } from "react";
 import AirplaneSearch from "@/components/share/airplaneSearch/airplaineSearch";
-import HotelSearch from "./hotelSearch";
+import HotelSearch from "../../components/share/hotelSearch/hotelSearch";
 
 function SearchBar() {
-  const [fromLocation, setFromLocation] = useState("");
-  const [destinationLocation, setDestinationLocation] = useState("");
+  const [fromLocationCode, setFromLocationCode] = useState("");
+  const [destinationLocationCode, setDestinationLocationCode] = useState("");
   const [date, setDate] = useState<Date | undefined>();
   const [returnDate, setReturnDate] = useState<Date | undefined>();
   const [adultCount, setAdultCount] = useState(0);
@@ -43,10 +43,10 @@ function SearchBar() {
             className="animate-in fade-in-50 slide-in-from-right-4 duration-700 ease-in-out"
           >
             <AirplaneSearch
-              fromLocation={fromLocation}
-              setFromLocation={setFromLocation}
-              destinationLocation={destinationLocation}
-              setDestinationLocation={setDestinationLocation}
+              fromLocation={fromLocationCode}
+              setFromLocation={setFromLocationCode}
+              destinationLocation={destinationLocationCode}
+              setDestinationLocation={setDestinationLocationCode}
               date={date}
               setDate={setDate}
               returnDate={returnDate}
