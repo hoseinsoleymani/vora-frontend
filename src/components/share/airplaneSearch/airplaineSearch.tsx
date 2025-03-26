@@ -73,6 +73,7 @@ function AirplaneSearch({
       <Button
         className="text-white w-10 h-10 rounded-full flex-none"
         aria-label="Search flights"
+        size={"icon"}
       >
         <Search16Regular className="text-white" />
       </Button>
