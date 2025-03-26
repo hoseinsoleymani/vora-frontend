@@ -1,13 +1,11 @@
 import PageIntro from "./components/pageIntro";
-import SearchBar from "./components/searchSection/searchBar";
+import SearchBar from "./components/searchBar";
 import Offer from "./components/offer";
-import Faq from "./components/faq"; 
+import Faq from "./components/faq";
 import TravelBlogs from "./components/travelBlogs/travelBlogs";
-
-
 export default function Home() {
-	return (
-		<div className="max-w-screen-xl mx-auto mt-16">
+  return (
+    <div className="max-w-screen-xl mx-auto mt-16">
       <section className="mt-8">
         <PageIntro />
       </section>
@@ -23,6 +21,6 @@ export default function Home() {
       <section className="mt-60">
         <Faq />
       </section>
-		</div>
-	);
+    </div>
+  );
 }
