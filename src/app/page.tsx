@@ -1,13 +1,15 @@
-import Offer from "./components/offer";
-import PageIntro from "./components/pageIntro";
-import SearchBar from "./components/searchSection/searchBar";
+import PageIntro from "./components/pageIntro/pageIntro";
+import SearchBar from "./components/searchBar";
+import Offer from "./components/offer/offer";
+import Faq from "./components/faq"; 
+
 
 import TravelBanner from "./components/travelBanner";
 
 export default function Home() {
   return (
     <div className="max-w-screen-xl mx-auto mt-16">
-      <section>
+      <section className="mt-8">
         <PageIntro />
       </section>
       <section className="mt-60">
