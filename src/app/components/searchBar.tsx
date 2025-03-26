@@ -9,7 +9,7 @@ import {
 } from "@fluentui/react-icons";
 import { useState } from "react";
 import AirplaneSearch from "@/components/share/airplaneSearch/airplaineSearch";
-import HotelSearch from "../../components/share/hotelSearch/hotelSearch";
+import HotelSearch from "./hotelSearch";
 
 function SearchBar() {
   const [fromLocation, setFromLocation] = useState("");

@@ -4,8 +4,16 @@ import {
   DropdownMenuContent,
   Button,
 } from "@/components/ui";
-import { Person24Regular, Checkmark16Regular } from "@fluentui/react-icons";
-import SelectTravelers from "./selectTravelers";
+import {
+  Person24Regular,
+  Checkmark16Regular,
+  ArrowUndo16Regular,
+} from "@fluentui/react-icons";
+import { useState } from "react";
+import { TravelerSummary } from "./TravelerSummary";
+import TravelersHeader from "./travelersHeader";
+import TravelersContent from "./travelersContent";
+
 
 interface TravelersProps {
   adultCount: number;
@@ -25,58 +33,77 @@ function Travelers({
   setInfantCount,
 }: TravelersProps) {
   const totalTravelers = adultCount + childCount + infantCount;
-
+  const [isOpen, setIsOpen] = useState(false);
   return (
     <div>
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <div className="flex items-start gap-2 w-[200px] cursor-pointer">
-            <Person24Regular className="text-gray-500" />
-            <div>
-              <p className="font-bold">Travelers</p>
-              <p className="text-sm mt-1 text-gray-500">
-                {totalTravelers}{" "}
-                {totalTravelers === 1 ? "Traveler" : "Travelers"}
-              </p>
-            </div>
-          </div>
+      <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
+        <DropdownMenuTrigger>
+          <TravelersHeader totalTravelers={totalTravelers} />
         </DropdownMenuTrigger>
         <DropdownMenuContent className="mt-10 px-4 py-3 rounded-xl w-[302px]">
-          <div className="flex items-center gap-2">
-            <Person24Regular className="text-gray-500" />
-            <p className="font-bold">Travelers</p>
+          <div>
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <Person24Regular className="text-gray-500" />
+                <p className="font-bold">Travelers</p>
+              </div>
+              <div
+                className={`transition-all duration-500 ease-in-out overflow-hidden ${
+                  totalTravelers > 0
+                    ? "opacity-100 scale-100"
+                    : "opacity-0 scale-95 max-h-0"
+                }`}
+              >
+                {totalTravelers > 0 && (
+                  <Button
+                    size={"sm"}
+                    variant={"outline"}
+                    className="px- py-1 text-sx rounded-full"
+                    onClick={() => {
+                      setAdultCount(0);
+                      setChildCount(0);
+                      setInfantCount(0);
+                    }}
+                  >
+                    <ArrowUndo16Regular /> Reset
+                  </Button>
+                )}
+              </div>
+            </div>
+            <div
+              className={`transition-all duration-500 ease-in-out ${
+                totalTravelers > 0
+                  ? "opacity-100 scale-100"
+                  : "opacity-0 scale-95"
+              }`}
+            >
+              {totalTravelers > 0 && (
+                <div className="flex items-center gap-2 mt-2">
+                  <p className="text-sm font-bold">Selected :</p>
+                  <TravelerSummary
+                    adultCount={adultCount}
+                    childCount={childCount}
+                    infantCount={infantCount}
+                  />
+                </div>
+              )}
+            </div>
           </div>
           <hr className="my-4 w-full" />
-          <div className="flex flex-col gap-2">
-            <SelectTravelers
-              lable="Adult"
-              subLable="Above 16 years old"
-              icon={<Person24Regular />}
-              count={adultCount}
-              onIncrement={() => setAdultCount(adultCount + 1)}
-              onDecrement={() => setAdultCount(Math.max(1, adultCount - 1))}
-            />
-            <hr className="w-full my-3" />
-            <SelectTravelers
-              lable="Children"
-              subLable="Ages 2 to 16"
-              icon={<Person24Regular />}
-              count={childCount}
-              onIncrement={() => setChildCount(childCount + 1)}
-              onDecrement={() => setChildCount(Math.max(0, childCount - 1))}
-            />
-            <hr className="w-full my-3" />
-            <SelectTravelers
-              lable="Infants"
-              subLable="Younger than 2"
-              icon={<Person24Regular />}
-              count={infantCount}
-              onIncrement={() => setInfantCount(infantCount + 1)}
-              onDecrement={() => setInfantCount(Math.max(0, infantCount - 1))}
-            />
-          </div>
+          <TravelersContent
+            adultCount={adultCount}
+            setAdultCount={setAdultCount}
+            childCount={childCount}
+            setChildCount={setChildCount}
+            infantCount={infantCount}
+            setInfantCount={setInfantCount}
+          />
           <div className="mt-6 flex justify-end">
-            <Button size={"sm"} className="text-xs gap-2">
+            <Button
+              size={"sm"}
+              className="text-xs gap-2"
+              onClick={() => setIsOpen(false)}
+            >
               <Checkmark16Regular /> Done
             </Button>
           </div>

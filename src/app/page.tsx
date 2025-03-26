@@ -21,6 +21,9 @@ export default function Home() {
       <section className="mt-60">
         <TravelBanner />
       </section>
+      <section className="mt-60">
+        <Faq />
+      </section>
     </div>
   );
 }
