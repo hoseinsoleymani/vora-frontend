@@ -2,7 +2,7 @@ import PageIntro from "./components/pageIntro";
 import SearchBar from "./components/searchSection/searchBar";
 import Offer from "./components/offer";
 import Faq from "./components/faq"; 
-
+import TravelBlogs from "./components/travelBlogs/travelBlogs";
 
 
 export default function Home() {
@@ -16,6 +16,9 @@ export default function Home() {
       </section>
       <section className="mt-60">
         <Offer />
+      </section>
+      <section className="mt-60">
+        <TravelBlogs />
       </section>
       <section className="mt-60">
         <Faq />
