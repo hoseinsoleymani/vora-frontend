@@ -7,15 +7,18 @@ import {
   TicketDiagonal16Regular,
   Sparkle16Filled,
 } from "@fluentui/react-icons";
-import AirplaneSearch from "./airplaineSearch";
-import HotelSearch from "./hotelSearch";
 import { useState } from "react";
+import AirplaneSearch from "@/components/share/airplaneSearch/airplaineSearch";
+import HotelSearch from "../../components/share/hotelSearch/hotelSearch";
 
 function SearchBar() {
   const [fromLocation, setFromLocation] = useState("");
   const [destinationLocation, setDestinationLocation] = useState("");
-  const [date, setDate] = useState<Date | undefined>(new Date());
+  const [date, setDate] = useState<Date | undefined>();
   const [returnDate, setReturnDate] = useState<Date | undefined>();
+  const [adultCount, setAdultCount] = useState(0);
+  const [childCount, setChildCount] = useState(0);
+  const [infantCount, setInfantCount] = useState(0);
 
   return (
     <div className="transition-all duration-1000 ease-in-out">
@@ -48,6 +51,12 @@ function SearchBar() {
               setDate={setDate}
               returnDate={returnDate}
               setReturnDate={setReturnDate}
+              adultCount={adultCount}
+              setAdultCount={setAdultCount}
+              childCount={childCount}
+              setChildCount={setChildCount}
+              infantCount={infantCount}
+              setInfantCount={setInfantCount}
             />
           </TabsContent>
           <TabsContent
