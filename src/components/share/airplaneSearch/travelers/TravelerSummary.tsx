@@ -10,7 +10,7 @@ export function TravelerSummary({
   infantCount,
 }: TravelerSummaryProps) {
   return (
-    <div className="flex items-center gap-2 mt-2">
+    <div className="flex items-center gap-2 h-full">
       
       {adultCount > 0 && (
         

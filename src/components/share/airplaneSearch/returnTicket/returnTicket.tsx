@@ -32,20 +32,21 @@ function ReturnTicket({ returnDate, setReturnDate }: ReturnTicketProps) {
   };
 
   return (
-    <div className="transition-all duration-300 ease-in-out">
+    <div
+    >
       {!isReturnTicket ? (
         <div className="flex items-center gap-2 border border-dotted rounded-full px-4 py-3 w-[200px] hover:bg-gray-50 transition-all duration-300 ease-in-out">
           <Button
             className="border h-2 w-2 p-3 rounded-full flex items-center justify-center hover:bg-gray-100 transition-all duration-300 ease-in-out"
             variant={"outline"}
-            onClick={() => setIsReturnTicket(!isReturnTicket)}
+            onClick={() => setIsReturnTicket(true)}
           >
             <Add16Regular className="text-gray-500" />
           </Button>
           <p className="text-sm text-gray-500">Add Return Ticket</p>
         </div>
       ) : (
-        <div className="flex items-start justify-between gap-2 border border-dotted rounded-xl px-4 py-3 w-[200px] animate-in fade-in-50 slide-in-from-top-4">
+        <div className="flex items-start justify-between gap-2 border border-dotted rounded-xl px-4 py-3 w-[200px]">
           <DropdownMenu open={open} onOpenChange={setOpen}>
             <DropdownMenuTrigger asChild>
               <div className="flex items-start gap-2 cursor-pointer hover:opacity-80 transition-opacity duration-300">
@@ -53,9 +54,7 @@ function ReturnTicket({ returnDate, setReturnDate }: ReturnTicketProps) {
                 <div>
                   <p className="font-bold">Return</p>
                   <p className="text-sm mt-1 text-gray-500">
-                    {returnDate
-                      ? returnDate.toLocaleDateString()
-                      : "Pick a date"}
+                    {returnDate ? returnDate.toLocaleDateString() : "Pick a date"}
                   </p>
                 </div>
               </div>
@@ -79,7 +78,7 @@ function ReturnTicket({ returnDate, setReturnDate }: ReturnTicketProps) {
             variant={"destructive"}
             onClick={handleDismiss}
           >
-            <Dismiss16Regular className="text-withe" />
+            <Dismiss16Regular className="text-white" />
           </Button>
         </div>
       )}

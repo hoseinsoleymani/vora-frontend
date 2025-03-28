@@ -5,38 +5,20 @@ import {
   DropdownMenuItem,
   Button,
 } from "@/components/ui";
-import { Search20Regular, Dismiss16Regular } from "@fluentui/react-icons";
-import React, { useEffect, useState } from "react";
-import HeaderAirportSearch from "./headerAirportSearch";
-import AirportName from "./airportName";
+import {
+  Dismiss16Regular,
+  Location12Regular,
+  Search20Regular,
+} from "@fluentui/react-icons";
+import { useEffect, useState } from "react";
+import { Location } from "../../airplaneSearch/location/location";
+import CityName from "./cityName";
 
-interface LocationProps {
-  title: "From" | "Destination";
-  icon: React.ReactNode;
+interface WhereToProps {
   setLocation: (location: string) => void;
-  location: string;
 }
 
-interface Address {
-  cityName: string;
-  cityCode: string;
-  countryName: string;
-  countryCode: string;
-  stateCode?: string;
-}
-
-export interface Location {
-  address: Address;
-  detailedName: string;
-  iataCode: string;
-  id: string;
-  name: string;
-  subType: string;
-  timeZoneOffset: string;
-  type: string;
-}
-
-function Location({ title, icon, setLocation }: LocationProps) {
+function WhereTo({ setLocation }: WhereToProps) {
   const [searchLocation, setSearchLocation] = useState("");
   const [searchResults, setSearchResults] = useState<Location[]>([]);
   const [selectedLocation, setSelectedLocation] = useState<Location | null>(
@@ -52,7 +34,7 @@ function Location({ title, icon, setLocation }: LocationProps) {
       const response = await fetch(
         `/api/flight/location/search?keyword=${encodeURIComponent(
           searchLocation
-        )}`
+        )}&sub_type=CITY`
       );
       const data = await response.json();
       setSearchResults(data);
@@ -67,7 +49,6 @@ function Location({ title, icon, setLocation }: LocationProps) {
       getLocation();
     }
   }, [searchLocation]);
-
   const handleLocationSelect = (selectedLocation: Location) => {
     setLocation(selectedLocation.iataCode);
     setSearchLocation(selectedLocation.name);
@@ -81,52 +62,37 @@ function Location({ title, icon, setLocation }: LocationProps) {
     setSelectedLocation(null);
     setSearchResults([]);
   };
-
   return (
     <div>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <div className="flex items-start gap-2 w-[200px] cursor-pointer">
-            <div
-              className={`border ${
-                title === "From" ? "rounded-full" : "rounded-lg"
-              } min-w-[32px] max-w-[32px] h-8 flex items-center justify-center overflow-hidden`}
-            >
-              <div className="flex items-center justify-center w-full h-full">
-                {icon}
-              </div>
+            <div className="border rounded-full w-8 h-8 flex items-center justify-center">
+              <Location12Regular className="text-gray-500" />
             </div>
             <div>
-              <p className="font-bold">{title}</p>
+              <p className="font-bold">From</p>
               <p className="text-sm mt-1 text-gray-500">
-                {selectedLocation
-                  ? `${selectedLocation.name}`
-                  : "City or Airport"}
+                {selectedLocation ? selectedLocation.name : "City or Airport"}
               </p>
             </div>
           </div>
         </DropdownMenuTrigger>
-        <DropdownMenuContent className="mt-10 w-[340px] px-4 py-3 rounded-xl overflow-hidden">
+        <DropdownMenuContent className="mt-10 w-[302px] px-4 py-3 rounded-xl overflow-hidden">
           <DropdownMenuItem>
             <div className="flex items-center justify-between gap-2 w-full">
               <div className="flex items-center gap-2">
-                <div
-                  className={`border ${
-                    title === "From" ? "rounded-full" : "rounded-lg"
-                  } min-w-[32px] max-w-[32px] h-8 flex items-center justify-center overflow-hidden`}
-                >
-                  <div className="flex items-center justify-center w-full h-full">
-                    {icon}
-                  </div>
+                <div className="border rounded-full w-8 h-8 flex items-center justify-center">
+                  <Location12Regular className="text-gray-500" />
                 </div>
-                <p className="font-bold">{title}</p>
+                <p className="font-bold">Where to?</p>
               </div>
+              {selectedLocation && (
+                <Button variant={"outline"} onClick={handleRemoveLocation}>
+                  <Dismiss16Regular /> Remove
+                </Button>
+              )}
             </div>
-            {selectedLocation && (
-              <Button variant={"outline"} onClick={handleRemoveLocation}>
-                <Dismiss16Regular /> Remove
-              </Button>
-            )}
           </DropdownMenuItem>
           <hr className="w-full border-gray-300 my-4" />
           <div className="relative">
@@ -139,19 +105,14 @@ function Location({ title, icon, setLocation }: LocationProps) {
               onChange={(e) => setSearchLocation(e.target.value)}
             />
           </div>
-
           {searchResults.length > 0 && (
-            <>
+            <div className="mt-4 flex flex-col gap-3 max-h-[280px] overflow-y-auto ">
               <hr className="w-full border-gray-300 my-4" />
-              <HeaderAirportSearch
-                data={searchResults[0]}
-                setLocation={handleLocationSelect}
-              />
-              <AirportName
+              <CityName
                 data={searchResults}
                 setLocation={handleLocationSelect}
               />
-            </>
+            </div>
           )}
         </DropdownMenuContent>
       </DropdownMenu>
@@ -159,4 +120,4 @@ function Location({ title, icon, setLocation }: LocationProps) {
   );
 }
 
-export default Location;
+export default WhereTo;

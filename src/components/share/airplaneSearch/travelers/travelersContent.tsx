@@ -1,5 +1,6 @@
-import SelectTravelers from "./selectTravelers";
+
 import { Person24Regular } from "@fluentui/react-icons";
+import Counter from "./counter";
 interface TravelersContentProps {
   adultCount: number;
   setAdultCount: (count: number) => void;
@@ -19,7 +20,7 @@ function TravelersContent({
 }: TravelersContentProps) {
   return (
     <div className="flex flex-col gap-2">
-      <SelectTravelers
+      <Counter
         lable="Adult"
         subLable="Above 16 years old"
         icon={<Person24Regular />}
@@ -28,7 +29,7 @@ function TravelersContent({
         onDecrement={() => setAdultCount(Math.max(0, adultCount - 1))}
       />
       <hr className="w-full my-3" />
-      <SelectTravelers
+      <Counter
         lable="Children"
         subLable="Ages 2 to 16"
         icon={<Person24Regular />}
@@ -37,7 +38,7 @@ function TravelersContent({
         onDecrement={() => setChildCount(Math.max(0, childCount - 1))}
       />
       <hr className="w-full my-3" />
-      <SelectTravelers
+      <Counter
         lable="Infants"
         subLable="Younger than 2"
         icon={<Person24Regular />}

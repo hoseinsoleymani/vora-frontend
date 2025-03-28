@@ -1,59 +1,64 @@
 "use client";
-import {
-  Location12Regular,
-  CalendarArrowRight24Regular,
-  DoorRegular,
-  Person24Regular,
-  Search16Regular,
-} from "@fluentui/react-icons";
+import { Search16Regular } from "@fluentui/react-icons";
 import { Button } from "@/components/ui/button";
+import WhereTo from "./whereto/whereTo";
+import { useState } from "react";
+import CheckInAndOut from "./checkInAndOut";
+import Travelers from "../airplaneSearch/travelers/travelers";
+import Rooms from "./rooms/rooms";
 
 function HotelSearch() {
+  const [location, setLocation] = useState("");
+  const [checkInDate, setCheckInDate] = useState<Date | undefined>();
+  const [checkOutDate, setCheckOutDate] = useState<Date | undefined>();
+  const [adultCount, setAdultCount] = useState(0);
+  const [childCount, setChildCount] = useState(0);
+  const [infantCount, setInfantCount] = useState(0);
+  const [rooms, setRooms] = useState(1);
+
+  const handleSearch = () => {
+    const formatDate = (date: Date | undefined) => {
+      if (!date) return undefined;
+      return date.toISOString().split("T")[0].replace(/-/g, "/");
+    };
+
+    console.log({
+      location,
+      checkInDate: formatDate(checkInDate),
+      checkOutDate: formatDate(checkOutDate),
+      adultCount,
+      childCount,
+      infantCount,
+      rooms,
+    });
+  };
+
   return (
-    <div className="bg-white rounded-full px-8 py-4 flex gap-4 w-full">
-      <div className="flex items-center w-full gap-4">
-        {/* From */}
-        <div className="flex items-start gap-2 flex-1">
-          <div className="border rounded-full w-8 h-8 flex items-center justify-center">
-            <Location12Regular className="text-gray-500" />
-          </div>
-          <div>
-            <p className="font-bold">From</p>
-            <p className="text-sm mt-1 text-gray-500">City or Airport</p>
-          </div>
-        </div>
+    <div className="bg-white rounded-full px-8 py-4 flex gap-4 w-full items-center justify-between">
+      <WhereTo setLocation={setLocation} />
 
-        {/* Destination */}
-        <div className="flex items-start gap-2 flex-1">
-          <CalendarArrowRight24Regular className="text-gray-500" />
-          <div>
-            <p className="font-bold">Check in and out</p>
-            <p className="text-sm mt-1 text-gray-500">City or Airport</p>
-          </div>
-        </div>
+      <CheckInAndOut
+        checkInDate={checkInDate}
+        setCheckInDate={setCheckInDate}
+        checkOutDate={checkOutDate}
+        setCheckOutDate={setCheckOutDate}
+      />
 
-        {/* Depart */}
-        <div className="flex items-start gap-2 flex-1">
-          <Person24Regular className="text-gray-500" />
-          <div>
-            <p className="font-bold">Travelers</p>
-            <p className="text-sm mt-1 text-gray-500">1 Adult</p>
-          </div>
-        </div>
-        <div className="flex items-start gap-2 flex-1">
-          <DoorRegular className="text-gray-500" fontSize={24} />
-          <div>
-            <p className="font-bold">Rooms</p>
-            <p className="text-sm mt-1 text-gray-500">1 How many rooms</p>
-          </div>
-        </div>
-      </div>
+      <Travelers
+        adultCount={adultCount}
+        setAdultCount={setAdultCount}
+        childCount={childCount}
+        setChildCount={setChildCount}
+        infantCount={infantCount}
+        setInfantCount={setInfantCount}
+      />
+      <Rooms rooms={rooms} setRooms={setRooms} />
 
-     
       <div className="flex items-center">
         <Button
           className="text-white w-12 h-12 rounded-full flex-none bg-gray-800 hover:bg-gray-700"
           aria-label="Search hotels"
+          onClick={handleSearch}
         >
           <Search16Regular className="text-white" />
         </Button>

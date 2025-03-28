@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui";
 import { Add12Regular, Subtract12Regular } from "@fluentui/react-icons";
 
-interface SelectTravelersProps {
+interface CounterProps {
   lable: string;
   subLable: string;
   icon: React.ReactNode;
@@ -10,14 +10,14 @@ interface SelectTravelersProps {
   onDecrement: () => void;
 }
 
-function SelectTravelers({
+function Counter({
   lable,
   subLable,
   icon,
   count,
   onIncrement,
   onDecrement,
-}: SelectTravelersProps) {
+}: CounterProps) {
   return (
     <div className="flex items-center justify-between">
       <div>
@@ -47,4 +47,4 @@ function SelectTravelers({
   );
 }
 
-export default SelectTravelers;
+export default Counter;

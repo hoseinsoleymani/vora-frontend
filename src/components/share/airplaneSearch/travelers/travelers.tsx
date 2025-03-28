@@ -14,7 +14,6 @@ import { TravelerSummary } from "./TravelerSummary";
 import TravelersHeader from "./travelersHeader";
 import TravelersContent from "./travelersContent";
 
-
 interface TravelersProps {
   adultCount: number;
   setAdultCount: (count: number) => void;
@@ -40,9 +39,9 @@ function Travelers({
         <DropdownMenuTrigger>
           <TravelersHeader totalTravelers={totalTravelers} />
         </DropdownMenuTrigger>
-        <DropdownMenuContent className="mt-10 px-4 py-3 rounded-xl w-[302px]">
+        <DropdownMenuContent className="mt-10 px-4  rounded-xl w-[302px]">
           <div>
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between h-16">
               <div className="flex items-center gap-2">
                 <Person24Regular className="text-gray-500" />
                 <p className="font-bold">Travelers</p>
@@ -58,7 +57,7 @@ function Travelers({
                   <Button
                     size={"sm"}
                     variant={"outline"}
-                    className="px- py-1 text-sx rounded-full"
+                    className="text-sx rounded-full"
                     onClick={() => {
                       setAdultCount(0);
                       setChildCount(0);
@@ -98,7 +97,7 @@ function Travelers({
             infantCount={infantCount}
             setInfantCount={setInfantCount}
           />
-          <div className="mt-6 flex justify-end">
+          <div className="my-4 flex justify-end">
             <Button
               size={"sm"}
               className="text-xs gap-2"
