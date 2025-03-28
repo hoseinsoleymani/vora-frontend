@@ -32,7 +32,7 @@ function WhereTo({ setLocation }: WhereToProps) {
         return;
       }
       const response = await fetch(
-        `/api/flight/location/search?keyword=${encodeURIComponent(
+        `http://5.161.155.143:5000//hotel/location/search?keyword=${encodeURIComponent(
           searchLocation
         )}&sub_type=CITY`
       );
