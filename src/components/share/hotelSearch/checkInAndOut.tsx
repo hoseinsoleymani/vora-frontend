@@ -51,8 +51,10 @@ const CheckInAndOut = ({
   };
 
   const formattedDateRange =
-    checkInDate && checkOutDate
-      ? `${checkInDate.toLocaleDateString()} - ${checkOutDate.toLocaleDateString()}`
+    checkInDate || checkOutDate
+      ? `${checkInDate?.toLocaleDateString() || ""} ${
+          checkOutDate ? `- ${checkOutDate.toLocaleDateString()}` : ""
+        }`
       : "Pick a date";
 
   return (
@@ -74,23 +76,33 @@ const CheckInAndOut = ({
           </div>
           <div
             className={`transition-all duration-500 ease-in-out overflow-hidden h-full flex items-center ${
-              checkInDate && checkOutDate
+              checkInDate || checkOutDate
                 ? "opacity-100 scale-100"
                 : "opacity-0 scale-95 max-h-0"
             }`}
           >
-            {checkInDate && checkOutDate && (
+            {(checkInDate || checkOutDate) && (
               <div className="flex items-center gap-2xl">
                 <div className="flex items-center gap-2">
-                  <p className="text-sm font-semibold">From : </p>
-                  <p className="text-sm font-light">
-                    {checkInDate.toLocaleDateString()}
-                  </p>
-                  <span className="-mt-1 text-gray-500">|</span>
-                  <p className="text-sm font-semibold">To : </p>
-                  <p className="text-sm font-light">
-                    {checkOutDate.toLocaleDateString()}
-                  </p>
+                  {checkInDate && (
+                    <>
+                      <p className="text-sm font-semibold">From : </p>
+                      <p className="text-sm font-light">
+                        {checkInDate.toLocaleDateString()}
+                      </p>
+                    </>
+                  )}
+                  {checkInDate && checkOutDate && (
+                    <span className="-mt-1 text-gray-500">|</span>
+                  )}
+                  {checkOutDate && (
+                    <>
+                      <p className="text-sm font-semibold">To : </p>
+                      <p className="text-sm font-light">
+                        {checkOutDate.toLocaleDateString()}
+                      </p>
+                    </>
+                  )}
                 </div>
                 <Button
                   size={"sm"}
@@ -123,7 +135,6 @@ const CheckInAndOut = ({
             classNames={calendarClassNames}
             selected={{ from: checkInDate, to: checkOutDate }}
             onSelect={handleDateSelect}
-            initialFocus
           />
           <Calendar
             mode="range"
@@ -132,7 +143,6 @@ const CheckInAndOut = ({
             classNames={calendarClassNames}
             selected={{ from: checkInDate, to: checkOutDate }}
             onSelect={handleDateSelect}
-            initialFocus
           />
           <Button
             variant="ghost"
