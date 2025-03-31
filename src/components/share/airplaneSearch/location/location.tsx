@@ -15,6 +15,8 @@ interface LocationProps {
   icon: React.ReactNode;
   setLocation: (location: string) => void;
   location: string;
+  selectedLocation: Location | null;
+  setSelectedLocation: (location: Location | null) => void;
 }
 
 interface Address {
@@ -36,12 +38,15 @@ export interface Location {
   type: string;
 }
 
-function Location({ title, icon, setLocation }: LocationProps) {
+function Location({
+  title,
+  icon,
+  setLocation,
+  selectedLocation,
+  setSelectedLocation,
+}: LocationProps) {
   const [searchLocation, setSearchLocation] = useState("");
   const [searchResults, setSearchResults] = useState<Location[]>([]);
-  const [selectedLocation, setSelectedLocation] = useState<Location | null>(
-    null
-  );
 
   const getLocation = async () => {
     try {

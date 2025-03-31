@@ -5,7 +5,7 @@ import {
   Search16Regular,
 } from "@fluentui/react-icons";
 import { Button } from "@/components/ui/button";
-import Location from "./location/location";
+import Location, { Location as LocationType } from "./location/location";
 import DatePicker from "./date/datePicker";
 import ReturnTicket from "./returnTicket/returnTicket";
 import Travelers from "./travelers/travelers";
@@ -19,6 +19,10 @@ function AirplaneSearch() {
   const [adultCount, setAdultCount] = useState(0);
   const [childCount, setChildCount] = useState(0);
   const [infantCount, setInfantCount] = useState(0);
+  const [selectedFromLocation, setSelectedFromLocation] =
+    useState<LocationType | null>(null);
+  const [selectedDestinationLocation, setSelectedDestinationLocation] =
+    useState<LocationType | null>(null);
 
   const handleSearch = () => {
     const formatDate = (date: Date | undefined) => {
@@ -38,18 +42,22 @@ function AirplaneSearch() {
   };
 
   return (
-    <div className="bg-white rounded-full px-8 py-4 flex gap-4 w-full items-center justify-between">
+    <div className="bg-white rounded-lg px-8 py-4 flex gap-4 w-full items-center justify-between h-24">
       <Location
         title="From"
         icon={<ArrowUp16Regular />}
         location={fromLocation}
         setLocation={setFromLocation}
+        selectedLocation={selectedFromLocation}
+        setSelectedLocation={setSelectedFromLocation}
       />
       <Location
         title="Destination"
         icon={<ArrowDown16Regular />}
         location={destinationLocation}
         setLocation={setDestinationLocation}
+        selectedLocation={selectedDestinationLocation}
+        setSelectedLocation={setSelectedDestinationLocation}
       />
       <DatePicker date={date} setDate={setDate} />
       <ReturnTicket returnDate={returnDate} setReturnDate={setReturnDate} />

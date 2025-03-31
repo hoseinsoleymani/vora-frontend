@@ -4,11 +4,11 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   Airplane16Regular,
   Building16Regular,
-  TicketDiagonal16Regular,
   Sparkle16Filled,
 } from "@fluentui/react-icons";
 import AirplaneSearch from "@/components/share/airplaneSearch/airplaineSearch";
 import HotelSearch from "../../components/share/hotelSearch/hotelSearch";
+import AiSearch from "@/components/share/aiSearch/aiSearch";
 
 function SearchBar() {
   return (
@@ -20,9 +20,6 @@ function SearchBar() {
           </TabsTrigger>
           <TabsTrigger value="Stay">
             <Building16Regular className="mr-2" /> Stay
-          </TabsTrigger>
-          <TabsTrigger value="Train">
-            <TicketDiagonal16Regular className="mr-2" /> Train
           </TabsTrigger>
           <TabsTrigger value="AIfeatures">
             <Sparkle16Filled className="mr-2" /> AI features
@@ -40,6 +37,12 @@ function SearchBar() {
             className="animate-in fade-in-50 slide-in-from-right-4 duration-700 ease-in-out"
           >
             <HotelSearch />
+          </TabsContent>
+          <TabsContent
+            value="AIfeatures"
+            className="animate-in fade-in-50 slide-in-from-right-4 duration-700 ease-in-out"
+          >
+            <AiSearch />
           </TabsContent>
         </div>
       </Tabs>

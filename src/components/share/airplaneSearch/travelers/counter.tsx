@@ -8,6 +8,7 @@ interface CounterProps {
   count: number;
   onIncrement: () => void;
   onDecrement: () => void;
+  spacing?: "normal" | "wide";
 }
 
 function Counter({
@@ -17,9 +18,14 @@ function Counter({
   count,
   onIncrement,
   onDecrement,
+  spacing = "normal",
 }: CounterProps) {
   return (
-    <div className="flex items-center justify-between">
+    <div
+      className={`flex items-center ${
+        spacing === "wide" ? "justify-between gap-8" : "justify-between"
+      }`}
+    >
       <div>
         <p className="font-semibold">{lable}</p>
         <p className="text-sm">({subLable})</p>

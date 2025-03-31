@@ -34,7 +34,7 @@ function HotelSearch() {
   };
 
   return (
-    <div className="bg-white rounded-full px-8 py-4 flex gap-4 w-full items-center justify-between">
+    <div className="bg-white rounded-lg px-8 py-4 flex gap-4 w-full items-center justify-between h-24">
       <WhereTo setLocation={setLocation} />
 
       <CheckInAndOut
@@ -56,9 +56,10 @@ function HotelSearch() {
 
       <div className="flex items-center">
         <Button
-          className="text-white w-12 h-12 rounded-full flex-none bg-gray-800 hover:bg-gray-700"
+          className="text-white w-10 h-10 rounded-full flex-none"
           aria-label="Search hotels"
           onClick={handleSearch}
+          size={"icon"}
         >
           <Search16Regular className="text-white" />
         </Button>

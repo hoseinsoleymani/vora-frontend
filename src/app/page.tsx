@@ -1,10 +1,9 @@
 import PageIntro from "./components/pageIntro/pageIntro";
 import SearchBar from "./components/searchBar";
 import Offer from "./components/offer/offer";
-import Faq from "./components/faq"; 
+import Faq from "./components/faq/faq"; 
+import TravelBanner from "./components/travelStats/travelBanner";
 
-
-import TravelBanner from "./components/travelBanner";
 
 export default function Home() {
   return (

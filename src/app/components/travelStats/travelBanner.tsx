@@ -1,8 +1,9 @@
 import React from "react";
-import VoraLogo from "../../../public/img/Vora Logo.png";
-import TeravelBanner from "../../../public/img/18914f6f3ddf8b69553d8a651c94fcfb.jpg";
+import VoraLogo from "../../../../public/img/Vora Logo.png";
+import TeravelBanner from "../../../../public/img/18914f6f3ddf8b69553d8a651c94fcfb.jpg";
 import Image from "next/image";
 import TravelStats from "./travelStats";
+
 
 function TravelBanner() {
   return (
