@@ -22,7 +22,7 @@ function TravelPlannerCard() {
     setSelectedTab(tab);
   };
 
-  // فیلتر کردن تب‌هایی که باید نمایش داده شوند
+
   const getVisibleTabs = () => {
     const selectedIndex = options.findIndex((opt) => opt.id === selectedTab);
     return visitedTabs.filter((tab) => {

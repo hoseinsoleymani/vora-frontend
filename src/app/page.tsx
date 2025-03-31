@@ -3,7 +3,7 @@ import SearchBar from "./components/searchBar";
 import Offer from "./components/offer/offer";
 import Faq from "./components/faq/faq"; 
 import TravelBanner from "./components/travelStats/travelBanner";
-
+import TravelPlannerCard from "./components/travelPlanner/TravelPlannerCard";
 
 export default function Home() {
   return (
@@ -16,6 +16,9 @@ export default function Home() {
       </section>
       <section className="mt-60">
         <Offer />
+      </section>
+      <section className="mt-60">
+        <TravelPlannerCard />
       </section>
       <section className="mt-60">
         <TravelBanner />
