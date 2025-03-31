@@ -1,8 +1,10 @@
-import PageIntro from "./components/pageIntro";
+import PageIntro from "./components/pageIntro/pageIntro";
 import SearchBar from "./components/searchBar";
-import Offer from "./components/offer";
-import Faq from "./components/faq";
-import TravelBlogs from "./components/travelBlogs/travelBlogs";
+import Offer from "./components/offer/offer";
+import Faq from "./components/faq/faq"; 
+import TravelBanner from "./components/travelStats/travelBanner";
+import TravelPlannerCard from "./components/travelPlanner/TravelPlannerCard";
+
 export default function Home() {
   return (
     <div className="max-w-screen-xl mx-auto mt-16">
@@ -16,7 +18,10 @@ export default function Home() {
         <Offer />
       </section>
       <section className="mt-60">
-        <TravelBlogs />
+        <TravelPlannerCard />
+      </section>
+      <section className="mt-60">
+        <TravelBanner />
       </section>
       <section className="mt-60">
         <Faq />

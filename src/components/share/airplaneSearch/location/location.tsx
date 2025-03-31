@@ -15,6 +15,8 @@ interface LocationProps {
   icon: React.ReactNode;
   setLocation: (location: string) => void;
   location: string;
+  selectedLocation: Location | null;
+  setSelectedLocation: (location: Location | null) => void;
 }
 
 interface Address {
@@ -36,7 +38,13 @@ export interface Location {
   type: string;
 }
 
-function Location({ title, icon, setLocation, location }: LocationProps) {
+function Location({
+  title,
+  icon,
+  setLocation,
+  selectedLocation,
+  setSelectedLocation,
+}: LocationProps) {
   const [searchLocation, setSearchLocation] = useState("");
   const [searchResults, setSearchResults] = useState<Location[]>([]);
 
@@ -47,13 +55,12 @@ function Location({ title, icon, setLocation, location }: LocationProps) {
         return;
       }
       const response = await fetch(
-        `/api/flight/location/search?keyword=${encodeURIComponent(
+        `http://5.161.155.143:5000//flight/location/search?keyword=${encodeURIComponent(
           searchLocation
         )}`
       );
       const data = await response.json();
       setSearchResults(data);
-      console.log(data);
     } catch (error) {
       console.error("Error fetching location data:", error);
       setSearchResults([]);
@@ -67,14 +74,16 @@ function Location({ title, icon, setLocation, location }: LocationProps) {
   }, [searchLocation]);
 
   const handleLocationSelect = (selectedLocation: Location) => {
-    setLocation(selectedLocation.name);
+    setLocation(selectedLocation.iataCode);
     setSearchLocation(selectedLocation.name);
+    setSelectedLocation(selectedLocation);
     setSearchResults([]);
   };
 
   const handleRemoveLocation = () => {
     setLocation("");
     setSearchLocation("");
+    setSelectedLocation(null);
     setSearchResults([]);
   };
 
@@ -95,12 +104,14 @@ function Location({ title, icon, setLocation, location }: LocationProps) {
             <div>
               <p className="font-bold">{title}</p>
               <p className="text-sm mt-1 text-gray-500">
-                {location ? location : "City or Airport"}
+                {selectedLocation
+                  ? `${selectedLocation.name}`
+                  : "City or Airport"}
               </p>
             </div>
           </div>
         </DropdownMenuTrigger>
-        <DropdownMenuContent className="mt-10 w-[360px] px-4 py-3 rounded-xl overflow-hidden">
+        <DropdownMenuContent className="mt-10 w-[340px] px-4 py-3 rounded-xl overflow-hidden">
           <DropdownMenuItem>
             <div className="flex items-center justify-between gap-2 w-full">
               <div className="flex items-center gap-2">
@@ -116,7 +127,7 @@ function Location({ title, icon, setLocation, location }: LocationProps) {
                 <p className="font-bold">{title}</p>
               </div>
             </div>
-            {location && (
+            {selectedLocation && (
               <Button variant={"outline"} onClick={handleRemoveLocation}>
                 <Dismiss16Regular /> Remove
               </Button>
