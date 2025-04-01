@@ -1,25 +1,30 @@
 import { useWizard } from "@/hooks";
-import FightSearchBar from "./share/fightSearchBar";
-import Budget from "./share/budget";
-import Passengers from "./share/passengers";
-import TravelModelSelector from "./share/travelModelSelector";
-import StayOptionPicker from "./share/stayOptionPicker";
-import TravelDateSelector from "./share/travelDateSelector";
-import WizardLayout from "./share/WizardLayout";
+import FightSearchBar from "./fightSearchBar";
+import Passengers from "./passengers";
+import TravelDateSelector from "./travelDateSelector";
+import WizardLayout from "./WizardLayout";
 
-interface TravelAssistPlanningProps {
+interface TravelBasedOnBudgetProps {
   resetSelection?: () => void;
 }
 
-function TravelAssistPlanning({ resetSelection }: TravelAssistPlanningProps) {
-  const { currentStep, totalSteps, nextStep, prevStep, goToStep, data } =
-    useWizard();
+function TravelBasedOnBudget({ resetSelection }: TravelBasedOnBudgetProps) {
+  const {
+    currentStep,
+    totalSteps,
+    nextStep,
+    prevStep,
+    goToStep,
+    data,
+    resetWizard,
+  } = useWizard();
 
   const handleBackClick = () => {
     if (currentStep === 0) {
       if (resetSelection) {
         resetSelection();
       }
+      resetWizard();
     } else {
       prevStep();
     }
@@ -46,11 +51,8 @@ function TravelAssistPlanning({ resetSelection }: TravelAssistPlanningProps) {
   const selectWizardFromContentMap = () => {
     const wizardFromContentMap: Record<string, React.ReactNode> = {
       "0": <FightSearchBar />,
-      "1": <Budget />,
-      "2": <Passengers />,
-      "3": <TravelModelSelector />,
-      "4": <StayOptionPicker />,
-      "5": <TravelDateSelector />,
+      "1": <Passengers />,
+      "2": <TravelDateSelector />,
     };
     return wizardFromContentMap[currentStep.toString()];
   };
@@ -71,4 +73,4 @@ function TravelAssistPlanning({ resetSelection }: TravelAssistPlanningProps) {
   );
 }
 
-export default TravelAssistPlanning;
+export default TravelBasedOnBudget;

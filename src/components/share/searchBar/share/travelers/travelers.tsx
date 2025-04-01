@@ -112,4 +112,4 @@ function Travelers({
   );
 }
 
-export default Travelers;
+export {Travelers};

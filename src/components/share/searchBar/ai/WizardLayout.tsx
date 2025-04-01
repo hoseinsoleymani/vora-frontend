@@ -4,7 +4,7 @@ import {
   ChevronRight16Regular,
   Search16Regular,
 } from "@fluentui/react-icons";
-import ProgressBar from "./progressBar";
+import { ProgressBar } from "@/components/ui";
 
 interface WizardLayoutProps {
   currentStep: number;

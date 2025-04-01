@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import React from "react";
 import { ServiceType } from "./aiServiceSelector";
-import StepContainer from "./share/stepContainer";
+import StepContainer from "./stepContainer";
 
 interface AiServiceSelectorButtonsProps {
   handleServiceSelect: (service: ServiceType) => void;

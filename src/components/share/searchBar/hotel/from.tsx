@@ -11,14 +11,14 @@ import {
   Search20Regular,
 } from "@fluentui/react-icons";
 import { useEffect, useState } from "react";
-import { Location } from "../../airplaneSearch/location/location";
+import { Location } from "../share/location/location";
 import CityName from "./cityName";
 
-interface WhereToProps {
+interface FromProps {
   setLocation: (location: string) => void;
 }
 
-function WhereTo({ setLocation }: WhereToProps) {
+function From({ setLocation }: FromProps) {
   const [searchLocation, setSearchLocation] = useState("");
   const [searchResults, setSearchResults] = useState<Location[]>([]);
   const [selectedLocation, setSelectedLocation] = useState<Location | null>(
@@ -120,4 +120,4 @@ function WhereTo({ setLocation }: WhereToProps) {
   );
 }
 
-export default WhereTo;
+export default From;

@@ -1,8 +1,7 @@
 import React from "react";
 import StepContainer from "./stepContainer";
 import { useWizard } from "@/hooks";
-import DatePicker from "@/components/share/airplaneSearch/date/datePicker";
-import ReturnTicket from "@/components/share/airplaneSearch/returnTicket/returnTicket";
+import { DatePicker, ReturnTicket } from "@/components/share/searchBar";
 function TravelDateSelector() {
   const { data, setStepData } = useWizard();
   console.log(data);

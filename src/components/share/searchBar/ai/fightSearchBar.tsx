@@ -1,6 +1,4 @@
-import Location, {
-  Location as CustomLocationType,
-} from "../../airplaneSearch/location/location";
+import { Location, Location as LocationType } from "../share/location/location";
 import { ArrowDown16Regular, ArrowUp16Regular } from "@fluentui/react-icons";
 import { useWizard } from "@/hooks";
 import TripTypeSelector from "./tripTypeSelector";
@@ -19,7 +17,7 @@ function FightSearchBar() {
           setLocation={(location: string) => setStepData("from", location)}
           location={data.from}
           selectedLocation={data.fromLocation}
-          setSelectedLocation={(location: CustomLocationType | null) =>
+          setSelectedLocation={(location: LocationType | null) =>
             setStepData("fromLocation", location)
           }
         />
@@ -30,7 +28,7 @@ function FightSearchBar() {
           setLocation={(location: string) => setStepData("to", location)}
           location={data.to}
           selectedLocation={data.toLocation}
-          setSelectedLocation={(location: CustomLocationType | null) =>
+          setSelectedLocation={(location: LocationType | null) =>
             setStepData("toLocation", location)
           }
         />

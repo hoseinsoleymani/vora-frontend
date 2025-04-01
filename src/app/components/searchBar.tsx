@@ -1,14 +1,13 @@
 "use client";
 //Todo: refactor this component to server action
+import { AiSearch, AirplaneSearch, HotelSearch } from "@/components/share/searchBar";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   Airplane16Regular,
   Building16Regular,
   Sparkle16Filled,
 } from "@fluentui/react-icons";
-import AirplaneSearch from "@/components/share/airplaneSearch/airplaineSearch";
-import HotelSearch from "../../components/share/hotelSearch/hotelSearch";
-import AiSearch from "@/components/share/aiSearch/aiSearch";
+
 
 function SearchBar() {
   return (

@@ -6,7 +6,8 @@ import {
   DropdownMenuItem,
 } from "@/components/ui";
 import { DoorRegular, ArrowUndo16Regular } from "@fluentui/react-icons";
-import Counter from "../../airplaneSearch/travelers/counter";
+import Counter from "../share/travelers/counter";
+
 
 interface RoomsProps {
   rooms: number;

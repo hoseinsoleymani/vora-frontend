@@ -1,3 +1,4 @@
+"use client";
 import React, { useState } from "react";
 import CalculateExpenses from "./calculateExpenses";
 import TravelAssistPlanning from "./travelAssistPlanning";
@@ -13,8 +14,8 @@ export type ServiceType =
 
 const SERVICE_STEPS: Record<ServiceType, number> = {
   travelAssist: 6,
-  travelBug: 4,
-  travelCalculate: 3,
+  travelBug: 3,
+  travelCalculate: 6,
   defult: 1,
 };
 
@@ -32,8 +33,8 @@ function AIServiceSelector() {
   const selectedServiceMap = (selectedService: ServiceType) => {
     const serviceMap = {
       travelAssist: <TravelAssistPlanning resetSelection={resetSelection} />,
-      travelBug: <TravelBasedOnBudget />,
-      travelCalculate: <CalculateExpenses />,
+      travelBug: <TravelBasedOnBudget resetSelection={resetSelection}/>,
+      travelCalculate: <CalculateExpenses resetSelection={resetSelection}/>,
       defult: (
         <AiServiceSelectorButtons handleServiceSelect={handleServiceSelect} />
       ),

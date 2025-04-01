@@ -164,4 +164,4 @@ function Location({
   );
 }
 
-export default Location;
+export { Location };

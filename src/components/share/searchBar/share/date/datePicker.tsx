@@ -52,4 +52,4 @@ function DatePicker({ date, setDate }: DatePickerProps) {
   );
 }
 
-export default DatePicker;
+export { DatePicker };

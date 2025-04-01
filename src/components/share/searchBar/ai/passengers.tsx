@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import TravelersContent from "../../airplaneSearch/travelers/travelersContent";
+
 import { useWizard } from "@/hooks";
 import StepContainer from "./stepContainer";
+import TravelersContent from "../share/travelers/travelersContent";
 
 function Passengers() {
   const { data, setStepData } = useWizard();

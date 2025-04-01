@@ -5,13 +5,12 @@ import {
   Search16Regular,
 } from "@fluentui/react-icons";
 import { Button } from "@/components/ui/button";
-import Location, { Location as LocationType } from "./location/location";
-import DatePicker from "./date/datePicker";
-import ReturnTicket from "./returnTicket/returnTicket";
-import Travelers from "./travelers/travelers";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { DatePicker, ReturnTicket, Travelers , Location, Location as LocationType } from "@/components/share/searchBar";
 
 function AirplaneSearch() {
+  const router = useRouter();
   const [fromLocation, setFromLocation] = useState("");
   const [destinationLocation, setDestinationLocation] = useState("");
   const [date, setDate] = useState<Date | undefined>();
@@ -24,21 +23,46 @@ function AirplaneSearch() {
   const [selectedDestinationLocation, setSelectedDestinationLocation] =
     useState<LocationType | null>(null);
 
-  const handleSearch = () => {
+  const handleSearch = async () => {
     const formatDate = (date: Date | undefined) => {
       if (!date) return undefined;
       return date.toISOString().split("T")[0].replace(/-/g, "/");
     };
 
-    console.log({
-      fromLocation,
-      destinationLocation,
-      date: formatDate(date),
-      returnDate: formatDate(returnDate),
-      adultCount,
-      childCount,
-      infantCount,
-    });
+    try {
+      const queryParams = new URLSearchParams({
+        origin: selectedFromLocation?.iataCode || "",
+        destination: selectedDestinationLocation?.iataCode || "",
+        departure_date: formatDate(date) || "",
+        arrival_date: formatDate(returnDate) || "",
+        adults: adultCount.toString(),
+        page: "1",
+        page_size: "10",
+      });
+
+      const response = await fetch(
+        `http://5.161.155.143:5000/flight/offers/search?${queryParams}`
+      );
+      const data = await response.json();
+      console.log(data);
+
+      // if (data) {
+      //   router.push(
+      //     `/flights?${new URLSearchParams({
+      //       origin: selectedFromLocation?.iataCode || "",
+      //       destination: selectedDestinationLocation?.iataCode || "",
+      //       departure_date: formatDate(date) || "",
+      //       arrival_date: formatDate(returnDate) || "",
+      //       adults: adultCount.toString(),
+      //       originCity: selectedFromLocation?.address.cityName || "",
+      //       destinationCity:
+      //         selectedDestinationLocation?.address.cityName || "",
+      //     }).toString()}`
+      //   );
+      // }
+    } catch (error) {
+      console.error("Error searching flights:", error);
+    }
   };
 
   return (
@@ -82,4 +106,4 @@ function AirplaneSearch() {
   );
 }
 
-export default AirplaneSearch;
+export { AirplaneSearch };

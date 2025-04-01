@@ -1,11 +1,12 @@
 "use client";
 import { Search16Regular } from "@fluentui/react-icons";
 import { Button } from "@/components/ui/button";
-import WhereTo from "./whereto/whereTo";
 import { useState } from "react";
 import CheckInAndOut from "./checkInAndOut";
-import Travelers from "../airplaneSearch/travelers/travelers";
-import Rooms from "./rooms/rooms";
+import { Travelers } from "@/components/share/searchBar";
+import Rooms from "./rooms";
+import From from "./from";
+
 
 function HotelSearch() {
   const [location, setLocation] = useState("");
@@ -35,7 +36,7 @@ function HotelSearch() {
 
   return (
     <div className="bg-white rounded-lg px-8 py-4 flex gap-4 w-full items-center justify-between h-24">
-      <WhereTo setLocation={setLocation} />
+      <From setLocation={setLocation} />
 
       <CheckInAndOut
         checkInDate={checkInDate}
@@ -68,4 +69,4 @@ function HotelSearch() {
   );
 }
 
-export default HotelSearch;
+export  {HotelSearch};

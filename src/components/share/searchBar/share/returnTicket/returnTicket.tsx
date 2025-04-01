@@ -86,4 +86,4 @@ function ReturnTicket({ returnDate, setReturnDate }: ReturnTicketProps) {
   );
 }
 
-export default ReturnTicket;
+export { ReturnTicket };

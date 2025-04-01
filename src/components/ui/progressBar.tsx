@@ -2,11 +2,20 @@ interface ProgressBarProps {
   currentStep: number;
   totalSteps: number;
   goToStep: (step: number) => void;
+  size?: "small" | "large";
 }
 
-function ProgressBar({ currentStep, totalSteps, goToStep }: ProgressBarProps) {
+function ProgressBar({
+  currentStep,
+  totalSteps,
+  goToStep,
+  size = "small",
+}: ProgressBarProps) {
+  const height = size === "small" ? "h-1" : "h-2";
+  const stepWidth = Math.floor(320 / totalSteps);
+
   return (
-    <div className="flex items-center gap-3">
+    <div className="flex items-center gap-3 w-[320px]">
       {[...Array(totalSteps)].map((_, index) => (
         <div
           key={index}
@@ -14,9 +23,10 @@ function ProgressBar({ currentStep, totalSteps, goToStep }: ProgressBarProps) {
           onClick={() => goToStep(index)}
         >
           <div
-            className={`w-10 h-1 rounded-full ${
+            className={`${height} rounded-full ${
               index <= currentStep ? "bg-black" : "border border-black"
             }`}
+            style={{ width: `${stepWidth}px` }}
           ></div>
         </div>
       ))}
@@ -24,4 +34,4 @@ function ProgressBar({ currentStep, totalSteps, goToStep }: ProgressBarProps) {
   );
 }
 
-export default ProgressBar;
+export { ProgressBar };

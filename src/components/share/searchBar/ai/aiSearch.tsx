@@ -1,6 +1,5 @@
-import React, { useState } from "react";
 import AIServiceSelector from "./aiServiceSelector";
-import { ProgressStepper } from "@/components/ui/progressstepper";
+
 
 function AiSearch() {
   return (
@@ -10,4 +9,4 @@ function AiSearch() {
   );
 }
 
-export default AiSearch;
+export { AiSearch };
