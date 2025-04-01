@@ -5,7 +5,7 @@ import Faq from "./components/faq";
 
 export default function Home() {
   return (
-    <div className="max-w-screen-xl mx-auto mt-16">
+    <div className="container mx-auto px-4 py-6 flex gap-6">
       <section className="mt-8">
         <PageIntro />
       </section>
