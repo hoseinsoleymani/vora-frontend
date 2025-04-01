@@ -24,7 +24,7 @@ function Rooms({ rooms, setRooms }: RoomsProps) {
             <div>
               <p className="font-bold">Rooms</p>
               <p className="text-sm mt-1 text-gray-500">
-                {rooms} How many rooms
+                {rooms < 2 ? "How many rooms" : `${rooms} rooms`}
               </p>
             </div>
           </div>

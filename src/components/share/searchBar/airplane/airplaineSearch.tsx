@@ -7,7 +7,13 @@ import {
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { DatePicker, ReturnTicket, Travelers , Location, Location as LocationType } from "@/components/share/searchBar";
+import {
+  DatePicker,
+  ReturnTicket,
+  Travelers,
+  Location,
+  Location as LocationType,
+} from "@/components/share/searchBar";
 
 function AirplaneSearch() {
   const router = useRouter();
@@ -30,7 +36,7 @@ function AirplaneSearch() {
     };
 
     try {
-      const queryParams = new URLSearchParams({
+      const params = new URLSearchParams({
         origin: selectedFromLocation?.iataCode || "",
         destination: selectedDestinationLocation?.iataCode || "",
         departure_date: formatDate(date) || "",
@@ -41,25 +47,22 @@ function AirplaneSearch() {
       });
 
       const response = await fetch(
-        `http://5.161.155.143:5000/flight/offers/search?${queryParams}`
+        `http://5.161.155.143:5000/flight/offers/search?${params.toString()}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
       );
-      const data = await response.json();
-      console.log(data);
 
-      // if (data) {
-      //   router.push(
-      //     `/flights?${new URLSearchParams({
-      //       origin: selectedFromLocation?.iataCode || "",
-      //       destination: selectedDestinationLocation?.iataCode || "",
-      //       departure_date: formatDate(date) || "",
-      //       arrival_date: formatDate(returnDate) || "",
-      //       adults: adultCount.toString(),
-      //       originCity: selectedFromLocation?.address.cityName || "",
-      //       destinationCity:
-      //         selectedDestinationLocation?.address.cityName || "",
-      //     }).toString()}`
-      //   );
-      // }
+      if (!response.ok) {
+        throw new Error("Failed to fetch flight offers");
+      }
+
+      const data = await response.json();
+      console.log("Flight search results:", data);
+      // router.push(`/flights?${params.toString()}`);
     } catch (error) {
       console.error("Error searching flights:", error);
     }
