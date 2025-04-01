@@ -1,9 +1,12 @@
-import React from 'react'
+import { HeaderFlightDetails, FlightSegment } from "@/app/details/components";
 
 function FlightDetails() {
   return (
-    <div>FlightDetails</div>
-  )
+    <div className=" w-full">
+      <HeaderFlightDetails />
+      <FlightSegment />
+    </div>
+  );
 }
 
 export { FlightDetails };
