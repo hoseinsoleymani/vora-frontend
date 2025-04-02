@@ -1,6 +1,6 @@
 import { AirplaneIcon } from "@/components/icons";
 
-interface FlightSegmentDisplayProps {
+export interface FlightSegmentDisplayProps {
   time: string;
   city: string;
   terminal: string;
