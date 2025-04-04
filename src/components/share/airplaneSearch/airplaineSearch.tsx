@@ -25,6 +25,7 @@ interface AirplaneSearchProps {
   setChildCount: (count: number) => void;
   infantCount: number;
   setInfantCount: (count: number) => void;
+  onSearch?: () => void;
 }
 
 function AirplaneSearch({
@@ -42,7 +43,15 @@ function AirplaneSearch({
   setChildCount,
   infantCount,
   setInfantCount,
+  onSearch,
 }: AirplaneSearchProps) {
+  
+  const handleSearchClick = () => {
+    if (onSearch) {
+      onSearch();
+    }
+  };
+  
   return (
     <div className="bg-white rounded-full px-8 py-4 flex gap-4 w-full">
       <div className="flex items-center w-full gap-4">
@@ -74,6 +83,7 @@ function AirplaneSearch({
         className="text-white w-10 h-10 rounded-full flex-none"
         aria-label="Search flights"
         size={"icon"}
+        onClick={handleSearchClick}
       >
         <Search16Regular className="text-white" />
       </Button>
