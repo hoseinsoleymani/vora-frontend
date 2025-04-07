@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react';
 import { fetchFlightData } from '../../lib/actions';
-import { Flight, StopInfo } from '../../types';
 import { FlightInfo } from './FlightInfo';
 import { FlightTimes } from './FlightTimes';
 import { FlightPrice } from './FlightPrice';
@@ -14,7 +13,26 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
-import { LoadingSpinner } from "@/components/ui";
+import { Skeleton } from "@/components/ui/skeleton";
+
+export interface StopInfo {
+  airport: string;
+  duration: string;
+}
+
+export interface Flight {
+  airline: string;
+  airlineImage: string;
+  departureTime: string;
+  departureCity: string;
+  arrivalTime: string;
+  arrivalCity: string;
+  duration: string;
+  price: string;
+  flightNumber: string;
+  stops: string;
+  stopInfo: StopInfo[];
+}
 
 interface FlightCardProps {
   searchParams: {
@@ -29,7 +47,7 @@ interface FlightCardProps {
 
 const FlightCard = ({ searchParams }: FlightCardProps) => {
   const origin = searchParams.origin || "LON";
-  const destination = searchParams.destination || "CHI";
+  const destination = searchParams.destination || "PAR";
   const selectedDate = searchParams.selected_date || "2025/04/10";
   const adults = parseInt(searchParams.adults || "1");
   const page = parseInt(searchParams.page || "1");
@@ -66,7 +84,41 @@ const FlightCard = ({ searchParams }: FlightCardProps) => {
   }, [origin, destination, selectedDate, adults, page, pageSize]);
 
   if (loading) {
-    return <LoadingSpinner />;
+    // Display flight card skeletons during loading
+    return (
+      <div className="space-y-4 mt-5">
+        {Array(3).fill(0).map((_, index) => (
+          <div key={index} className="flex bg-white shadow-md rounded-xl p-4 justify-between space-x-10">
+            {/* Flight Info Skeleton */}
+            <div className="flex flex-col w-1/6 justify-center space-y-3">
+              <Skeleton className="w-8 h-8 rounded-full" />
+              <Skeleton className="h-4 w-20" />
+            </div>
+            {/* Flight Times Skeleton */}
+            <div className="flex-1 flex items-center space-x-4">
+              <div className="flex flex-col items-center">
+                <Skeleton className="h-5 w-10" />
+                <Skeleton className="h-4 w-8 mt-1" />
+              </div>
+              <Skeleton className="h-1 w-full flex-1" />
+              <div className="flex flex-col items-center">
+                <Skeleton className="h-5 w-10" />
+                <Skeleton className="h-4 w-8 mt-1" />
+              </div>
+              <div className="flex flex-col items-center w-20">
+                <Skeleton className="h-4 w-16" />
+                <Skeleton className="h-4 w-12 mt-1" />
+              </div>
+            </div>
+            {/* Flight Price Skeleton */}
+            <div className="flex w-2/6 items-center justify-center space-x-5">
+              <Skeleton className="h-6 w-20" />
+              <Skeleton className="h-9 w-28 rounded-md" />
+            </div>
+          </div>
+        ))}
+      </div>
+    );
   }
 
   if (flights.length === 0) {

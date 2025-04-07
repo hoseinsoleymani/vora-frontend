@@ -3,7 +3,19 @@
 import { useState, useEffect } from "react";
 import AirplaneSearch from "@/components/share/airplaneSearch/airplaineSearch";
 import { useRouter, useSearchParams } from "next/navigation";
-import { SearchParams } from "../../types";
+
+export interface SearchParams {
+  origin?: string;
+  destination?: string;
+  departure_date?: string;
+  adults?: string;
+  selected_date?: string;
+  selectedItemIndex?: string;
+  currentIndex?: string;
+  page?: string;
+  current_step?: string;
+  sort_by?: string;
+}
 
 interface AirplaneSearchWrapperProps {
   searchParams?: SearchParams;
@@ -37,7 +49,7 @@ const AirplaneSearchWrapper = ({ searchParams }: AirplaneSearchWrapperProps) => 
     const params = new URLSearchParams(urlSearchParams.toString());
     
     params.set('origin', fromLocation || 'LON');
-    params.set('destination', destinationLocation || 'CHI');
+    params.set('destination', destinationLocation || 'PAR');
     params.set('departure_date', formattedDate);
     params.set('adults', adultCount.toString());
     

@@ -1,8 +1,33 @@
 'use server';
 
-import { StopInfo } from '../types';
+import { StopInfo } from '@/components/share/FlightLineComponent';
 
-// Server action برای دریافت داده‌های قیمت تقویم
+// Flight API types
+export interface FlightSegment {
+  carrierCode: string;
+  carrierImage?: string;
+  number: string;
+  departure: {
+    iataCode: string;
+    at: string;
+  };
+  arrival: {
+    iataCode: string;
+    at: string;
+  };
+}
+
+export interface FlightApiResponse {
+  itineraries: Array<{
+    duration: string;
+    segments: FlightSegment[];
+  }>;
+  price: {
+    grandTotal: string;
+  };
+}
+
+// Server action to fetch price calendar data
 export async function fetchPriceCalendarData(origin: string, destination: string, departureDate: string) {
   try {
     const res = await fetch(
@@ -24,7 +49,7 @@ export async function fetchPriceCalendarData(origin: string, destination: string
   }
 }
 
-// Server action برای دریافت داده‌های پرواز
+// Server action to fetch flight data
 export async function fetchFlightData(
   origin: string, 
   destination: string, 
@@ -34,13 +59,13 @@ export async function fetchFlightData(
   pageSize: number
 ) {
   try {
-    const url = `http://5.161.155.143:5000/flight/offers/search?origin=${origin}&destination=${destination}&departure_date=${departureDate}&adults=${adults}&page=${page}&page_size=${pageSize}`;
+    const url = `http://5.161.155.143:5000/flight/offer/search?origin=${origin}&destination=${destination}&departure_date=${departureDate}&adults=${adults}&page=${page}&page_size=${pageSize}`;
     const res = await fetch(url, { cache: 'no-store' });
     if (!res.ok) throw new Error("Failed to fetch flight data");
     
     const data = await res.json();
-    const results = data.results.map((flight: any) => {
-      // پردازش اطلاعات توقف‌ها
+    const results = data.results.map((flight: FlightApiResponse) => {
+      // Process stop information
       const segments = flight.itineraries[0].segments;
       const stopCount = segments.length - 1;
       
@@ -52,7 +77,7 @@ export async function fetchFlightData(
           
           const departureTime = new Date(currentSegment.arrival.at);
           const arrivalTime = new Date(nextSegment.departure.at);
-          const layoverDuration = Math.floor((arrivalTime.getTime() - departureTime.getTime()) / (1000 * 60)); // دقیقه
+          const layoverDuration = Math.floor((arrivalTime.getTime() - departureTime.getTime()) / (1000 * 60)); // minutes
           
           stopInfo.push({
             airport: currentSegment.arrival.iataCode,
@@ -79,7 +104,7 @@ export async function fetchFlightData(
         arrivalCity: arrivalSegment.arrival.iataCode,
         duration: formatDuration(flight.itineraries[0].duration),
         price: `€ ${flight.price.grandTotal}`,
-        flightNumber: segments.map((seg: any) => seg.number).join(' / '),
+        flightNumber: segments.map((seg: FlightSegment) => seg.number).join(' / '),
         stops: stopCount === 0 ? "Direct" : `${stopCount} Stop${stopCount > 1 ? 's' : ''}`,
         stopInfo: stopInfo,
       };
@@ -98,7 +123,7 @@ export async function fetchFlightData(
   }
 }
 
-// تابع کمکی برای فرمت کردن مدت زمان
+// Helper function to format duration
 function formatDuration(duration: string): string {
   const durationRegex = /PT(\d+)H(\d+)M/;
   const match = duration.match(durationRegex);
@@ -112,7 +137,7 @@ function formatDuration(duration: string): string {
   return duration;
 }
 
-// تابع کمکی برای فرمت کردن مدت زمان توقف
+// Helper function to format layover duration
 function formatLayoverDuration(minutes: number): string {
   if (minutes < 60) {
     return `${minutes}m`;

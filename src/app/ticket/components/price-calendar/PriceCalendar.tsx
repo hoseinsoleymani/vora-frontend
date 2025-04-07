@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { LoadingSpinner } from "@/components/ui"; 
+import { Skeleton } from "@/components/ui/skeleton";
 import { fetchPriceCalendarData } from "../../lib/actions";
 import { CalendarHeader } from "./CalendarHeader";
 import { NavigationButton } from "./NavigationButton";
@@ -21,8 +21,8 @@ interface PriceCalendarProps {
 
 const PriceCalendar = ({ searchParams }: PriceCalendarProps) => {
   const origin = searchParams.origin || "LON";
-  const destination = searchParams.destination || "CHI";
-  const departureDate = searchParams.departure_date || "2025-04-10";
+  const destination = searchParams.destination || "PAR";
+  const departureDate = searchParams.departure_date || "2025/04/10";
   const selectedDate = searchParams.selected_date || departureDate;
   const selectedItemIndex = parseInt(searchParams.selectedItemIndex || "0");
   const currentIndex = parseInt(searchParams.currentIndex || "0");
@@ -60,7 +60,24 @@ const PriceCalendar = ({ searchParams }: PriceCalendarProps) => {
   };
 
   if (loading) {
-    return <LoadingSpinner />;
+    // Display skeleton for the price calendar during loading
+    return (
+      <div className="p-5 bg-white rounded-2xl mt-5">
+        <Skeleton className="h-6 w-48 mb-4" />
+        <div className="relative w-full flex items-center justify-center my-4">
+          <Skeleton className="h-10 w-10 mr-2" />
+          <div className="flex overflow-x-hidden">
+            {Array(6).fill(0).map((_, i) => (
+              <div key={i} className="flex flex-col items-center text-center px-3 py-2 mx-1 rounded-lg w-24">
+                <Skeleton className="h-4 w-16 mb-1" />
+                <Skeleton className="h-5 w-12" />
+              </div>
+            ))}
+          </div>
+          <Skeleton className="h-10 w-10 ml-2" />
+        </div>
+      </div>
+    );
   }
 
   // Common form data for components

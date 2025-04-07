@@ -1,0 +1,1 @@
+export { HotelSortComponent } from './HotelSortComponent'; 

@@ -1,6 +1,6 @@
 
 // Function to convert ISO 8601 duration to hours and minutes
-export const formatDuration = (duration: string): string => {
+export const formatDuration = (duration: string) => {
 	const match = duration.match(/PT(\d+H)?(\d+M)?/);
 	if (!match) return "";
   

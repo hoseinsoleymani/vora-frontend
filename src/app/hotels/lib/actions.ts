@@ -1,0 +1,78 @@
+'use server';
+
+import type { Hotel } from '@/app/hotels/components/hotel-list/HotelList';
+
+export async function getHotels(
+  city: string = 'PAR', 
+  date: string = '2025/04/20',
+  page: number = 1,
+  pageSize: number = 6
+): Promise<{ hotels: Hotel[], totalCount: number, totalPages: number }> {
+  try {
+    const url = `http://5.161.155.143:5000/hotel/search?city=${city}&date=${date}`;
+    const response = await fetch(url, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      cache: 'no-store',
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const data: Hotel[] = await response.json();
+    
+    const startIndex = (page - 1) * pageSize;
+    const endIndex = startIndex + pageSize;
+    const paginatedHotels = data.slice(startIndex, endIndex);
+    
+    return {
+      hotels: paginatedHotels,
+      totalCount: data.length,
+      totalPages: Math.ceil(data.length / pageSize)
+    };
+  } catch (error) {
+    console.error('Error fetching hotels:', error);
+    throw error;
+  }
+}
+
+export async function fetchWeatherData() {
+  try {
+    
+    const weatherConditions = [
+      { temp: '22°C', condition: 'Sunny', icon: '☀️' },
+      { temp: '18°C', condition: 'Partly Cloudy', icon: '⛅' },
+      { temp: '15°C', condition: 'Cloudy', icon: '☁️' },
+      { temp: '12°C', condition: 'Rainy', icon: '🌧️' },
+      { temp: '8°C', condition: 'Stormy', icon: '⛈️' },
+      { temp: '25°C', condition: 'Hot', icon: '🔥' },
+      { temp: '5°C', condition: 'Cold', icon: '❄️' }
+    ];
+    
+    const result = [];
+    const today = new Date();
+    
+    for (let i = 0; i < 14; i++) {
+      const date = new Date(today);
+      date.setDate(today.getDate() + i);
+      
+      const randomIndex = Math.floor(Math.random() * weatherConditions.length);
+      const { temp, condition, icon } = weatherConditions[randomIndex];
+      
+      result.push({
+        date: date.toISOString().split('T')[0],
+        temp,
+        condition,
+        icon
+      });
+    }
+    
+    return result;
+  } catch (error) {
+    console.error("Error fetching weather data: ", error);
+    return [];
+  }
+} 
