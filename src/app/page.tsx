@@ -1,7 +1,10 @@
-import PageIntro from "./components/pageIntro";
+import PageIntro from "./components/pageIntro/pageIntro";
 import SearchBar from "./components/searchBar";
-import Offer from "./components/offer";
-import Faq from "./components/faq";
+import Offer from "./components/offer/offer";
+import Faq from "./components/faq/faq"; 
+import TravelBanner from "./components/travelStats/travelBanner";
+import TravelPlannerCard from "./components/travelPlanner/TravelPlannerCard";
+import TravelBlogs from "./components/travelBlogs/travelBlogs";
 
 export default function Home() {
   return (
@@ -9,11 +12,20 @@ export default function Home() {
       <section className="mt-8">
         <PageIntro />
       </section>
-      <section className="mt-60">
+      <section className="mt-8">
         <SearchBar />
       </section>
-      <section className="mt-60">
+      <section className="mt-50">
         <Offer />
+      </section>
+      <section className="mt-50">
+        <TravelPlannerCard />
+      </section>
+      <section className="mt-24">
+        <TravelBanner />
+      </section>
+      <section className="mt-60">
+        <TravelBlogs />
       </section>
       <section className="mt-60">
         <Faq />

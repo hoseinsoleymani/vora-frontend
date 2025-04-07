@@ -10,3 +10,4 @@ export * from "./select";
 export * from "./dropdown-menu"
 export * from "./navbar"
 export * from "./LoadingSpinner"
+export * from "./progressBar"
