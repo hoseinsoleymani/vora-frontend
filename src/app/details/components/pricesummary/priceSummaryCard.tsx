@@ -1,12 +1,13 @@
 import React from "react";
-import { TravellerPrice } from "./travellerPrice";
-function PriceSummaryCard() {
+import { Traveller, TravellerPrice } from "./travellerPrice";
+
+function PriceSummaryCard({ travellers }: { travellers: Traveller[] }) {
   return (
     <div className="flex flex-col">
       <h3 className="text-2xl">Price summary</h3>
-      <TravellerPrice traveller={{ type: "adult", flightPrice: 2910, taxesPrice: 787.8 , price: 3697.8 }} index={0} />
-      <TravellerPrice traveller={{ type: "adult", flightPrice: 2910, taxesPrice: 787.8 , price: 3697.8 }} index={1} />
-      <TravellerPrice traveller={{ type: "child", flightPrice: 2910, taxesPrice: 787.8 , price: 3697.8 }} index={2} />
+      {travellers.map((traveller, index) => (
+        <TravellerPrice key={index} traveller={traveller} index={index} />
+      ))}
     </div>
   );
 }

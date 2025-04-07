@@ -7,6 +7,8 @@ export * from "./radio-group";
 export * from "./checkbox";
 export * from "./switch";
 export * from "./select";
-export * from "./dropdown-menu"
-export * from "./navbar"
-export * from "./progressBar"
+export * from "./dropdown-menu";
+export * from "./navbar";
+export * from "./progressBar";
+export * from "./dialog";
+export * from "./popover";

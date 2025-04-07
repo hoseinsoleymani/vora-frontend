@@ -61,8 +61,7 @@ function AirplaneSearch() {
       }
 
       const data = await response.json();
-      console.log("Flight search results:", data);
-      // router.push(`/flights?${params.toString()}`);
+      router.push(`/ticket?${params.toString()}`);
     } catch (error) {
       console.error("Error searching flights:", error);
     }
