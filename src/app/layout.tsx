@@ -5,6 +5,9 @@ import "./globals.css";
 import "@unocss/reset/normalize.css";
 import "@unocss/reset/sanitize/sanitize.css";
 import "@unocss/reset/sanitize/assets.css";
+import Navbar from "@/components/ui/navbar";
+import { Footer } from "@/components/ui/footer";
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,7 +32,9 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<body className={`${geistSans.variable} ${geistMono.variable} bg-[#fafafa]`}>
+				<Navbar />
 				{children}
+				<Footer />
 			</body>
 		</html>
 	);

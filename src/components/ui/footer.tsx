@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <div className="py-4 px-8 max-w-screen">
+    <div className="py-4 px-8 max-w-screen mt-10">
       <div className="flex justify-between items-center b-b-gray border-b pb-5">
         <div className="text-3xl text-gray font-extralight">VORA</div>
 

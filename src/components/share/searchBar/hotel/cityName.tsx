@@ -1,9 +1,9 @@
 import { Location24Regular } from "@fluentui/react-icons";
-import { Location } from "../../airplaneSearch/location/location";
+import { Region } from "../share/location/location"
 
 interface CityNameProps {
-  data: Location[];
-  setLocation: (location: Location) => void;
+  data: Region[];
+  setLocation: (location: Region) => void;
 }
 
 function cityName({ data, setLocation }: CityNameProps) {
@@ -13,7 +13,7 @@ function cityName({ data, setLocation }: CityNameProps) {
         data.slice(1).map((city, index) => (
           <div
             key={index}
-            className="flex  gap-2 cursor-pointer hover:bg-gray-100 p-2 rounded-lg"
+            className="flex  gap-2 cursor-pointer hover:bg-gray-100 p-2 rounded-lg "
             onClick={() => setLocation(city)}
           >
             <div className="flex items-center gap-3">
