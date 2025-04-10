@@ -11,8 +11,12 @@ import {
   Search20Regular,
 } from "@fluentui/react-icons";
 import { useEffect, useState } from "react";
-import { Location } from "../share/location/location";
 import CityName from "./cityName";
+
+interface Region {
+  iataCode: string;
+  name: string;
+}
 
 interface FromProps {
   setLocation: (location: string) => void;
@@ -20,10 +24,8 @@ interface FromProps {
 
 function From({ setLocation }: FromProps) {
   const [searchLocation, setSearchLocation] = useState("");
-  const [searchResults, setSearchResults] = useState<Location[]>([]);
-  const [selectedLocation, setSelectedLocation] = useState<Location | null>(
-    null
-  );
+  const [searchResults, setSearchResults] = useState<Region[]>([]);
+  const [selectedLocation, setSelectedLocation] = useState<Region | null>(null);
 
   const getLocation = async () => {
     try {
@@ -49,8 +51,8 @@ function From({ setLocation }: FromProps) {
       getLocation();
     }
   }, [searchLocation]);
-  const handleLocationSelect = (selectedLocation: Location) => {
-    setLocation(selectedLocation.iataCode);
+  const handleLocationSelect = (selectedLocation: Region) => {
+    setLocation(selectedLocation.name);
     setSearchLocation(selectedLocation.name);
     setSelectedLocation(selectedLocation);
     setSearchResults([]);

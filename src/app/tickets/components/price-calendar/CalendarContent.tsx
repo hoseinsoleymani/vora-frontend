@@ -7,26 +7,20 @@ interface CalendarContentProps {
   currentIndex: number;
   visibleItems: number;
   selectedItemIndex: number;
-  formData: {
-    origin: string;
-    destination: string;
-    departureDate: string;
-    adults: string;
-    currentIndex: string;
-  };
+  formData: Record<string, string>;
   formatDate: (date: string) => string;
 }
 
 const CalendarContent = ({ 
   priceData, 
-  currentIndex, 
-  visibleItems, 
+  currentIndex,
+  visibleItems,
   selectedItemIndex, 
   formData, 
   formatDate 
 }: CalendarContentProps) => (
   <div className="flex space-x-4 max-w-4xl mx-14">
-    {priceData.slice(currentIndex, visibleItems).map((day, index) => (
+    {priceData.slice(currentIndex, currentIndex + visibleItems).map((day, index) => (
       <PriceDay 
         key={index}
         day={day} 

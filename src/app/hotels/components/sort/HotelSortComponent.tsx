@@ -10,20 +10,21 @@ import { SortByComponent } from "@/components/share/SortByComponent/SortByCompon
 import { useState, useEffect } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 
-interface HotelSortComponentProps {
-  searchParams: {
-    category?: string;
-    brand?: string;
-    quantity?: string;
-    selected_product?: string;
-    sort_by?: string;
-  };
+interface HotelSearchParams {
+  category?: string;
+  brand?: string;
+  quantity?: string;
+  selected_product?: string;
+  sort_by?: string;
 }
 
-const HotelSortComponent = ({ searchParams }: HotelSortComponentProps) => {
+interface HotelSortProps {
+  searchParams: HotelSearchParams;
+}
+
+const HotelSortComponent = ({ searchParams }: HotelSortProps) => {
   const [loading, setLoading] = useState(true);
 
-  // Simulate data loading
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);

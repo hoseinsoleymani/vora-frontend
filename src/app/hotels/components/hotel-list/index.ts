@@ -1,2 +1,2 @@
-export { HotelCard } from './HotelCard';
-export { HotelList } from './HotelList'; 
+export * from './HotelList';
+export * from './HotelCard'; 

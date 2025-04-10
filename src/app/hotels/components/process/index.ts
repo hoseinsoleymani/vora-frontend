@@ -1,1 +1,1 @@
-export { ProcessHotel } from './ProcessHotel'; 
+export * from './ProcessHotel'; 

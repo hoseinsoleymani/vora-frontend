@@ -19,16 +19,14 @@ const HotelsPagination: React.FC<HotelsPaginationProps> = ({
     totalPages,
     createPageUrl,
 }) => {
-    // Improved pagination range logic
     const getPaginationRange = () => {
-        const delta = 1; // Number of pages to show before/after current page
+        const delta = 1;
         const left = page - delta;
         const right = page + delta;
         const range = [];
         const rangeWithDots: (number | string)[] = [];
 
         for (let i = 1; i <= totalPages; i++) {
-            // Show first page, last page, current page, and pages within delta
             if (i === 1 || i === totalPages || (i >= left && i <= right)) {
                 range.push(i);
             }
@@ -37,7 +35,6 @@ const HotelsPagination: React.FC<HotelsPaginationProps> = ({
         let last: number | null = null;
         for (const num of range) {
             if (last !== null) {
-                // If gap is larger than 1, add ellipsis
                 if (num - last > 1) {
                     rangeWithDots.push('...');
                 }
@@ -51,7 +48,7 @@ const HotelsPagination: React.FC<HotelsPaginationProps> = ({
 
 
     if (totalPages <= 1) {
-        return null; // Don't render pagination if only one page
+        return null;
     }
 
     return (
@@ -69,7 +66,7 @@ const HotelsPagination: React.FC<HotelsPaginationProps> = ({
                 {getPaginationRange().map((pageNum, index) => (
                     <PaginationItem key={typeof pageNum === 'number' ? pageNum : `ellipsis-${index}`}>
                         {pageNum === '...' ? (
-                            <span className="px-4 py-2">...</span> // Or use PaginationEllipsis if available
+                            <span className="px-4 py-2">...</span>
                         ) : (
                             <PaginationLink
                                 href={createPageUrl(pageNum as number)}

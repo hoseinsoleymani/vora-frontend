@@ -1,1 +1,1 @@
-export { WeatherCalendar } from './WeatherCalendar'; 
+export * from './WeatherCalendar'; 

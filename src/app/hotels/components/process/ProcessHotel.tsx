@@ -4,23 +4,33 @@ import { ProcessComponent } from "@/components/share/ProcessComponent/ProcessCom
 import { useState, useEffect } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 
+interface HotelSearchParams {
+  category?: string;
+  brand?: string;
+  date_added?: string;
+  quantity?: string;
+  selected_product?: string;
+  selectedItemIndex?: string;
+  currentIndex?: string;
+  city?: string;
+  check_in_date?: string;
+  check_out_date?: string;
+  page?: string;
+  current_step?: string;
+  sort_by?: string;
+  min_price?: string;
+  max_price?: string;
+}
+
 interface ProcessHotelProps {
   steps: string[];
   currentStep: number;
-  searchParams: {
-    category?: string;
-    brand?: string;
-    quantity?: string;
-    selected_product?: string;
-    date_added?: string;
-    current_step?: string;
-  };
+  searchParams: HotelSearchParams;
 }
 
-const ProcessHotel = ({ steps, currentStep, searchParams }: ProcessHotelProps) => {
+export const ProcessHotel = ({ steps, currentStep, searchParams }: ProcessHotelProps) => {
   const [loading, setLoading] = useState(true);
 
-  // Simulate data loading
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
@@ -72,6 +82,4 @@ const ProcessHotel = ({ steps, currentStep, searchParams }: ProcessHotelProps) =
       formData={formData}
     />
   );
-};
-
-export { ProcessHotel }; 
+}; 

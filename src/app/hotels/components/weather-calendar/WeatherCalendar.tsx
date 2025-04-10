@@ -2,24 +2,13 @@
 
 import { useState, useEffect } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
-import { fetchWeatherData } from "../../lib/actions";
+import { fetchWeatherData } from "../../actions";
 import { CalendarHeader } from "./CalendarHeader";
 import { NavigationButton } from "./NavigationButton";
 import { CalendarContent } from "./CalendarContent";
 
 interface WeatherCalendarProps {
-  searchParams: {
-    category?: string;
-    brand?: string;
-    date_added?: string;
-    quantity?: string;
-    selected_product?: string;
-    selectedItemIndex?: string;
-    currentIndex?: string;
-    page?: string;
-    current_step?: string;
-    sort_by?: string;
-  };
+  searchParams: HotelSearchParams;
 }
 
 const WeatherCalendar = ({ searchParams }: WeatherCalendarProps) => {
@@ -34,13 +23,11 @@ const WeatherCalendar = ({ searchParams }: WeatherCalendarProps) => {
     const loadWeatherData = async () => {
       setLoading(true);
       try {
-        // Assuming we have a server action to fetch weather data
         const data = await fetchWeatherData();
         setWeatherData(data);
         setVisibleItems(Math.min(currentIndex + 9, data.length));
       } catch (error) {
         console.error("Error loading weather data:", error);
-        // Provide sample data for display
         const sampleData = generateSampleWeatherData();
         setWeatherData(sampleData);
         setVisibleItems(Math.min(currentIndex + 9, sampleData.length));
@@ -54,11 +41,7 @@ const WeatherCalendar = ({ searchParams }: WeatherCalendarProps) => {
   
   const formatDate = (date: string) => {
     const dateObj = new Date(date);
-    
-    // Weekday (Monday, Tuesday, etc.)
     const weekday = dateObj.toLocaleDateString('en-US', { weekday: 'long' });
-    
-    // Format date as YYYY/MM/DD
     const year = dateObj.getFullYear();
     const month = String(dateObj.getMonth() + 1).padStart(2, '0');
     const day = String(dateObj.getDate()).padStart(2, '0');
@@ -67,7 +50,6 @@ const WeatherCalendar = ({ searchParams }: WeatherCalendarProps) => {
     return { weekday, fullDate };
   };
 
-  // Get the date range for display in header
   const getDateRange = () => {
     if (weatherData.length === 0) return '';
     
@@ -75,7 +57,6 @@ const WeatherCalendar = ({ searchParams }: WeatherCalendarProps) => {
     const endIndex = Math.min(currentIndex + 8, weatherData.length - 1);
     const endDate = new Date(weatherData[endIndex].date);
     
-    // Format dates as YYYY/MM/DD
     const formatDateShort = (date: Date) => {
       const year = date.getFullYear();
       const month = String(date.getMonth() + 1).padStart(2, '0');
@@ -89,18 +70,13 @@ const WeatherCalendar = ({ searchParams }: WeatherCalendarProps) => {
   if (loading) {
     return (
       <div className="p-5 bg-white rounded-2xl mt-5">
-        {/* Calendar Header */}
         <div className="flex justify-between items-center mb-6">
           <Skeleton className="h-7 w-48" />
           <Skeleton className="h-6 w-32" />
         </div>
 
-        {/* Calendar Content */}
         <div className="relative w-full flex items-center justify-center my-4">
-          {/* Left Navigation Button */}
           <Skeleton className="h-8 w-8 rounded-full mr-2" />
-
-          {/* Weekday Items */}
           <div className="flex-1 flex space-x-1 justify-between px-2">
             {Array.from({ length: 9 }).map((_, index) => (
               <div key={index} className="flex flex-col items-center">
@@ -111,15 +87,12 @@ const WeatherCalendar = ({ searchParams }: WeatherCalendarProps) => {
               </div>
             ))}
           </div>
-
-          {/* Right Navigation Button */}
           <Skeleton className="h-8 w-8 rounded-full ml-2" />
         </div>
       </div>
     );
   }
 
-  // Common data for components
   const commonFormData = {
     selectedItemIndex: selectedItemIndex.toString(),
     currentIndex: currentIndex.toString(),
@@ -163,7 +136,6 @@ const WeatherCalendar = ({ searchParams }: WeatherCalendarProps) => {
   );
 };
 
-// Helper function to generate sample weather data
 function generateSampleWeatherData() {
   const weatherConditions = [
     { temp: '22°C', condition: 'Sunny', icon: '☀️' },

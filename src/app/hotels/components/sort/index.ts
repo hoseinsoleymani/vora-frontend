@@ -1,1 +1,1 @@
-export { HotelSortComponent } from './HotelSortComponent'; 
+export * from './HotelSortComponent'; 

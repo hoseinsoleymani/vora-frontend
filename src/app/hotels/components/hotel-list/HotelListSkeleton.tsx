@@ -25,7 +25,7 @@ const HotelListSkeleton: React.FC<HotelListSkeletonProps> = ({ viewMode, pageSiz
             <div className={viewMode === "list" ? "space-y-4 mt-5" : "grid grid-cols-3 gap-4 mt-5"}>
                 {Array(pageSize).fill(0).map((_, i) => (
                     // HotelCard will render its own skeleton since hotel data is null initially
-                    <HotelCard key={`skeleton-${i}`} viewMode={viewMode} />
+                    <HotelCard key={`skeleton-${i}`} viewMode={viewMode} id={`skeleton-${i}`} />
                 ))}
             </div>
              {/* Pagination skeleton */}

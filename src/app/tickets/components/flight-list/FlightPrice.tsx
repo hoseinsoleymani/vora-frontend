@@ -6,7 +6,7 @@ interface FlightPriceProps {
 
 const FlightPrice: React.FC<FlightPriceProps> = ({ price }) => {
   return (
-    <div className="flex w-2/6 items-center justify-center space-x-5">
+    <div className="flex items-center justify-center space-x-5">
       <div className="text-xl font-semibold text-gray-900">{price}</div>
       <form action="/ticket/select-flight" method="POST">
         <input type="hidden" name="flightPrice" value={price} />

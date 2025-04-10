@@ -16,18 +16,19 @@ interface SortByComponentProps {
     adults?: string;
     selected_date?: string;
     sort_by?: string;
+    [key: string]: string | undefined;
   };
 }
 
 const SortByComponent = ({ searchParams }: SortByComponentProps) => {
-  const origin = searchParams.origin || "LON";
-  const destination = searchParams.destination || "PAR";
-  const departureDate = searchParams.departure_date || "2025-04-10";
-  const selectedDate = searchParams.selected_date || departureDate;
-  const adults = searchParams.adults || "1";
-  const activeButton = searchParams.sort_by || "The most popular";
+  const origin = searchParams?.origin || "LON";
+  const destination = searchParams?.destination || "PAR";
+  const departureDate = searchParams?.departure_date || "2025-04-10";
+  const selectedDate = searchParams?.selected_date || departureDate;
+  const adults = searchParams?.adults || "1";
+  const activeButton = searchParams?.sort_by || "The most popular";
 
-  const formData = {
+  const formData: Record<string, string> = {
     origin,
     destination,
     departure_date: departureDate,

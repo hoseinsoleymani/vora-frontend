@@ -6,15 +6,7 @@ import { Button } from "@/components/ui/button";
 interface NavigationButtonProps {
   direction: 'left' | 'right';
   disabled: boolean;
-  formData: {
-    origin: string;
-    destination: string;
-    departureDate: string;
-    adults: string;
-    selectedDate: string;
-    selectedItemIndex: string;
-    currentIndex: string;
-  };
+  formData: Record<string, string>;
 }
 
 const NavigationButton = ({ direction, disabled, formData }: NavigationButtonProps) => {
@@ -23,13 +15,9 @@ const NavigationButton = ({ direction, disabled, formData }: NavigationButtonPro
   
   return (
     <form action="/ticket" method="GET" className={`absolute ${isLeft ? 'left-0' : 'right-0'} mt-3 z-10`}>
-      <input type="hidden" name="origin" value={formData.origin} />
-      <input type="hidden" name="destination" value={formData.destination} />
-      <input type="hidden" name="departure_date" value={formData.departureDate} />
-      <input type="hidden" name="adults" value={formData.adults} />
-      <input type="hidden" name="selected_date" value={formData.selectedDate} />
-      <input type="hidden" name="selectedItemIndex" value={formData.selectedItemIndex} />
-      <input type="hidden" name="currentIndex" value={formData.currentIndex} />
+      {Object.entries(formData).map(([key, value]) => (
+        <input key={key} type="hidden" name={key} value={value} />
+      ))}
       
       <Button 
         type="submit"
