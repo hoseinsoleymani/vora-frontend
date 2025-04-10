@@ -1,52 +1,44 @@
+"use client";
 import * as React from "react";
 import * as RadioGroupPrimitive from "@radix-ui/react-radio-group";
+import { Circle16Regular, Checkmark16Regular } from "@fluentui/react-icons";
+
 import { cn } from "@/lib/utils";
-import { cva, type VariantProps } from "class-variance-authority";
 
-const radioVariants = cva("flex flex-col space-y-2", {
-  variants: {
-    variant: {
-      basic: "text-black",
-      gray: "text-gray-400",
-    },
-  },
-  defaultVariants: {
-    variant: "basic",
-  },
-});
-
-export interface RadioGroupProps {
-  label?: string;
-  options: { value: string; label: string }[];
-  variant?: "basic" | "gray";
-}
-
-const RadioGroup: React.FC<RadioGroupProps> = ({ label, options, variant = "basic" }) => {
+const RadioGroup = React.forwardRef<
+  React.ElementRef<typeof RadioGroupPrimitive.Root>,
+  React.ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Root>
+>(({ className, ...props }, ref) => {
   return (
-    <div className={cn(radioVariants({ variant }))}>
-      {label && <span className="text-sm">{label}</span>}
-      <RadioGroupPrimitive.Root className="space-y-2">
-        {options.map((option) => (
-          <label key={option.value} className="flex items-center space-x-2">
-            <RadioGroupPrimitive.Item
-              value={option.value}
-              className="relative w-5 h-5 rounded-full transition-all focus:outline-none"
-              style={{
-                backgroundColor: variant === "basic" ? "#FBDAD9" : "black",
-              }}
-            >
-              <RadioGroupPrimitive.Indicator
-                className="absolute inset-0 flex items-center justify-center"
-              >
-                <div className="w-3 h-3 rounded-full bg-red-500" />
-              </RadioGroupPrimitive.Indicator>
-            </RadioGroupPrimitive.Item>
-            <span>{option.label}</span>
-          </label>
-        ))}
-      </RadioGroupPrimitive.Root>
-    </div>
+    <RadioGroupPrimitive.Root
+      className={cn("grid gap-2", className)}
+      {...props}
+      ref={ref}
+    />
   );
-};
+});
+RadioGroup.displayName = RadioGroupPrimitive.Root.displayName;
 
-export { RadioGroup };
+const RadioGroupItem = React.forwardRef<
+  React.ElementRef<typeof RadioGroupPrimitive.Item>,
+  React.ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Item>
+>(({ className, ...props }, ref) => {
+  return (
+    <RadioGroupPrimitive.Item
+      ref={ref}
+      className={cn(
+        "aspect-square h-4 w-4 rounded-full  text-primary ring-offset-background focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
+        "bg-red-200",
+        className
+      )}
+      {...props}
+    >
+      <RadioGroupPrimitive.Indicator className="flex items-center justify-center">
+        <Checkmark16Regular className="h-4 w-4 fill-current text-current text-red-500" />
+      </RadioGroupPrimitive.Indicator>
+    </RadioGroupPrimitive.Item>
+  );
+});
+RadioGroupItem.displayName = RadioGroupPrimitive.Item.displayName;
+
+export { RadioGroup, RadioGroupItem };

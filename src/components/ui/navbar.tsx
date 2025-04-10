@@ -9,12 +9,14 @@ import {
   DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
 import Link from "next/link";
+import Logo from "../../../public/img/Vora Logo.png"
+import Image from "next/image";
 
 const Navbar = () => {
   return (
     <div className="py-4 px-8 flex justify-between items-center">
       <div className="flex items-center space-x-2">
-        <img src={"logo.svg"} alt="Vora Logo" className="h-8" />
+        <Image src={Logo} alt="Vora Logo" className="h-10 w-[110px]" />
 
         <div className="flex space-x-8 pl-10">
           <Link

@@ -14,13 +14,14 @@ import { ChevronDown24Regular } from "@fluentui/react-icons";
 import countries from "i18n-iso-countries";
 import enLocale from "i18n-iso-countries/langs/en.json";
 
-
 interface PassengerData {
   passportName: string;
   passportFamilyName: string;
   birthday: string;
   gender: "male" | "female";
   passportCountry: string;
+  email?: string;
+  phone?: string;
 }
 
 interface PassengersFormData {
@@ -192,6 +193,50 @@ function PassengerFormSection({
             )}
           </div>
         </div>
+        {isPrimary === true && (
+          <div className="flex flex-col">
+            <hr className="w-full border-gray-300 my-4" />
+            <div className="flex flex-col gap-1">
+              <h3>Contact information</h3>
+              <p className="text-sm text-gray-5">
+                Please fill the required info for receiving the ticket.
+              </p>
+            </div>
+            <div className="grid grid-cols-2 gap-4 w-full mt-3">
+              <div className="flex flex-col gap-2">
+                <Input
+                  className="text-sm w-full"
+                  size="lg"
+                  placeholder="Email"
+                  {...register(`${arrayKey}.${index}.email` as const, {
+                    required: true,
+                  })}
+                />
+                {getError("email") && (
+                  <span className="text-red-500 text-sm">
+                    This field is required
+                  </span>
+                )}
+              </div>
+              <div className="flex flex-col gap-2">
+                <Input
+                  type="tel"
+                  className="text-sm w-full"
+                  size="lg"
+                  placeholder="Phone number"
+                  {...register(`${arrayKey}.${index}.phone` as const, {
+                    required: true,
+                  })}
+                />
+                {getError("phone") && (
+                  <span className="text-red-500 text-sm">
+                    This field is required
+                  </span>
+                )}
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

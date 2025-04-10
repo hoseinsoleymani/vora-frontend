@@ -14,4 +14,5 @@ export * from "./pricesummary/priceSummaryCard";
 export * from "./pricesummary/travellerPrice";
 export * from  "./passengerform/passengersForm";
 export * from  "./passengerform/passengerFormSection";
-export * from "./passengerform/passengersHeader"
+export * from "./passengerform/passengersHeader";
+export * from "./payment"

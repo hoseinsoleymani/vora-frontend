@@ -10,6 +10,8 @@ interface PassengerData {
   birthday: string;
   gender: "male" | "female";
   passportCountry: string;
+  email?: string;
+  phone?: string;
 }
 
 interface PassengersFormData {
@@ -27,7 +29,6 @@ function PassengersForm() {
 
   const onSubmit = (data: PassengersFormData) => {
     console.log("Form submitted with data:", data);
-    
   };
 
   return (
@@ -40,8 +41,8 @@ function PassengersForm() {
             className="flex flex-col gap-8"
           >
             <PassengerFormSection type="adult" index={0} isPrimary />
-            <PassengerFormSection type="adult" index={1}  />
-            <PassengerFormSection type="child" index={0}  />
+            <PassengerFormSection type="adult" index={1} />
+            <PassengerFormSection type="child" index={2} />
 
 
             <button

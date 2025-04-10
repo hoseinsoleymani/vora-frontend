@@ -41,13 +41,13 @@ function AirplaneSearch() {
         destination: selectedDestinationLocation?.iataCode || "",
         departure_date: formatDate(date) || "",
         arrival_date: formatDate(returnDate) || "",
-        adults: adultCount.toString(),
+        adults: adultCount.toString() || "1",
         page: "1",
         page_size: "10",
       });
 
       const response = await fetch(
-        `http://5.161.155.143:5000/flight/offers/search?${params.toString()}`,
+        `http://5.161.155.143:5000/flight/offer/search?${params.toString()}`,
         {
           method: "GET",
           headers: {
@@ -61,7 +61,9 @@ function AirplaneSearch() {
       }
 
       const data = await response.json();
-      router.push(`/ticket?${params.toString()}`);
+      // router.push(`/ticket?${params.toString()}`);
+      console.log(data)
+
     } catch (error) {
       console.error("Error searching flights:", error);
     }

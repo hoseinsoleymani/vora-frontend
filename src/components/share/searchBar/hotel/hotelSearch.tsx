@@ -29,8 +29,8 @@ function HotelSearch() {
         city: location,
         check_in_date: formatDate(checkInDate) || "",
         check_out_date: formatDate(checkOutDate) || "",
-        adults: adultCount.toString(),
-        room_quantity: rooms.toString(),
+        adults: adultCount.toString()  ,
+        room_quantity: rooms.toString() ,
         page: "1",
         page_size: "10",
       });
