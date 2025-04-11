@@ -1,4 +1,4 @@
-import { Location, Location as LocationType } from "../share/location/location";
+import { Region, Region as LocationType } from "../share/location/location";
 import { ArrowDown16Regular, ArrowUp16Regular } from "@fluentui/react-icons";
 import { useWizard } from "@/hooks";
 import TripTypeSelector from "./tripTypeSelector";
@@ -11,7 +11,7 @@ function FightSearchBar() {
   return (
     <StepContainer title="Where do you want to go?">
       <div className="flex items-center justify-between ">
-        <Location
+        <Region
           title="From"
           icon={<ArrowUp16Regular />}
           setLocation={(location: string) => setStepData("from", location)}
@@ -22,7 +22,7 @@ function FightSearchBar() {
           }
         />
 
-        <Location
+        <Region
           title="Destination"
           icon={<ArrowDown16Regular />}
           setLocation={(location: string) => setStepData("to", location)}

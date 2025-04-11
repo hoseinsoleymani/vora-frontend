@@ -7,7 +7,8 @@ const inputVariants = cva(
   {
     variants: {
       variant: {
-        default: "border-gray-300 focus:ring-2 focus:ring-black focus:border-black",
+        default:
+          "border-gray-300 focus:ring-2 focus:ring-black focus:border-black",
         outline: "border border-gray-400 focus:ring-2 focus:ring-black",
         ghost: "border-transparent bg-transparent text-gray-700 focus:ring-0",
       },
@@ -25,7 +26,7 @@ const inputVariants = cva(
 );
 
 export interface InputProps
-  extends React.InputHTMLAttributes<HTMLInputElement>,
+  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "size">,
     VariantProps<typeof inputVariants> {
   label?: string;
   leftIcon?: React.ReactNode;
@@ -35,12 +36,30 @@ export interface InputProps
 }
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
-  ({ className, label, leftIcon, rightIcon, variant, size, errorMessage, ...props }, ref) => {
+  (
+    {
+      className,
+      label,
+      leftIcon,
+      rightIcon,
+      variant,
+      size,
+      errorMessage,
+      ...props
+    },
+    ref
+  ) => {
     return (
       <div className="flex flex-col space-y-1">
-        {label && <label className="text-sm font-medium text-gray-700">{label}</label>}
+        {label && (
+          <label className="text-sm font-medium text-gray-700">{label}</label>
+        )}
         <div className="relative flex items-center">
-          {leftIcon && <span className="absolute left-3 text-gray-400 pointer-events-none">{leftIcon}</span>}
+          {leftIcon && (
+            <span className="absolute left-3 text-gray-400 pointer-events-none">
+              {leftIcon}
+            </span>
+          )}
           <input
             ref={ref}
             className={cn(
@@ -52,7 +71,11 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
             )}
             {...props}
           />
-          {rightIcon && <span className="absolute right-3 text-gray-400 pointer-events-none">{rightIcon}</span>}
+          {rightIcon && (
+            <span className="absolute right-3 text-gray-400 pointer-events-none">
+              {rightIcon}
+            </span>
+          )}
         </div>
         {errorMessage && <p className="text-sm text-red-500">{errorMessage}</p>}
       </div>

@@ -15,8 +15,8 @@ interface LocationProps {
   icon: React.ReactNode;
   setLocation: (location: string) => void;
   location: string;
-  selectedLocation: Location | null;
-  setSelectedLocation: (location: Location | null) => void;
+  selectedLocation: Region | null;
+  setSelectedLocation: (location: Region | null) => void;
 }
 
 interface Address {
@@ -27,7 +27,7 @@ interface Address {
   stateCode?: string;
 }
 
-export interface Location {
+export interface Region {
   address: Address;
   detailedName: string;
   iataCode: string;
@@ -46,7 +46,7 @@ function Location({
   setSelectedLocation,
 }: LocationProps) {
   const [searchLocation, setSearchLocation] = useState("");
-  const [searchResults, setSearchResults] = useState<Location[]>([]);
+  const [searchResults, setSearchResults] = useState<Region[]>([]);
 
   const getLocation = async () => {
     try {
@@ -73,7 +73,7 @@ function Location({
     }
   }, [searchLocation]);
 
-  const handleLocationSelect = (selectedLocation: Location) => {
+  const handleLocationSelect = (selectedLocation: Region) => {
     setLocation(selectedLocation.iataCode);
     setSearchLocation(selectedLocation.name);
     setSelectedLocation(selectedLocation);
@@ -164,4 +164,4 @@ function Location({
   );
 }
 
-export { Location };
+export { Location as Region };

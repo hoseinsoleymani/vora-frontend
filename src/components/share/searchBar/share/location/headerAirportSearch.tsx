@@ -1,9 +1,9 @@
 import React from "react";
 import { Airplane24Regular } from "@fluentui/react-icons";
-import { Location } from "./location";
+import { Region } from "./location";
 interface HeaderAirportSearchProps {
-  data: Location;
-  setLocation: (location: Location) => void;
+  data: Region;
+  setLocation: (location: Region) => void;
 }
 
 function HeaderAirportSearch({ data, setLocation }: HeaderAirportSearchProps) {

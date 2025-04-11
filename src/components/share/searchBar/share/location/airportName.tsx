@@ -1,9 +1,9 @@
-import { Location } from "./location";
+import { Region } from "./location";
 import { ArrowRight12Regular } from "@fluentui/react-icons";
 
 interface AirportNameProps {
-  data: Location[];
-  setLocation: (location: Location) => void;
+  data: Region[];
+  setLocation: (location: Region) => void;
 }
 
 function AirportName({ data, setLocation }: AirportNameProps) {
@@ -17,9 +17,13 @@ function AirportName({ data, setLocation }: AirportNameProps) {
         >
           <div className="flex items-center gap-4">
             <ArrowRight12Regular />
-            <p className="font-semibold text-sm">{airport.iataCode}-{airport.name}</p>
+            <p className="font-semibold text-sm">
+              {airport.iataCode}-{airport.name}
+            </p>
           </div>
-          <p className="text-sm font-light">{airport.address.cityName},{airport.address.countryName}</p>
+          <p className="text-sm font-light">
+            {airport.address.cityName},{airport.address.countryName}
+          </p>
         </div>
       ))}
     </div>
