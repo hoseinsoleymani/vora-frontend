@@ -24,37 +24,22 @@ function HotelSearch() {
       return date.toISOString().split("T")[0].replace(/-/g, "/");
     };
 
-    try {
-      const params = new URLSearchParams({
-        city: location,
-        check_in_date: formatDate(checkInDate) || "",
-        check_out_date: formatDate(checkOutDate) || "",
-        adults: adultCount.toString(),
-        room_quantity: rooms.toString(),
-        page: "1",
-        page_size: "10",
-      });
+    const params = new URLSearchParams({
+      city: location,
+      check_in_date: formatDate(checkInDate) || "",
+      adults: adultCount.toString(),
+      children: childCount.toString(),
+      infants: infantCount.toString(),
+      room_quantity: rooms.toString(),
+      page: "1",
+      page_size: "10",
+    });
 
-      const response = await fetch(
-        `http://5.161.155.143:5000/hotel/offer/search?${params.toString()}`,
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-
-      if (!response.ok) {
-        throw new Error("Failed to fetch hotel offers");
-      }
-
-      const data = await response.json();
-      console.log("Hotel search results:", data);
-      // router.push(`/hotels?${params.toString()}`);
-    } catch (error) {
-      console.error("Error searching for hotels:", error);
+    if (checkOutDate) {
+      params.append("check_out_date", formatDate(checkOutDate) || "");
     }
+
+    router.push(`/hotels?${params.toString()}`);
   };
 
   return (
@@ -84,6 +69,7 @@ function HotelSearch() {
           aria-label="Search hotels"
           onClick={handleSearch}
           size={"icon"}
+          disabled={!location || !checkInDate}
         >
           <Search16Regular className="text-white" />
         </Button>

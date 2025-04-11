@@ -35,37 +35,22 @@ function AirplaneSearch() {
       return date.toISOString().split("T")[0].replace(/-/g, "/");
     };
 
-    try {
-      const params = new URLSearchParams({
-        origin: selectedFromLocation?.iataCode || "",
-        destination: selectedDestinationLocation?.iataCode || "",
-        departure_date: formatDate(date) || "",
-        arrival_date: formatDate(returnDate) || "",
-        adults: adultCount.toString(),
-        page: "1",
-        page_size: "10",
-      });
+    const params = new URLSearchParams({
+      origin: selectedFromLocation?.iataCode || "",
+      destination: selectedDestinationLocation?.iataCode || "",
+      departure_date: formatDate(date) || "",
+      adults: adultCount.toString(),
+      children: childCount.toString(),
+      infants: infantCount.toString(),
+      page: "1",
+      page_size: "10",
+    });
 
-      const response = await fetch(
-        `http://5.161.155.143:5000/flight/offers/search?${params.toString()}`,
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-
-      if (!response.ok) {
-        throw new Error("Failed to fetch flight offers");
-      }
-
-      const data = await response.json();
-      console.log("Flight search results:", data);
-      // router.push(`/flights?${params.toString()}`);
-    } catch (error) {
-      console.error("Error searching flights:", error);
+    if (returnDate) {
+      params.append("arrival_date", formatDate(returnDate) || "");
     }
+
+    router.push(`/flights?${params.toString()}`);
   };
 
   return (
@@ -102,6 +87,9 @@ function AirplaneSearch() {
         aria-label="Search flights"
         size={"icon"}
         onClick={handleSearch}
+        disabled={
+          !selectedFromLocation || !selectedDestinationLocation || !date
+        }
       >
         <Search16Regular className="text-white" />
       </Button>
