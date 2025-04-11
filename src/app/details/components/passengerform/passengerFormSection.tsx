@@ -13,6 +13,8 @@ import { useFormContext, Controller } from "react-hook-form";
 import { ChevronDown24Regular } from "@fluentui/react-icons";
 import countries from "i18n-iso-countries";
 import enLocale from "i18n-iso-countries/langs/en.json";
+import { spawn } from "child_process";
+import { Span } from "next/dist/trace";
 
 interface PassengerData {
   passportName: string;
@@ -149,6 +151,11 @@ function PassengerFormSection({ index, isPrimary }: PassengerFormSectionProps) {
                       ))}
                     </SelectGroup>
                   </SelectContent>
+                  {errors.adults?.[index]?.passportCountry?.message && (
+                    <span className="text-red-500 text-xs">
+                      {errors.adults?.[index]?.passportCountry?.message}
+                    </span>
+                  )}
                 </Select>
               )}
             />

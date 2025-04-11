@@ -19,34 +19,40 @@ interface PassengerData {
 export interface PassengersFormData {
   adults: PassengerData[];
 }
- 
 
-const passengersFormSchema = z.object({
-  adults: z.array(
-    z.object({
-      passportName: z.string().min(1),
-      passportFamilyName: z.string().min(1),
-      birthday: z.string().min(1),
-      gender: z.enum(["male", "female"]),
-      passportCountry: z.string().min(1),
-      email: z.string().email().optional(),
-      phone: z.string().min(1).optional(),
-    })
-  ),
-  children: z
-    .array(
+const passengersFormSchema = z
+  .object({
+    adults: z.array(
       z.object({
         passportName: z.string().min(1),
         passportFamilyName: z.string().min(1),
         birthday: z.string().min(1),
         gender: z.enum(["male", "female"]),
         passportCountry: z.string().min(1),
-        email: z.string().email().optional(),
-        phone: z.string().min(1).optional(),
+        email: z.string().email().optional().or(z.literal("")),
+        phone: z.string().min(1).optional().or(z.literal("")),
       })
-    )
-    .default([]),
-});
+    ),
+  })
+  .superRefine((data, ctx) => {
+    if (data.adults.length > 0) {
+      const firstPassenger = data.adults[0];
+      if (!firstPassenger.email) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: "Email is required for the primary passenger",
+          path: ["adults", 0, "email"],
+        });
+      }
+      if (!firstPassenger.phone) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: "Phone is required for the primary passenger",
+          path: ["adults", 0, "phone"],
+        });
+      }
+    }
+  });
 
 interface PassengersFormProps {
   onSubmit: () => void;
@@ -57,6 +63,9 @@ function PassengersForm({ onSubmit, setFormMethods }: PassengersFormProps) {
   const methods = useForm<PassengersFormData>({
     resolver: zodResolver(passengersFormSchema),
     mode: "onChange",
+    defaultValues: {
+      adults: [],
+    },
   });
 
   useEffect(() => {
@@ -71,7 +80,7 @@ function PassengersForm({ onSubmit, setFormMethods }: PassengersFormProps) {
   });
 
   useEffect(() => {
-    const generatedFields = Array.from({ length: 2 }, () => ({
+    const generatedFields = Array.from({ length: 3 }, () => ({
       passportName: "",
       passportFamilyName: "",
       birthday: "",
@@ -88,7 +97,10 @@ function PassengersForm({ onSubmit, setFormMethods }: PassengersFormProps) {
       <PassengersHeader />
       <div className="flex flex-col gap-8">
         <FormProvider {...methods}>
-          <form onSubmit={methods.handleSubmit(onSubmit)} className="flex flex-col gap-8">
+          <form
+            onSubmit={methods.handleSubmit(onSubmit)}
+            className="flex flex-col gap-8"
+          >
             {fields.map((field, index) => (
               <PassengerFormSection
                 key={field.id}
