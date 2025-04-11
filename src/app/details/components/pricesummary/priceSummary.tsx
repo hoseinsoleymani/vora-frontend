@@ -4,7 +4,7 @@ import { PriceSummaryCard } from "./priceSummaryCard";
 import { TravelDetailsCard } from "./travelDetailsCard";
 import { Traveller } from "./travellerPrice";
 
-function PriceSummary() {
+function PriceSummary({ nextStep }: { nextStep: () => void }) {
   const handleEditClick = () => {
     console.log("Edit clicked");
   };
@@ -57,7 +57,9 @@ function PriceSummary() {
         <p className="text-lg">Total price</p>
         <p className="text-lg font-bold">$ 6,697.80</p>
       </div>
-      <Button className="rounded-lg mt-8">Check out and continue</Button>
+      <Button className="rounded-lg mt-8" onClick={nextStep}>
+        Check out and continue
+      </Button>
     </div>
   );
 }

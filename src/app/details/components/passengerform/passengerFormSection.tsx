@@ -26,26 +26,19 @@ interface PassengerData {
 
 interface PassengersFormData {
   adults: PassengerData[];
-  children: PassengerData[];
 }
 
 interface PassengerFormSectionProps {
-  type: "adult" | "child";
   index: number;
   isPrimary?: boolean;
 }
 
-function PassengerFormSection({
-  type,
-  index,
-  isPrimary,
-}: PassengerFormSectionProps) {
+function PassengerFormSection({ index, isPrimary }: PassengerFormSectionProps) {
   const {
     register,
     control,
     formState: { errors },
   } = useFormContext<PassengersFormData>();
-  const arrayKey = type === "adult" ? "adults" : "children";
 
   countries.registerLocale(enLocale);
   const countryList = Object.entries(
@@ -55,16 +48,12 @@ function PassengerFormSection({
     name,
   }));
 
-  const getError = (field: keyof PassengerData) => {
-    return errors[arrayKey]?.[index]?.[field];
-  };
+  const inputBaseName = `adults.${index}` as const;
 
   return (
     <div className="border border-[#E0E0E0] rounded-lg p-4 mt-4">
       <div className="flex items-center gap-2">
-        <h3 className="text-lg">
-          {type === "adult" ? "Adult" : "Child"} {index + 1} information
-        </h3>
+        <h3 className="text-lg">Adult {index + 1} information</h3>
         <p className="text-sm text-[#757575]">
           {isPrimary ? "Primary Passenger" : ""}
         </p>
@@ -79,30 +68,18 @@ function PassengerFormSection({
               className="text-sm w-full"
               size="lg"
               placeholder="Passport Name"
-              {...register(`${arrayKey}.${index}.passportName` as const, {
-                required: true,
-              })}
+              {...register(`${inputBaseName}.passportName`)}
+              errorMessage={errors["adults"]?.[index]?.passportName?.message}
             />
-            {getError("passportName") && (
-              <span className="text-red-500 text-sm">
-                This field is required
-              </span>
-            )}
           </div>
           <div className="flex flex-col gap-2">
             <Input
               className="text-sm w-full"
               size="lg"
               placeholder="Passport Family Name"
-              {...register(`${arrayKey}.${index}.passportFamilyName` as const, {
-                required: true,
-              })}
+              {...register(`${inputBaseName}.passportFamilyName`)}
+              errorMessage={errors["adults"]?.[index]?.passportFamilyName?.message}
             />
-            {getError("passportFamilyName") && (
-              <span className="text-red-500 text-sm">
-                This field is required
-              </span>
-            )}
           </div>
         </div>
         <div className="grid grid-cols-2 gap-4 w-full">
@@ -111,20 +88,14 @@ function PassengerFormSection({
               className="text-sm w-full"
               size="lg"
               placeholder="Birthday"
-              {...register(`${arrayKey}.${index}.birthday` as const, {
-                required: true,
-              })}
+              {...register(`${inputBaseName}.birthday`)}
+              errorMessage={errors["adults"]?.[index]?.birthday?.message}
             />
-            {getError("birthday") && (
-              <span className="text-red-500 text-sm">
-                This field is required
-              </span>
-            )}
           </div>
           <div className="flex flex-col gap-2">
             <Controller
               control={control}
-              name={`${arrayKey}.${index}.gender`}
+              name={`${inputBaseName}.gender`}
               rules={{ required: true }}
               render={({ field }) => (
                 <Select onValueChange={field.onChange} value={field.value}>
@@ -148,18 +119,13 @@ function PassengerFormSection({
                 </Select>
               )}
             />
-            {getError("gender") && (
-              <span className="text-red-500 text-sm">
-                This field is required
-              </span>
-            )}
           </div>
         </div>
         <div className="grid grid-cols-2 gap-4 w-full">
           <div className="flex flex-col gap-2">
             <Controller
               control={control}
-              name={`${arrayKey}.${index}.passportCountry`}
+              name={`${inputBaseName}.passportCountry`}
               rules={{ required: true }}
               render={({ field }) => (
                 <Select onValueChange={field.onChange} value={field.value}>
@@ -186,11 +152,6 @@ function PassengerFormSection({
                 </Select>
               )}
             />
-            {getError("passportCountry") && (
-              <span className="text-red-500 text-sm">
-                This field is required
-              </span>
-            )}
           </div>
         </div>
         {isPrimary === true && (
@@ -208,15 +169,9 @@ function PassengerFormSection({
                   className="text-sm w-full"
                   size="lg"
                   placeholder="Email"
-                  {...register(`${arrayKey}.${index}.email` as const, {
-                    required: true,
-                  })}
+                  {...register(`${inputBaseName}.email`)}
+                  errorMessage={errors["adults"]?.[index]?.email?.message}
                 />
-                {getError("email") && (
-                  <span className="text-red-500 text-sm">
-                    This field is required
-                  </span>
-                )}
               </div>
               <div className="flex flex-col gap-2">
                 <Input
@@ -224,15 +179,9 @@ function PassengerFormSection({
                   className="text-sm w-full"
                   size="lg"
                   placeholder="Phone number"
-                  {...register(`${arrayKey}.${index}.phone` as const, {
-                    required: true,
-                  })}
+                  {...register(`${inputBaseName}.phone`)}
+                  errorMessage={errors["adults"]?.[index]?.phone?.message}
                 />
-                {getError("phone") && (
-                  <span className="text-red-500 text-sm">
-                    This field is required
-                  </span>
-                )}
               </div>
             </div>
           </div>

@@ -30,7 +30,7 @@ export interface InputProps
   label?: string;
   leftIcon?: React.ReactNode;
   rightIcon?: React.ReactNode;
-  errorMessage?: string;
+  errorMessage?: string | null;
   size?: "default" | "sm" | "lg";
 }
 
