@@ -57,8 +57,8 @@ export default defineConfig({
       },
       customizations: {
         // Apply inline-block display to all icons by default
-        customize(props) {
-          props.style = 'display: inline-block; vertical-align: middle;';
+        customize(props: any) {
+          props.style = 'display: inline-block;';
           return props;
         },
       },
