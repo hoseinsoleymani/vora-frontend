@@ -56,11 +56,13 @@ export default defineConfig({
         fluent: () => import('@iconify-json/fluent').then(i => i.default as any),
       },
       customizations: {
-        
-    
-
-      }
-    })
+        // Apply inline-block display to all icons by default
+        customize(props) {
+          props.style = 'display: inline-block; vertical-align: middle;';
+          return props;
+        },
+      },
+    }),
   ],
   content: {
     pipeline: {
