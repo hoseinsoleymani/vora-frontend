@@ -56,9 +56,9 @@ export default defineConfig({
         fluent: () => import('@iconify-json/fluent').then(i => i.default as any),
       },
       customizations: {
-        // Apply inline-block display to all icons by default
+        // Apply inline-block display and vertical alignment to all icons by default
         customize(props: any) {
-          props.style = 'display: inline-block;';
+          props.style = 'display: inline-block; vertical-align: middle;';
           return props;
         },
       },
