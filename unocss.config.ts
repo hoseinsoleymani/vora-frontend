@@ -1,4 +1,4 @@
-import { defineConfig, presetAttributify, presetWind3 } from "unocss";
+import { defineConfig, presetAttributify, presetIcons, presetWind3 } from "unocss";
 import presetAnimations from "unocss-preset-animations";
 import { presetShadcn } from "unocss-preset-shadcn";
 
@@ -51,6 +51,16 @@ export default defineConfig({
     presetAttributify(),
     presetShadcn(),
     presetAnimations(),
+    presetIcons({
+      collections: {
+        fluent: () => import('@iconify-json/fluent').then(i => i.default as any),
+      },
+      customizations: {
+        
+    
+
+      }
+    })
   ],
   content: {
     pipeline: {
