@@ -14,7 +14,7 @@ interface NavigationButtonProps {
 }
 
 const NavigationButton = ({ direction, disabled, formData }: NavigationButtonProps) => (
-  <form action="/product" method="GET" className="inline-block">
+  <form action="/hotels" method="GET" className="inline-block">
     {/* Hidden parameters to maintain state */}
     {Object.entries(formData).map(([key, value]) => (
       <input key={key} type="hidden" name={key} value={value} />

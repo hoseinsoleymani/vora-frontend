@@ -116,7 +116,7 @@ const FlightCard = ({ searchParams }: FlightCardProps) => {
         params.set('departure_date', departureDate);
     }
     
-    return `/ticket?${params.toString()}`;
+    return `/tickets?${params.toString()}`;
   };
 
   return (

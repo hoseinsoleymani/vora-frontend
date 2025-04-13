@@ -20,7 +20,7 @@ const WeatherDay = ({ day, index, isSelected, formData, formatDate }: WeatherDay
   return (
     <form 
       key={index} 
-      action="/product" 
+      action="/hotels" 
       method="GET"
       className="inline-block px-1"
     >

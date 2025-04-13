@@ -91,6 +91,7 @@ const HotelCard: React.FC<HotelCardProps> = ({
   if (viewMode === "list") {
     return (
       <div className="w-full mx-auto my-6 bg-white shadow-md rounded-2xl overflow-hidden flex">
+        <span className="fluent:Eye24Regular"></span>
         <div className="w-48 h-48 flex-shrink-0 p-2">
           <img
             src={"product-image.png"}
@@ -159,6 +160,7 @@ const HotelCard: React.FC<HotelCardProps> = ({
           className="w-full h-40 object-cover rounded-xl"
         />
       </div>
+      dddddddddddddd
 
       <div className="p-4 flex flex-col">
         <h2 className="text-base font-medium mb-2">{name}</h2>

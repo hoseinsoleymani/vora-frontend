@@ -55,7 +55,6 @@ export default defineConfig({
       collections: {
         fluent: () => import('@iconify-json/fluent').then(i => i.default as any),
       },
-      // Use extraProperties to add styles globally to icons
       extraProperties: {
         'display': 'inline-block',
         'vertical-align': 'middle',

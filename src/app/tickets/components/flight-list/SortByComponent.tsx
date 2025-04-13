@@ -48,7 +48,7 @@ const SortByComponent = ({ searchParams }: SortByComponentProps) => {
       title="Sorted By"
       options={sortOptions}
       activeOption={activeButton}
-      formAction="/ticket"
+      formAction="/tickets"
       formData={formData}
     />
   );

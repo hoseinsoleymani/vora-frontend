@@ -14,7 +14,7 @@ const NavigationButton = ({ direction, disabled, formData }: NavigationButtonPro
   const Icon = isLeft ? IosArrow24Filled : IosArrowRtl24Filled;
   
   return (
-    <form action="/ticket" method="GET" className={`absolute ${isLeft ? 'left-0' : 'right-0'} mt-3 z-10`}>
+    <form action="/tickets" method="GET" className={`absolute ${isLeft ? 'left-0' : 'right-0'} mt-3 z-10`}>
       {Object.entries(formData).map(([key, value]) => (
         <input key={key} type="hidden" name={key} value={value} />
       ))}

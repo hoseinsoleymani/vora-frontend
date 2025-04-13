@@ -51,7 +51,7 @@ function AirplaneSearch() {
         params.set("arrival_date", formatDate(returnDate) || "");
       }
 
-      router.push(`/ticket?${params.toString()}`);
+      router.push(`/tickets?${params.toString()}`);
     } catch (error) {
       console.error("خطا در جستجوی پروازها:", error);
     }

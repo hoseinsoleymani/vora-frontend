@@ -45,8 +45,6 @@ export default function Page({ searchParams }: PageProps) {
       <div className="bg-gray-3 shadow-md h-40 rounded-b-xl">
         <Navbar />
       </div>
-      {/* Apply display and alignment classes directly */}
-      <span className="i-fluent:text-edit-style-character-a-32-regular inline-block align-middle"></span>
 
       <div className="mx-auto max-w-6xl -mt-11">
         <AirplaneSearchWrapper searchParams={plainSearchParams} />
