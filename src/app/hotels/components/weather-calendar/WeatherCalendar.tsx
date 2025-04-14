@@ -6,6 +6,7 @@ import { fetchWeatherData } from "../../actions";
 import { CalendarHeader } from "./CalendarHeader";
 import { NavigationButton } from "./NavigationButton";
 import { CalendarContent } from "./CalendarContent";
+import { HotelSearchParams } from "../../page";
 
 interface WeatherCalendarProps {
   searchParams: HotelSearchParams;

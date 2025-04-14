@@ -14,11 +14,6 @@ import { useEffect, useState } from "react";
 import { Region } from "../share/location/location";
 import CityName from "./cityName";
 
-interface Region {
-  iataCode: string;
-  name: string;
-}
-
 interface FromProps {
   setLocation: (location: string) => void;
 }

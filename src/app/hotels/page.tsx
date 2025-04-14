@@ -8,7 +8,7 @@ import {
 } from "./components";
 import { getHotels, getLocationCode, HotelResponse } from "./actions";
 
-interface HotelSearchParams {
+export interface HotelSearchParams {
   [key: string]: string | undefined;
   category?: string;
   brand?: string;
@@ -28,7 +28,7 @@ interface HotelSearchParams {
 }
 
 interface PageProps {
-  searchParams: HotelSearchParams;
+  searchParams: Promise<HotelSearchParams>;
 }
 
 // Helper function for default dates in YYYY-MM-DD format
@@ -42,18 +42,19 @@ function getDefaultDate(offsetDays: number = 0): string {
 }
 
 export default async function Page({ searchParams }: PageProps) {
-  const currentStep = parseInt(searchParams.current_step || "1");
+  const resolvedSearchParams = await searchParams;
+  const currentStep = parseInt(resolvedSearchParams.current_step || "1");
   const steps = ["Choose Hotel", "Select Room", "Review & Pay"];
 
   const plainSearchParams: { [key: string]: string | undefined } = {};
-  Object.keys(searchParams).forEach((key) => {
-    const value = searchParams[key as keyof HotelSearchParams];
+  Object.keys(resolvedSearchParams).forEach((key) => {
+    const value = resolvedSearchParams[key as keyof HotelSearchParams];
     if (value !== undefined) {
       plainSearchParams[key] = value;
     }
   });
 
-  const locationKeyword = searchParams.city;
+  const locationKeyword = resolvedSearchParams.city;
   let cityCodeForSearch: string | null = null;
   let hotelData: HotelResponse = { hotels: [], totalCount: 0, totalPages: 1 };
 
@@ -61,9 +62,9 @@ export default async function Page({ searchParams }: PageProps) {
     cityCodeForSearch = await getLocationCode(locationKeyword);
   }
 
-  const checkIn = searchParams.check_in_date || getDefaultDate();
-  const checkOut = searchParams.check_out_date || getDefaultDate(1);
-  const page = parseInt(searchParams.page || "1");
+  const checkIn = resolvedSearchParams.check_in_date || getDefaultDate();
+  const checkOut = resolvedSearchParams.check_out_date || getDefaultDate(1);
+  const page = parseInt(resolvedSearchParams.page || "1");
 
   if (cityCodeForSearch) {
     try {

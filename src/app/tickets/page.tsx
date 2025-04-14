@@ -7,27 +7,30 @@ import {
   FlightCard
 } from "./components";
 
-interface PageProps {
-  searchParams: {
-    origin?: string;
-    destination?: string;
-    departure_date?: string;
-    adults?: string;
-    selected_date?: string;
-    selectedItemIndex?: string;
-    currentIndex?: string;
-    page?: string;
-    current_step?: string;
-    sort_by?: string;
-    [key: string]: string | undefined;
-  };
+interface SearchParams {
+  origin?: string;
+  destination?: string;
+  departure_date?: string;
+  adults?: string;
+  selected_date?: string;
+  selectedItemIndex?: string;
+  currentIndex?: string;
+  page?: string;
+  current_step?: string;
+  sort_by?: string;
+  [key: string]: string | undefined;
 }
 
-export default function Page({ searchParams }: PageProps) {
+interface PageProps {
+  searchParams: Promise<SearchParams>;
+}
+
+export default async function Page({ searchParams }: PageProps) {
+  const resolvedSearchParams = await searchParams;
   const plainSearchParams: { [key: string]: string } = {};
   
-  Object.keys(searchParams).forEach((key) => {
-    const value = searchParams[key];
+  Object.keys(resolvedSearchParams).forEach((key) => {
+    const value = resolvedSearchParams[key];
     if (value !== undefined) {
       plainSearchParams[key] = value;
     }
