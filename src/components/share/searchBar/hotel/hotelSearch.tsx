@@ -13,31 +13,37 @@ function HotelSearch() {
   const [location, setLocation] = useState("");
   const [checkInDate, setCheckInDate] = useState<Date | undefined>();
   const [checkOutDate, setCheckOutDate] = useState<Date | undefined>();
-  const [adultCount, setAdultCount] = useState(0);
+  const [adultCount, setAdultCount] = useState(1);
   const [childCount, setChildCount] = useState(0);
   const [infantCount, setInfantCount] = useState(0);
   const [rooms, setRooms] = useState(1);
 
-  const handleSearch = async () => {
-    const formatDate = (date: Date | undefined) => {
+  const handleSearch = () => {
+    const formatDate = (date: Date | undefined): string | undefined => {
       if (!date) return undefined;
-      return date.toISOString().split("T")[0].replace(/-/g, "/");
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, '0');
+      const day = String(date.getDate()).padStart(2, '0');
+      return `${year}-${month}-${day}`;
     };
 
-    const params = new URLSearchParams({
-      city: location,
-      check_in_date: formatDate(checkInDate) || "",
-      adults: adultCount.toString(),
-      children: childCount.toString(),
-      infants: infantCount.toString(),
-      room_quantity: rooms.toString(),
-      page: "1",
-      page_size: "10",
-    });
+    const params = new URLSearchParams();
 
-    if (checkOutDate) {
-      params.append("check_out_date", formatDate(checkOutDate) || "");
+    if (location) {
+        params.set("city", location);
     }
+    const formattedCheckIn = formatDate(checkInDate);
+    if (formattedCheckIn) {
+        params.set("check_in_date", formattedCheckIn);
+    }
+    const formattedCheckOut = formatDate(checkOutDate);
+    if (formattedCheckOut) {
+        params.set("check_out_date", formattedCheckOut);
+    }
+
+    params.set("adults", adultCount.toString());
+    params.set("children", childCount.toString());
+    params.set("rooms", rooms.toString());
 
     router.push(`/hotels?${params.toString()}`);
   };

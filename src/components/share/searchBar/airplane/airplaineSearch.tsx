@@ -21,7 +21,7 @@ function AirplaneSearch() {
   const [destinationLocation, setDestinationLocation] = useState("");
   const [date, setDate] = useState<Date | undefined>();
   const [returnDate, setReturnDate] = useState<Date | undefined>();
-  const [adultCount, setAdultCount] = useState(0);
+  const [adultCount, setAdultCount] = useState(1);
   const [childCount, setChildCount] = useState(0);
   const [infantCount, setInfantCount] = useState(0);
   const [selectedFromLocation, setSelectedFromLocation] =
@@ -32,25 +32,29 @@ function AirplaneSearch() {
   const handleSearch = async () => {
     const formatDate = (date: Date | undefined) => {
       if (!date) return undefined;
-      return date.toISOString().split("T")[0].replace(/-/g, "/");
+      const year = date.getFullYear();
+      const month = (date.getMonth() + 1).toString().padStart(2, "0");
+      const day = date.getDate().toString().padStart(2, "0");
+      return `${year}/${month}/${day}`;
     };
 
-    const params = new URLSearchParams({
-      origin: selectedFromLocation?.iataCode || "",
-      destination: selectedDestinationLocation?.iataCode || "",
-      departure_date: formatDate(date) || "",
-      adults: adultCount.toString(),
-      children: childCount.toString(),
-      infants: infantCount.toString(),
-      page: "1",
-      page_size: "10",
-    });
+    try {
+      const params = new URLSearchParams({
+        origin: selectedFromLocation?.iataCode || "LON",
+        destination: selectedDestinationLocation?.iataCode || "PAR",
+        departure_date: formatDate(date) || "",
+        adults: adultCount.toString(),
+        page: "1",
+      });
 
-    if (returnDate) {
-      params.append("arrival_date", formatDate(returnDate) || "");
+      if (returnDate) {
+        params.set("arrival_date", formatDate(returnDate) || "");
+      }
+
+      router.push(`/tickets?${params.toString()}`);
+    } catch (error) {
+      console.error("خطا در جستجوی پروازها:", error);
     }
-
-    router.push(`/flights?${params.toString()}`);
   };
 
   return (

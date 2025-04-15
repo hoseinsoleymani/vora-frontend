@@ -1,0 +1,47 @@
+import React from 'react';
+import { Switch } from "@/components/ui/switch";
+import {
+  GridDots24Regular,
+  List24Regular,
+} from "@fluentui/react-icons";
+
+interface HotelListHeaderProps {
+    totalCount: number;
+    viewMode: "list" | "grid";
+    onViewModeChange: (newMode: "list" | "grid") => void;
+}
+
+const HotelListHeader: React.FC<HotelListHeaderProps> = ({
+    totalCount,
+    viewMode,
+    onViewModeChange
+}) => {
+    return (
+        <div className="flex items-center justify-between p-4 rounded-lg">
+            <h3 className="text-sm text-gray-500">{totalCount} properties found</h3>
+            <div className="flex items-center space-x-2">
+                <List24Regular
+                    aria-label="List view"
+                    className={`h-5 w-5 cursor-pointer ${
+                        viewMode === "list" ? "text-primary" : "text-gray-400 hover:text-gray-600"
+                    }`}
+                    onClick={() => onViewModeChange("list")}
+                />
+                <Switch
+                    checked={viewMode === "grid"}
+                    onCheckedChange={(checked) => onViewModeChange(checked ? "grid" : "list")}
+                    aria-label={`Switch to ${viewMode === 'list' ? 'grid' : 'list'} view`}
+                />
+                <GridDots24Regular
+                     aria-label="Grid view"
+                    className={`h-5 w-5 cursor-pointer ${
+                        viewMode === "grid" ? "text-primary" : "text-gray-400 hover:text-gray-600"
+                    }`}
+                     onClick={() => onViewModeChange("grid")}
+                />
+            </div>
+        </div>
+    );
+};
+
+export { HotelListHeader }; 
