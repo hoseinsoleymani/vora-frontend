@@ -22,7 +22,7 @@ const Footer = () => {
             Stay
           </Link>
           <Link
-            href="/ticket"
+            href="/tickets"
             className=" hover:border-b hover:border-b-black focus:border-b"
           >
             Ticket

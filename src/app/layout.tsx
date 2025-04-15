@@ -26,15 +26,12 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} bg-[#fafafa]`}
-      >
-        <Navbar />
-        {children}
-        <Footer />
-      </body>
-    </html>
-  );
+	return (
+		<html lang="en" suppressHydrationWarning={true}>
+			<body className={`${geistSans.variable} ${geistMono.variable} bg-gray-1`}>
+				{children}
+				<Footer />
+			</body>
+		</html>
+	);
 }

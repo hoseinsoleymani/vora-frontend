@@ -25,23 +25,21 @@ const Navbar = () => {
           </Link>
 
           <Link
-            href="/"
+            href="/hotels"
             className=" hover:border-b hover:border-b-black focus:border-b"
           >
             Stay
           </Link>
 
-          <DropdownMenu>
-            <DropdownMenuTrigger className="hover:border-b hover:border-b-black">
-              Ticket
-            </DropdownMenuTrigger>
-            <DropdownMenuContent>
-              <DropdownMenuLabel>Ticket</DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>Option 1</DropdownMenuItem>
-              <DropdownMenuItem>Option 2</DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+          <Link
+            href="/tickets"
+            className=" hover:border-b hover:border-b-black focus:border-b"
+          >
+          Ticket
+          </Link>
+
+
+
 
           <DropdownMenu>
             <DropdownMenuTrigger className="hover:border-b hover:border-b-black">

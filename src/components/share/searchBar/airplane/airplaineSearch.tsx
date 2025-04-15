@@ -21,7 +21,7 @@ function AirplaneSearch() {
   const [destinationLocation, setDestinationLocation] = useState("");
   const [date, setDate] = useState<Date | undefined>();
   const [returnDate, setReturnDate] = useState<Date | undefined>();
-  const [adultCount, setAdultCount] = useState(0);
+  const [adultCount, setAdultCount] = useState(1);
   const [childCount, setChildCount] = useState(0);
   const [infantCount, setInfantCount] = useState(0);
   const [selectedFromLocation, setSelectedFromLocation] =
@@ -32,39 +32,28 @@ function AirplaneSearch() {
   const handleSearch = async () => {
     const formatDate = (date: Date | undefined) => {
       if (!date) return undefined;
-      return date.toISOString().split("T")[0].replace(/-/g, "/");
+      const year = date.getFullYear();
+      const month = (date.getMonth() + 1).toString().padStart(2, "0");
+      const day = date.getDate().toString().padStart(2, "0");
+      return `${year}/${month}/${day}`;
     };
 
     try {
       const params = new URLSearchParams({
-        origin: selectedFromLocation?.iataCode || "",
-        destination: selectedDestinationLocation?.iataCode || "",
+        origin: selectedFromLocation?.iataCode || "LON",
+        destination: selectedDestinationLocation?.iataCode || "PAR",
         departure_date: formatDate(date) || "",
-        arrival_date: formatDate(returnDate) || "",
         adults: adultCount.toString(),
         page: "1",
-        page_size: "10",
       });
 
-      const response = await fetch(
-        `http://5.161.155.143:5000/flight/offers/search?${params.toString()}`,
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-
-      if (!response.ok) {
-        throw new Error("Failed to fetch flight offers");
+      if (returnDate) {
+        params.set("arrival_date", formatDate(returnDate) || "");
       }
 
-      const data = await response.json();
-      console.log("Flight search results:", data);
-      // router.push(`/flights?${params.toString()}`);
+      router.push(`/tickets?${params.toString()}`);
     } catch (error) {
-      console.error("Error searching flights:", error);
+      console.error("خطا در جستجوی پروازها:", error);
     }
   };
 
@@ -102,6 +91,9 @@ function AirplaneSearch() {
         aria-label="Search flights"
         size={"icon"}
         onClick={handleSearch}
+        disabled={
+          !selectedFromLocation || !selectedDestinationLocation || !date
+        }
       >
         <Search16Regular className="text-white" />
       </Button>

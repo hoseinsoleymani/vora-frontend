@@ -37,11 +37,13 @@
 	},
 	"devDependencies": {
 		"@biomejs/biome": "1.9.4",
+		"@iconify-json/fluent": "^1.2.19",
 		"@types/node": "^20",
 		"@types/react": "^19",
 		"@types/react-dom": "^19",
 		"@unocss/cli": "66.1.0-beta.3",
 		"@unocss/postcss": "66.1.0-beta.3",
+		"@unocss/preset-icons": "^66.1.0-beta.11",
 		"@unocss/reset": "66.1.0-beta.3",
 		"class-variance-authority": "^0.7.1",
 		"clsx": "^2.1.1",
