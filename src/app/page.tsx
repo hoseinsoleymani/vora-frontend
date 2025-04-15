@@ -8,7 +8,7 @@ import TravelBlogs from "./components/travelBlogs/travelBlogs";
 
 export default function Home() {
   return (
-    <div className="max-w-screen-xl mx-auto mt-16">
+    <div className="container mx-auto mt-16 px-4">
       <section className="mt-8">
         <PageIntro />
       </section>

@@ -75,6 +75,7 @@ function HotelSearch() {
           aria-label="Search hotels"
           onClick={handleSearch}
           size={"icon"}
+          disabled={!location || !checkInDate}
         >
           <Search16Regular className="text-white" />
         </Button>

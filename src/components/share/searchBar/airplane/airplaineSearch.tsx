@@ -33,8 +33,8 @@ function AirplaneSearch() {
     const formatDate = (date: Date | undefined) => {
       if (!date) return undefined;
       const year = date.getFullYear();
-      const month = (date.getMonth() + 1).toString().padStart(2, '0');
-      const day = date.getDate().toString().padStart(2, '0');
+      const month = (date.getMonth() + 1).toString().padStart(2, "0");
+      const day = date.getDate().toString().padStart(2, "0");
       return `${year}/${month}/${day}`;
     };
 
@@ -91,6 +91,9 @@ function AirplaneSearch() {
         aria-label="Search flights"
         size={"icon"}
         onClick={handleSearch}
+        disabled={
+          !selectedFromLocation || !selectedDestinationLocation || !date
+        }
       >
         <Search16Regular className="text-white" />
       </Button>
