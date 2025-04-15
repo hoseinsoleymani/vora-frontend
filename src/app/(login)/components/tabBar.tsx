@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui";
 
-
 export type TabBarPage = "Login" | "Signup";
 
 interface TabBarProps {
@@ -21,7 +20,7 @@ function TabBar({ activeTab, setActiveTab }: TabBarProps) {
         }`}
         onClick={() => setActiveTab("Login")}
       >
-        Login
+        Sign In
       </Button>
       <Button
         variant={"link"}
