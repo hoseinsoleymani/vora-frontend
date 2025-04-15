@@ -48,7 +48,8 @@ function From({ setLocation }: FromProps) {
     }
   }, [searchLocation]);
   const handleLocationSelect = (selectedLocation: Region) => {
-    setLocation(selectedLocation.iataCode);
+    setLocation(selectedLocation.name);
+    // setLocation(selectedLocation.iataCode);
     setSearchLocation(selectedLocation.name);
     setSelectedLocation(selectedLocation);
     setSearchResults([]);
