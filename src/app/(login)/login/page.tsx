@@ -11,17 +11,17 @@ function LoginPage() {
   const [activeTab, setActiveTab] = useState<TabBarPage>("Login");
   const [showTabBar, setShowTabBar] = useState(true);
   return (
-    <div className="flex items-center justify-center min-h-screen w-full bg-gray-50">
+    <div className="flex items-center justify-start min-h-screen w-full mb-20">
       <div className="flex items-center justify-center gap-34 w-full max-w-7xl px-4">
         <div className="w-1/2 h-fit rounded-[32px] overflow-hidden">
           <Image
             src={LoginImage}
             alt="login"
             width={519}
-            className="w-full h-auto"
+            className="w-full h-auto rounded-3xl"
           />
         </div>
-        <div className="w-1/2 min-h-[600px] flex flex-col gap-4 items-center justify-start pt-10">
+        <div className="w-1/2 min-h-[600px] flex flex-col gap-4 items-center justify-start ">
           <Image src={Logo} alt="logo" className="mb-4" />
           <div className="w-full">
             {showTabBar && (

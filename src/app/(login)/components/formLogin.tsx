@@ -15,7 +15,6 @@ const schema = z.object({
   password: z.string().min(8),
 });
 
-
 function FormLogin() {
   const {
     register,
@@ -25,31 +24,33 @@ function FormLogin() {
     resolver: zodResolver(schema),
   });
   const onSubmit = async (data: FormLogin) => {
-    const response = await Login(data)
+    const response = await Login(data);
+    console.log(response.data);
   };
 
   return (
     <form
-      action=""
-      className="mt-4 flex flex-col gap-2"
+      className="mt-4 flex flex-col gap-2 h-[300px]"
       onSubmit={handleSubmit(onSubmit)}
     >
-      <Input
-        size="lg"
-        placeholder="Mail"
-        label="Enter your mail"
-        {...register("email")}
-        errorMessage={errors?.email?.message}
-      />
-      <Input
-        size="lg"
-        placeholder="password"
-        label="Enter your password"
-        {...register("password")}
-        errorMessage={errors?.password?.message}
-        type="password"
-      />
-      <div className="flex justify-end items-center">
+      <div className="flex flex-col gap-2 flex-grow">
+        <Input
+          size="lg"
+          placeholder="Mail"
+          label="Enter your mail"
+          {...register("email")}
+          errorMessage={errors?.email?.message}
+        />
+        <Input
+          size="lg"
+          placeholder="password"
+          label="Enter your password"
+          {...register("password")}
+          errorMessage={errors?.password?.message}
+          type="password"
+        />
+      </div>
+      <div className="flex justify-end items-center mt-auto">
         <Button size="sm" className="px-10 py-3" type="submit">
           Sign in
         </Button>

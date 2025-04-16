@@ -9,4 +9,4 @@ export * from "./components/createAccount";
 export * from "./components/signupUserInfo";
 export * from "./components/signupProgressBar";
 export * from "./components/signupWizardLayout";
-
+export * from "./components/signupPassword";

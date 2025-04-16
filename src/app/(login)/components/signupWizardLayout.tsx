@@ -12,19 +12,19 @@ interface SignupWizardLayoutProps {
   totalSteps: number;
   children: React.ReactNode;
   handleBackToSignup: () => void;
-  handleNextStep: () => void;
   handleCreateAccount: () => void;
+  formRef?: React.RefObject<HTMLFormElement | null>;
 }
 
 function SignupWizardLayout({
   currentStep,
   children,
   handleBackToSignup,
-  handleNextStep,
   handleCreateAccount,
+  formRef,
 }: SignupWizardLayoutProps) {
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col msx-h-[500px]">
       {currentStep !== 0 && (
         <div className="flex flex-col gap-6 w-full items-center">
           <SignupProgressBar currentStep={currentStep} />
@@ -43,7 +43,7 @@ function SignupWizardLayout({
         </p>
       )}
       <div className="mt-4">{children}</div>
-      <div className="mt-48 flex items-center justify-between">
+      <div className="mt-38 flex items-center justify-between">
         {currentStep === 1 && (
           <Button
             variant={"link"}
@@ -68,7 +68,7 @@ function SignupWizardLayout({
           <Button
             variant={"outline"}
             size={"sm"}
-            onClick={handleNextStep}
+            onClick={() => formRef?.current?.requestSubmit()}
             className="flex items-center gap-2 bg-[#f9fafb] ___"
           >
             Next Step

@@ -19,10 +19,13 @@ const Login = async (data: { email: string; password: string }) => {
 
     const result = await response.json();
     console.log(result);
-    return { success: true, message: "success login" };
+    return { success: true, message: "success login", data: result };
   } catch (error) {
     console.log(error);
-    return { success: false, message: "No active account found with the given credentials" };
+    return {
+      success: false,
+      message: "No active account found with the given credentials",
+    };
   }
 };
 
