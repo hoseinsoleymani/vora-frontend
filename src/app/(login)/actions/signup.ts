@@ -1,5 +1,5 @@
 "use server";
-
+import { cookies } from "next/headers";
 interface SignupData {
   email: string;
   name: string;
@@ -19,6 +19,14 @@ export async function signupAction(data: SignupData) {
     });
 
     const responseData = await response.json();
+    const cookieStore = await cookies();
+    if (responseData.access) {
+      cookieStore.set("access", responseData.access, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        maxAge: 60 * 60 * 24 * 30,
+      });
+    }
 
     if (!response.ok) {
       throw new Error("Signup failed");

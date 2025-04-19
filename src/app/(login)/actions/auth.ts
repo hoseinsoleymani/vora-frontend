@@ -1,4 +1,5 @@
 "use server";
+import { cookies } from "next/headers";
 
 const Login = async (data: { email: string; password: string }) => {
   try {
@@ -18,6 +19,14 @@ const Login = async (data: { email: string; password: string }) => {
     }
 
     const result = await response.json();
+    const cookieStore = await cookies();
+    if (result.access) {
+      cookieStore.set("access", result.access, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        maxAge: 60 * 60 * 24 * 30,
+      });
+    }
     console.log(result);
     return { success: true, message: "success login", data: result };
   } catch (error) {

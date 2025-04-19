@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Login } from "../actions/auth";
+import { useRouter } from "next/navigation";
 type FormLogin = {
   email: string;
   password: string;
@@ -16,16 +17,21 @@ const schema = z.object({
 });
 
 function FormLogin() {
+  const router = useRouter();
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<FormLogin>({
     resolver: zodResolver(schema),
   });
   const onSubmit = async (data: FormLogin) => {
     const response = await Login(data);
-    console.log(response.data);
+    if (response.success) {
+      reset();
+      router.push("/");
+    }
   };
 
   return (
