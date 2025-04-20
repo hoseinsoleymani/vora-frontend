@@ -34,7 +34,7 @@ function TravelBlogs() {
   return (
     <div className="container mx-auto px-4">
       <HeaderSection />
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+      <div className="flex flex-wrap gap-6 justify-between mt-8">
         {blogData.map((blog, index) => (
           <BlogCard
             key={index}

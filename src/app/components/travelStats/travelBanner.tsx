@@ -7,7 +7,7 @@ import TravelStats from "./travelStats";
 
 function TravelBanner() {
   return (
-    <div className="flex  items-center gap-12">
+    <div className="flex justify-center items-center gap-12">
       <div className="w-[410px] h-[600px] rounded-full overflow-hidden">
         <Image
           src={TeravelBanner}

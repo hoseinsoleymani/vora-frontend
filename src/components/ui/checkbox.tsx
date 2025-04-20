@@ -27,7 +27,7 @@ const Checkbox: React.FC<CheckboxProps> = ({ label, variant = "basic" }) => {
         className="relative w-4 h-4  rounded-full transition-all focus:outline-none"
         style={{
           borderColor: "red",
-          backgroundColor: variant === "basic" ? "#FBDAD9" : "black", // پس‌زمینه‌ی متغیر
+          backgroundColor: variant === "basic" ? "#FBDAD9" : "black", // Variable background
         }}
       >
         <CheckboxPrimitive.Indicator className="absolute inset-0 flex items-center justify-center">

@@ -5,6 +5,7 @@ import "./globals.css";
 import "@unocss/reset/normalize.css";
 import "@unocss/reset/sanitize/sanitize.css";
 import "@unocss/reset/sanitize/assets.css";
+import "@/styles/uno.css"; // Import the generated UnoCSS styles
 import Navbar from "@/components/ui/navbar";
 import { Footer } from "@/components/ui/footer";
 
@@ -30,9 +31,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
 	return (
-		<html lang="en">
-			<body className={`${geistSans.variable} ${geistMono.variable} bg-[#fafafa]`}>
-				<Navbar />
+		<html lang="en" suppressHydrationWarning={true}>
+			<body className={`${geistSans.variable} ${geistMono.variable} bg-gray-1`}>
 				{children}
 				<Footer />
 			</body>
