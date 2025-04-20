@@ -55,7 +55,7 @@ function Location({
         return;
       }
       const response = await fetch(
-        `http://5.161.155.143:5000//flight/location/search?keyword=${encodeURIComponent(
+        `http://5.161.155.143:5000/flight/location/search?keyword=${encodeURIComponent(
           searchLocation
         )}`
       );
