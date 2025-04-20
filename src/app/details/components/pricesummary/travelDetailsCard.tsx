@@ -8,7 +8,6 @@ import {
 } from "@fluentui/react-icons";
 
 type departingFlight = {
-  airline: string;
   from: string;
   to: string;
 };
@@ -21,7 +20,7 @@ type returnFlight = {
 
 type travelers = {
   adults: number;
-  children: number;
+  children?: number;
 };
 
 interface TravelDetailsCardProps {
@@ -43,7 +42,7 @@ function TravelDetailsCard({
           <ArrowUpRight24Regular color="#9EA8C3" />
           <div className="flex flex-col gap-1">
             <h3 className="font-bold text-[#33363B]">Departing flight</h3>
-            <p>{`${departingFlight.airline}, ${departingFlight.from} to ${departingFlight.to}`}</p>
+            <p>{`${departingFlight.from} to ${departingFlight.to}`}</p>
           </div>
         </div>
         {returnFlight && (
@@ -51,7 +50,7 @@ function TravelDetailsCard({
             <ArrowReset24Regular color="#9EA8C3" />
             <div className="flex flex-col gap-1">
               <h3 className="font-bold text-[#33363B]">Return flight</h3>
-              <p>{`${returnFlight.airline}, ${returnFlight.from} to ${returnFlight.to}`}</p>
+              <p>{`${returnFlight.from} to ${returnFlight.to}`}</p>
             </div>
           </div>
         )}
@@ -59,7 +58,7 @@ function TravelDetailsCard({
           <Person24Regular color="#9EA8C3" />
           <div className="flex flex-col gap-1">
             <h3 className="font-bold text-[#33363B]">Travelers</h3>
-            <p>{`${travelers.adults} Adults - ${travelers.children} Child`}</p>
+            <p>{`${travelers.adults} Adults`}</p>
           </div>
         </div>
       </div>

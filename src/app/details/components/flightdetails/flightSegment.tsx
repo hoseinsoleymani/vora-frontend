@@ -27,7 +27,7 @@ function FlightSegment({
   duration,
 }: FlightSegmentProps) {
   return (
-    <div className="mt-5 flex flex-col gap-4 justify-center">
+    <div className="mt-10 flex flex-col gap-4 justify-center">
       <div className="flex items-center justify-between gap-[51px]">
         <FlightSegmentDisplay
           time={departure?.time ?? ""}

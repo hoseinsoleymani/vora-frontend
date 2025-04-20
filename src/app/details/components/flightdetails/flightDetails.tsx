@@ -10,110 +10,82 @@ import {
   ArrowUpRight24Regular,
   ArrowReset24Regular,
 } from "@fluentui/react-icons";
+import { FlightSegment as IFlightSegment } from "../../page";
+import { formatDuration } from "@/utils";
 
-function FlightDetails() {
+interface flightDeparture {
+  destination: string;
+  from: string;
+  model: "Outbound" | "Inbound";
+}
+
+interface flightArrival {
+  destination: string;
+  from: string;
+  model: "Outbound" | "Inbound";
+}
+
+interface FlightDetailsProps {
+  flightDeparture: flightDeparture;
+  flightArrival?: flightArrival;
+  flightItinerary: IFlightSegment[];
+}
+
+function FlightDetails({
+  flightDeparture,
+  flightItinerary,
+}: FlightDetailsProps) {
   return (
     <div className="w-full">
       <HeaderFlightDetails
-        from="Berlin"
-        model="Outbound"
+        destination={flightDeparture.destination}
+        from={flightDeparture.from}
+        model={"Outbound"}
         icon={<ArrowUpRight24Regular />}
       />
-      <FlightSegment
-        departure={{
-          time: "10:15",
-          city: "Berlin",
-          terminal: "T1",
-          date: "2024-01-01",
-          isConfirmed: true,
-        }}
-        arrival={{
-          time: "13:30",
-          city: "Copenhagen",
-          terminal: "T8",
-          date: "2024-01-01",
-          isConfirmed: false,
-        }}
-        duration="13h 40m"
-        flightNumber="123456789"
-        flightClass="Economy"
-        operatedBy="British Airways"
-        aircraftType="A320neo"
-      />
+      {flightItinerary.map((segment) => {
+        const departureDate = new Date(segment.departure.at);
+        const arrivalDate = new Date(segment.arrival.at);
 
-      <LayoverInfo duration="1h 30m" />
-      <FlightSegment
-        departure={{
-          time: "10:15",
-          city: "Berlin",
-          terminal: "T1",
-          date: "2024-01-01",
-          isConfirmed: true,
-        }}
-        arrival={{
-          time: "13:30",
-          city: "Copenhagen",
-          terminal: "T8",
-          date: "2024-01-01",
-          isConfirmed: false,
-        }}
-        duration="13h 40m"
-        flightNumber="123456789"
-        flightClass="Economy"
-        operatedBy="British Airways"
-        aircraftType="A320neo"
-      />
-      <hr className="w-full border-gray-200 my-8" />
-      <div>
-        <HeaderFlightDetails
-          from="Berlin"
-          model="Return"
-          icon={<ArrowReset24Regular />}
-        />
-        <FlightSegment
-          departure={{
-            time: "10:15",
-            city: "Berlin",
-            terminal: "T1",
-            date: "2024-01-01",
-            isConfirmed: true,
-          }}
-          arrival={{
-            time: "13:30",
-            city: "Copenhagen",
-            terminal: "T8",
-            date: "2024-01-01",
-            isConfirmed: false,
-          }}
-          duration="13h 40m"
-          flightNumber="123456789"
-          flightClass="Economy"
-          operatedBy="British Airways"
-          aircraftType="A320neo"
-        />
-        <LayoverInfo duration="1h 30m" />
-        <FlightSegment
-          departure={{
-            time: "10:15",
-            city: "Berlin",
-            terminal: "T1",
-            date: "2024-01-01",
-            isConfirmed: true,
-          }}
-          arrival={{
-            time: "13:30",
-            city: "Copenhagen",
-            terminal: "T8",
-            date: "2024-01-01",
-            isConfirmed: false,
-          }}
-          duration="13h 40m"
-          flightNumber="123456789"
-          flightClass="Economy"
-          operatedBy="British Airways"
-          aircraftType="A320neo"
-        />
-      </div>
+        return (
+          <FlightSegment
+            key={segment.id}
+            departure={{
+              time: departureDate.toLocaleTimeString("en-US", {
+                hour: "2-digit",
+                minute: "2-digit",
+              }),
+              city: segment.departure.iataCode,
+              terminal: segment.departure.terminal || "",
+              date: departureDate.toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "long",
+                day: "2-digit",
+              }),
+              isConfirmed: true
+            }}
+            arrival={{
+              time: arrivalDate.toLocaleTimeString("en-US", {
+                hour: "2-digit",
+                minute: "2-digit",
+              }),
+              city: segment.arrival.iataCode,
+              terminal: "",
+              date: arrivalDate.toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              }),
+            }}
+            flightNumber={segment.number}
+            flightClass="Economy"
+            operatedBy={segment.operating.carrierCode}
+            aircraftType={segment.aircraft.code}
+            duration={formatDuration(segment.duration)}
+          />
+        );
+      })}
+
       <FareDetails />
       <BagsInfo />
     </div>

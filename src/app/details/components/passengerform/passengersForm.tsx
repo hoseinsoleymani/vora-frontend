@@ -57,9 +57,10 @@ const passengersFormSchema = z
 interface PassengersFormProps {
   onSubmit: () => void;
   setFormMethods?: (methods: any) => void;
+  travellers: [];
 }
 
-function PassengersForm({ onSubmit, setFormMethods }: PassengersFormProps) {
+function PassengersForm({ onSubmit, setFormMethods, travellers }: PassengersFormProps) {
   const methods = useForm<PassengersFormData>({
     resolver: zodResolver(passengersFormSchema),
     mode: "onChange",
@@ -80,7 +81,7 @@ function PassengersForm({ onSubmit, setFormMethods }: PassengersFormProps) {
   });
 
   useEffect(() => {
-    const generatedFields = Array.from({ length: 3 }, () => ({
+    const generatedFields = Array.from({ length: travellers.length }, () => ({
       passportName: "",
       passportFamilyName: "",
       birthday: "",

@@ -10,9 +10,11 @@ export * from "./flightdetails/layoverInfo";
 export * from "./flightdetails/fareDetails";
 export * from "./flightdetails/bagsInfo";
 export * from "./pricesummary/travelDetailsCard";
-export * from "./pricesummary/priceSummaryCard";
-export * from "./pricesummary/travellerPrice";
 export * from  "./passengerform/passengersForm";
 export * from  "./passengerform/passengerFormSection";
 export * from "./passengerform/passengersHeader";
 export * from "./payment"
+export * from "./paymentLayout"
+export * from "../action/flightoffer"
+
+

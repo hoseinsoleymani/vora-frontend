@@ -1,61 +1,78 @@
 "use client";
 import { Button } from "@/components/ui";
-import { PriceSummaryCard } from "./priceSummaryCard";
 import { TravelDetailsCard } from "./travelDetailsCard";
-import { Traveller } from "./travellerPrice";
 
-function PriceSummary({ nextStep }: { nextStep: () => void }) {
+interface PriceSummaryProps {
+  nextStep: () => void;
+  from: string;
+  destination: string;
+  adults: number;
+  totalPrice: number;
+  travellers: {
+    price: {
+      total: number;
+      base: number;
+    };
+  }[];
+}
+
+function PriceSummary({
+  nextStep,
+  from,
+  destination,
+  adults,
+  totalPrice,
+  travellers,
+}: PriceSummaryProps) {
   const handleEditClick = () => {
     console.log("Edit clicked");
   };
-  const travellers: Traveller[] = [
-    {
-      type: "adult",
-      flightPrice: "2,910.00",
-      taxesPrice: "787.80",
-      totalPrice: "3,697.80",
-    },
-    {
-      type: "adult",
-      flightPrice: "2,910.00",
-      taxesPrice: "787.80",
-      totalPrice: "3,697.80",
-    },
-    {
-      type: "child",
-      flightPrice: "2,910.00",
-      taxesPrice: "787.80",
-      totalPrice: "3,697.80",
-    },
-  ];
+
+  const calculateTaxes = (traveller: any) => {
+    const taxes = traveller.price.total - traveller.price.base;
+    return taxes.toFixed(2);
+  };
 
   return (
     <div className="flex flex-col gap-8">
       <TravelDetailsCard
         departingFlight={{
-          airline: "American Airlines",
-          from: "NYC (JFK)",
-          to: "MIL (MXP)",
-        }}
-        returnFlight={{
-          airline: "American Airlines",
-          from: "MIL (MXP)",
-          to: "NYC (JFK)",
+          from: from,
+          to: destination,
         }}
         travelers={{
-          adults: 2,
-          children: 1,
+          adults: adults,
         }}
         onEditClick={handleEditClick}
       />
       <hr className="w-full border-[#E0E0E0] my-6" />
-      <div>
-        <PriceSummaryCard travellers={travellers} />
+      <div className="flex flex-col gap-4">
+        {travellers &&
+          travellers.map((traveller, index) => (
+            <div key={index} className="flex flex-col gap-4">
+              <div className="flex justify-between items-center">
+                <p className="text-lg font-medium">
+                  Traveller {index + 1}:Adult
+                </p>
+                <p className="text-lg font-medium">${traveller.price.total}</p>
+              </div>
+              <div className="flex flex-col fap-1">
+                <div className="flex justify-between items-center">
+                  <p className="text-lg">Flight</p>
+                  <p>${traveller.price.base}</p>
+                </div>
+                <div className="flex justify-between items-center">
+                  <p className="text-lg">Taxes, fees and charges</p>
+                  <p className="text-lg">${calculateTaxes(traveller)}</p>
+                </div>
+              </div>
+            </div>
+          ))}
       </div>
       <hr className="w-full border-[#E0E0E0] my-6" />
       <div className="flex justify-between items-center">
         <p className="text-lg">Total price</p>
-        <p className="text-lg font-bold">$ 6,697.80</p>
+        <p className="text-lg font-bold">$ {totalPrice}</p>
       </div>
       <Button className="rounded-lg mt-8" onClick={nextStep}>
         Check out and continue

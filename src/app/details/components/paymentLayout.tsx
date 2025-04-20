@@ -9,8 +9,28 @@ import {
 } from "@/app/details/components";
 import { StepNavigator } from "@/components/ui/stepNavigator";
 import { useWizard } from "@/hooks/useWizard";
+import { FlightSegment } from "@/app/details/page";
+interface PaymentLayoutProps {
+  destination: string;
+  from: string;
+  flightItinerary: FlightSegment[];
+  adults: number;
+  totalPrice: number;
+  travellers: [];
+  departure_date: string;
+  offerId: string;
+}
 
-function PaymentLayout() {
+function PaymentLayout({
+  destination,
+  from,
+  flightItinerary,
+  adults,
+  totalPrice,
+  travellers,
+  departure_date,
+  offerId,
+}: PaymentLayoutProps) {
   const {
     currentStep,
     totalSteps,
@@ -19,7 +39,6 @@ function PaymentLayout() {
     prevStep,
     setStepData,
     goToStep,
-    resetWizard,
   } = useWizard();
   const [formMethods, setFormMethods] = React.useState<any>(null);
 
@@ -30,6 +49,17 @@ function PaymentLayout() {
   ];
 
   const handelPayment = () => {
+    if (currentStep === 0) {
+      const flightDetails = {
+        origin: from,
+        destination: destination,
+        departure_date: departure_date,
+        adults: adults,
+        offerId: offerId,
+      };
+      setStepData("flight", flightDetails);
+      nextStep();
+    }
     if (currentStep === 1) {
       if (formMethods) {
         formMethods.handleSubmit((passengers: PassengersFormData) => {
@@ -45,11 +75,17 @@ function PaymentLayout() {
 
   const selectedStepMap = () => {
     const stepMap: Record<string, React.ReactNode> = {
-      "0": <FlightDetails />,
+      "0": (
+        <FlightDetails
+          flightDeparture={{ destination, from, model: "Outbound" }}
+          flightItinerary={flightItinerary}
+        />
+      ),
       "1": (
         <PassengersForm
           onSubmit={() => handelPayment()}
           setFormMethods={setFormMethods}
+          travellers={travellers}
         />
       ),
       "2": <Payment />,
@@ -72,7 +108,14 @@ function PaymentLayout() {
         </div>
       </div>
       <div className="w-1/3 bg-white p-6 shadow-lg rounded-2xl h-fit">
-        <PriceSummary nextStep={handelPayment} />
+        <PriceSummary
+          nextStep={handelPayment}
+          destination={destination}
+          from={from}
+          adults={adults}
+          totalPrice={totalPrice}
+          travellers={travellers}
+        />
       </div>
     </div>
   );
