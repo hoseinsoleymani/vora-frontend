@@ -2,12 +2,14 @@ export * from "./button";
 export * from "./calendar";
 export * from "./datePicker";
 export * from "./dateTab";
-export * from "./slider";
+export * from "../../app/components/pageIntro/slider";
 export * from "./radio-group";
 export * from "./checkbox";
 export * from "./switch";
 export * from "./select";
 export * from "./dropdown-menu"
 export * from "./navbar"
+export * from "./progressBar"
+export * from "./footer"
 export * from "./LoadingSpinner"
 export * from "./progressBar"

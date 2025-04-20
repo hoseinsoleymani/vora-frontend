@@ -5,10 +5,11 @@ import Faq from "./components/faq/faq";
 import TravelBanner from "./components/travelStats/travelBanner";
 import TravelPlannerCard from "./components/travelPlanner/TravelPlannerCard";
 import TravelBlogs from "./components/travelBlogs/travelBlogs";
-
+import { Navbar } from "@/components/ui/navbar";
 export default function Home() {
   return (
-    <div className="container mx-auto mt-16 px-4">
+    <div className="container mx-auto  px-4">
+      <Navbar />
       <section className="mt-8">
         <PageIntro />
       </section>
