@@ -1,4 +1,4 @@
-import Navbar from "@/components/ui/navbar";
+import { Navbar } from "@/components/ui";
 import { HotelSearch } from "@/components/share/searchBar/hotel/hotelSearch";
 import {
   ProcessHotel,

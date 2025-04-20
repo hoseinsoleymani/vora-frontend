@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { Button } from "@/components/ui/button";
 import {
@@ -11,8 +12,10 @@ import {
 import Link from "next/link";
 import Logo from "../../../public/img/Vora Logo.png"
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 const Navbar = () => {
+  const router = useRouter();
   return (
     <div className="py-4 px-8 flex justify-between items-center">
       <div className="flex items-center space-x-2">
@@ -69,11 +72,11 @@ const Navbar = () => {
         </div>
       </div>
 
-      <Button variant="outline" size={"sm"}>
+      <Button variant="outline" size={"sm"} onClick={() => router.push("/login")}>
         Sign in/sign up
       </Button>
     </div>
   );
 };
 
-export default Navbar;
+export { Navbar };
