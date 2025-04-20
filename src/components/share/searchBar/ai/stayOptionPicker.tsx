@@ -1,11 +1,5 @@
 import { useWizard } from "@/hooks";
 import StepContainer from "./stepContainer";
-import {
-  Dismiss12Filled,
-  SelectAllOn16Regular,
-  BuildingSkyscraper16Regular,
-  Home16Regular,
-} from "@fluentui/react-icons";
 import { Button } from "@/components/ui/button";
 
 type StayOptionType = "hotel" | "accommodation" | "noDifference" | "noStay";
@@ -17,14 +11,14 @@ function StayOptionPicker() {
     value: StayOptionType;
     icon: React.ReactNode;
   }[] = [
-    { label: "Hotel", value: "hotel", icon: <BuildingSkyscraper16Regular /> },
-    { label: "Accommodation", value: "accommodation", icon: <Home16Regular /> },
+    { label: "Hotel", value: "hotel", icon: <span className="i-fluent:building-skyscraper-16-regular text-2xl"></span> },
+    { label: "Accommodation", value: "accommodation", icon: <span className="i-fluent:home-16-regular text-2xl"></span> },
     {
       label: "No difference",
       value: "noDifference",
-      icon: <SelectAllOn16Regular />,
+      icon: <span className="i-fluent:select-all-on-16-regular text-2xl"></span>,
     },
-    { label: "Don't suggest stay", value: "noStay", icon: <Dismiss12Filled /> },
+    { label: "Don't suggest stay", value: "noStay", icon: <span className="i-fluent:dismiss-12-filled text-2xl"></span> },
   ];
   return (
     <StepContainer title="What sort of stay do you prefer?">

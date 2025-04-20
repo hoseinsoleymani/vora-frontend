@@ -1,9 +1,4 @@
 "use client";
-import {
-  ArrowUp16Regular,
-  ArrowDown16Regular,
-  Search16Regular,
-} from "@fluentui/react-icons";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
@@ -61,7 +56,7 @@ function AirplaneSearch() {
     <div className="bg-white rounded-lg px-8 py-4 flex gap-4 w-full items-center justify-between h-24">
       <Location
         title="From"
-        icon={<ArrowUp16Regular />}
+        icon={<span className="i-fluent:arrow-up-16-regular text-xl"></span>}
         location={fromLocation}
         setLocation={setFromLocation}
         selectedLocation={selectedFromLocation}
@@ -69,7 +64,7 @@ function AirplaneSearch() {
       />
       <Location
         title="Destination"
-        icon={<ArrowDown16Regular />}
+        icon={<span className="i-fluent:arrow-down-16-regular text-xl"></span>}
         location={destinationLocation}
         setLocation={setDestinationLocation}
         selectedLocation={selectedDestinationLocation}
@@ -92,7 +87,7 @@ function AirplaneSearch() {
         size={"icon"}
         onClick={handleSearch}
       >
-        <Search16Regular className="text-white" />
+        <span className="i-fluent:search-16-regular text-white text-xl"></span>
       </Button>
     </div>
   );

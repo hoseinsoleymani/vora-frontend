@@ -8,14 +8,6 @@ import {
   Calendar,
   Button,
 } from "@/components/ui";
-import {
-  CalendarArrowRight24Regular,
-  CalendarArrowCounterclockwise24Regular,
-  ChevronLeft24Regular,
-  ChevronRight24Regular,
-  Checkmark16Regular,
-  ArrowUndo16Regular,
-} from "@fluentui/react-icons";
 
 interface CheckInAndOutProps {
   checkInDate: Date | undefined;
@@ -61,7 +53,7 @@ const CheckInAndOut = ({
     <DropdownMenu open={open} onOpenChange={setOpen}>
       <DropdownMenuTrigger>
         <div className="flex items-start gap-2 w-[200px]">
-          <CalendarArrowRight24Regular className="text-gray-500" />
+          <span className="i-fluent:calendar-arrow-right-24-regular text-gray-500 text-3xl"></span>
           <div>
             <p className="font-bold">Check in and out</p>
             <p className="text-sm mt-1 text-gray-500">{formattedDateRange}</p>
@@ -71,7 +63,7 @@ const CheckInAndOut = ({
       <DropdownMenuContent className="mt-8 px-4 py-4rounded-xl">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center gap-2">
-            <CalendarArrowCounterclockwise24Regular className="text-gray-500" />
+            <span className="i-fluent:calendar-arrow-counterclockwise-24-regular text-gray-500 text-2xl"></span>
             <p className="font-bold text-lg">Check in and out</p>
           </div>
           <div
@@ -113,7 +105,7 @@ const CheckInAndOut = ({
                     setCheckOutDate(undefined);
                   }}
                 >
-                  <ArrowUndo16Regular /> Reset
+                  <span className="i-fluent:arrow-undo-16-regular text-2xl"></span> Reset
                 </Button>
               </div>
             )}
@@ -126,7 +118,7 @@ const CheckInAndOut = ({
             size="icon"
             onClick={() => handleMonthChange("prev")}
           >
-            <ChevronLeft24Regular className="h-4 w-4" />
+            <span className="i-fluent:chevron-left-24-regular text-2xl"></span>
           </Button>
           <Calendar
             mode="range"
@@ -149,13 +141,13 @@ const CheckInAndOut = ({
             size="icon"
             onClick={() => handleMonthChange("next")}
           >
-            <ChevronRight24Regular className="h-4 w-4" />
+            <span className="i-fluent:chevron-right-24-regular text-2xl"></span>
           </Button>
         </div>
         <hr className="w-full" />
         <div className="flex justify-end my-4">
           <Button onClick={() => setOpen(false)}>
-            <Checkmark16Regular /> Done
+            <span className="i-fluent:checkmark-16-regular text-2xl"></span> Done
           </Button>
         </div>
       </DropdownMenuContent>

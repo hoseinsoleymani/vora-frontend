@@ -1,8 +1,5 @@
 "use client";
 
-import {
-  ArrowSort24Regular,
-} from "@fluentui/react-icons";
 import { Button } from "@/components/ui/button";
 import { ReactNode } from "react";
 
@@ -32,7 +29,7 @@ const SortByComponent = ({
   return (
     <div className="p-5 bg-white rounded-2xl mt-4">
       <div className="flex items-center">
-        <ArrowSort24Regular />
+        <span className="i-fluent:arrow-sort-24-regular text-2xl"></span>
         <span className="text-lg font-semibold ml-2">{title}</span>
       </div>
 

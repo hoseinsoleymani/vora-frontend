@@ -1,10 +1,10 @@
+"use client";
 import {
   DropdownMenu,
   DropdownMenuTrigger,
   DropdownMenuContent,
   Calendar,
 } from "@/components/ui";
-import { CalendarArrowRight24Regular } from "@fluentui/react-icons";
 import { useState } from "react";
 
 interface DatePickerProps {
@@ -25,7 +25,7 @@ function DatePicker({ date, setDate }: DatePickerProps) {
       <DropdownMenu open={open} onOpenChange={setOpen}>
         <DropdownMenuTrigger asChild>
           <div className="flex items-start gap-2 w-[200px] cursor-pointer">
-            <CalendarArrowRight24Regular className="text-gray-500" />
+            <span className="i-fluent:calendar-arrow-right-24-regular text-gray-500 text-3xl"></span>
             <div>
               <p className="font-bold">Depart</p>
               <p className="text-sm mt-1 text-gray-500">
@@ -36,7 +36,7 @@ function DatePicker({ date, setDate }: DatePickerProps) {
         </DropdownMenuTrigger>
         <DropdownMenuContent className="mt-10 px-4 py-3 rounded-xl">
           <div className="flex items-center gap-2">
-            <CalendarArrowRight24Regular className="text-gray-500" />
+            <span className="i-fluent:calendar-arrow-right-24-regular text-gray-500 text-3xl"></span>
             <p className="font-bold text-lg ">Departure Date</p>
           </div>
           <hr className="w-full mt-4"/>

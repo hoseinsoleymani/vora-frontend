@@ -1,3 +1,4 @@
+"use client";
 import {
   DropdownMenu,
   DropdownMenuTrigger,
@@ -5,7 +6,6 @@ import {
   DropdownMenuItem,
   Button,
 } from "@/components/ui";
-import { Search20Regular, Dismiss16Regular } from "@fluentui/react-icons";
 import React, { useEffect, useState } from "react";
 import HeaderAirportSearch from "./headerAirportSearch";
 import AirportName from "./airportName";
@@ -129,13 +129,13 @@ function Location({
             </div>
             {selectedLocation && (
               <Button variant={"outline"} onClick={handleRemoveLocation}>
-                <Dismiss16Regular /> Remove
+                <span className="i-fluent:dismiss-16-regular text-2xl"></span> Remove
               </Button>
             )}
           </DropdownMenuItem>
           <hr className="w-full border-gray-300 my-4" />
           <div className="relative">
-            <Search20Regular className="absolute top-1/2 left-4 -translate-y-1/2 text-gray-500" />
+            <span className="i-fluent:search-20-regular absolute top-1/2 left-4 -translate-y-1/2 text-gray-500 text-2xl"></span>
             <input
               type="text"
               placeholder="City or Airport"

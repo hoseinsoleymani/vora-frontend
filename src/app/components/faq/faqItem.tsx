@@ -1,6 +1,5 @@
 "use client";
 import React, { useState } from "react";
-import {ChevronDown32Regular} from "@fluentui/react-icons"
 
 const FAQItem = ({ question, answer }: { question: string; answer: string }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -13,7 +12,7 @@ const FAQItem = ({ question, answer }: { question: string; answer: string }) => 
       >
         {question}
         <span className={`transition-transform ${isOpen ? "rotate-180 translate transition-all duration-300" : "translate transition-all duration-300"}`}>
-          <ChevronDown32Regular />
+          <span className="i-fluent:chevron-down-32-regular text-2xl"></span>
         </span>
       </button>
       {isOpen && <p className="mt-2 text-gray-600 ">{answer}</p>}

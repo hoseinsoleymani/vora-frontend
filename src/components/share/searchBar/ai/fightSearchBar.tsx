@@ -1,5 +1,4 @@
 import { Region, Region as LocationType } from "../share/location/location";
-import { ArrowDown16Regular, ArrowUp16Regular } from "@fluentui/react-icons";
 import { useWizard } from "@/hooks";
 import TripTypeSelector from "./tripTypeSelector";
 import StepContainer from "./stepContainer";
@@ -13,7 +12,7 @@ function FightSearchBar() {
       <div className="flex items-center justify-between ">
         <Region
           title="From"
-          icon={<ArrowUp16Regular />}
+          icon={<span className="i-fluent:arrow-up-16-regular text-2xl"></span>}
           setLocation={(location: string) => setStepData("from", location)}
           location={data.from}
           selectedLocation={data.fromLocation}
@@ -24,7 +23,7 @@ function FightSearchBar() {
 
         <Region
           title="Destination"
-          icon={<ArrowDown16Regular />}
+          icon={<span className="i-fluent:arrow-down-16-regular text-2xl"></span>}
           setLocation={(location: string) => setStepData("to", location)}
           location={data.to}
           selectedLocation={data.toLocation}

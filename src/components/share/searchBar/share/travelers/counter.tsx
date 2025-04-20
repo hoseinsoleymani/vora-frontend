@@ -1,5 +1,4 @@
 import { Button } from "@/components/ui";
-import { Add12Regular, Subtract12Regular } from "@fluentui/react-icons";
 
 interface CounterProps {
   lable: string;
@@ -37,7 +36,7 @@ function Counter({
           className="rounded-full h-4 w-4 p-2 flex items-center justify-center"
           onClick={onDecrement}
         >
-          <Subtract12Regular />
+          <span className="i-fluent:subtract-12-regular text-2xl"></span>
         </Button>
         <p className="text-sm w-8 text-center">{count}</p>
         <Button
@@ -46,7 +45,7 @@ function Counter({
           className="rounded-full h-4 w-4 p-2 flex items-center justify-center"
           onClick={onIncrement}
         >
-          <Add12Regular className="w-4 h-4" />
+          <span className="i-fluent:add-12-regular text-2xl"></span>
         </Button>
       </div>
     </div>

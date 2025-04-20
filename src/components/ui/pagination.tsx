@@ -1,6 +1,4 @@
 import * as React from "react"
-import { IosArrow24Filled, IosArrowRtl24Filled, MoreHorizontal24Filled } from "@fluentui/react-icons"
-
 import { cn } from "@/lib/utils"
 import { ButtonProps, buttonVariants } from "@/components/ui/button"
 
@@ -69,7 +67,7 @@ const PaginationPrevious = ({
     className={cn("gap-1 pl-2.5", className)}
     {...props}
   >
-    <IosArrow24Filled className="h-4 w-4" />
+    <span className="i-fluent:ios-arrow-24-filled text-2xl"></span>
     <span>Previous</span>
   </PaginationLink>
 )
@@ -86,7 +84,7 @@ const PaginationNext = ({
     {...props}
   >
     <span>Next</span>
-    <IosArrowRtl24Filled className="h-4 w-4" />
+    <span className="i-fluent:ios-arrow-rtl-24-filled text-2xl"></span>
   </PaginationLink>
 )
 PaginationNext.displayName = "PaginationNext"
@@ -100,7 +98,7 @@ const PaginationEllipsis = ({
     className={cn("flex h-9 w-9 items-center justify-center", className)}
     {...props}
   >
-    <MoreHorizontal24Filled className="h-4 w-4" />
+    <span className="i-fluent:more-horizontal-24-filled text-2xl"></span>
     <span className="sr-only">More pages</span>
   </span>
 )

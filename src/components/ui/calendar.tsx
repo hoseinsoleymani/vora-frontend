@@ -1,7 +1,5 @@
-'use client'
 
 import * as React from "react"
-import { ChevronLeft24Regular , ChevronRight24Regular } from '@fluentui/react-icons';
 import { DayPicker } from "react-day-picker"
 
 import { cn } from "@/utils";
@@ -54,10 +52,10 @@ function Calendar({
       }}
       components={{
         IconLeft: ({ className, ...props }) => (
-          <ChevronLeft24Regular className={cn("h-4 w-4", className)} {...props} />
+          <span className={cn("i-fluent:chevron-left-24-regular text-2xl", className)} {...props}></span>
         ),
         IconRight: ({ className, ...props }) => (
-          <ChevronRight24Regular className={cn("h-4 w-4", className)} {...props} />
+          <span className={cn("i-fluent:chevron-right-24-regular text-2xl", className)} {...props}></span>
         ),
       }}
       fixedWeeks

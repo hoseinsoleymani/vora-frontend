@@ -1,6 +1,3 @@
-"use client";
-
-import { IosArrowRtl24Filled, IosArrow24Filled } from "@fluentui/react-icons";
 import { Button } from "@/components/ui/button";
 
 interface NavigationButtonProps {
@@ -11,7 +8,6 @@ interface NavigationButtonProps {
 
 const NavigationButton = ({ direction, disabled, formData }: NavigationButtonProps) => {
   const isLeft = direction === 'left';
-  const Icon = isLeft ? IosArrow24Filled : IosArrowRtl24Filled;
   
   return (
     <form action="/tickets" method="GET" className={`absolute ${isLeft ? 'left-0' : 'right-0'} mt-3 z-10`}>
@@ -22,11 +18,15 @@ const NavigationButton = ({ direction, disabled, formData }: NavigationButtonPro
       <Button 
         type="submit"
         disabled={disabled}
-        className={`w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-md border border-gray-200 hover:bg-gray-100 ${
+        className={`w-12 h-12 rounded-full bg-white flex items-center justify-center shadow-md border border-gray-200 hover:bg-gray-100 ${
           disabled ? "cursor-not-allowed opacity-50" : ""
         }`}
       >
-        <Icon className="text-gray-500" />
+        {isLeft ? (
+          <span className="i-fluent:ios-arrow-24-filled text-3xl text-gray-500 flex items-center justify-center w-full h-full"></span>
+        ) : (
+          <span className="i-fluent:ios-arrow-rtl-24-filled text-3xl text-gray-500 flex items-center justify-center w-full h-full"></span>
+        )}
       </Button>
     </form>
   );

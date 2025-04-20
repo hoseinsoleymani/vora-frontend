@@ -1,7 +1,4 @@
-"use client";
-
 import { Button } from "@/components/ui/button";
-import { ChevronLeft24Regular, ChevronRight24Regular } from "@fluentui/react-icons";
 
 interface NavigationButtonProps {
   direction: "left" | "right";
@@ -27,7 +24,11 @@ const NavigationButton = ({ direction, disabled, formData }: NavigationButtonPro
       variant="ghost"
       size="icon"
     >
-      {direction === "left" ? <ChevronLeft24Regular /> : <ChevronRight24Regular />}
+      {direction === "left" ? (
+        <span className="i-fluent:chevron-left-24-regular text-2xl"></span>
+      ) : (
+        <span className="i-fluent:chevron-right-24-regular text-2xl"></span>
+      )}
     </Button>
   </form>
 );

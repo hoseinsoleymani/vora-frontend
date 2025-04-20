@@ -1,9 +1,4 @@
 import { Button } from "@/components/ui";
-import {
-  ChevronLeft16Regular,
-  ChevronRight16Regular,
-  Search16Regular,
-} from "@fluentui/react-icons";
 import { ProgressBar } from "@/components/ui";
 
 interface WizardLayoutProps {
@@ -41,7 +36,7 @@ function WizardLayout({
             className="mr-2"
             onClick={onBack}
           >
-            <ChevronLeft16Regular />
+            <span className="i-fluent:chevron-left-16-regular text-2xl"></span>
           </Button>
           <Button
             variant="default"
@@ -50,7 +45,11 @@ function WizardLayout({
             onClick={onNext}
             disabled={currentStep === totalSteps}
           >
-            {isLastStep ? <Search16Regular /> : <ChevronRight16Regular />}
+            {isLastStep ? (
+              <span className="i-fluent:search-16-regular text-2xl"></span>
+            ) : (
+              <span className="i-fluent:chevron-right-16-regular text-2xl"></span>
+            )}
           </Button>
         </div>
       </div>

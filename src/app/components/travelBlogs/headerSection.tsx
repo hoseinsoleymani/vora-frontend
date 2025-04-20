@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ArrowUpRight16Filled } from "@fluentui/react-icons";
+
 function HeaderSection() {
   return (
     <div className="grid grid-cols-3 items-center">
@@ -14,7 +14,7 @@ function HeaderSection() {
       <div className="flex justify-end col-span-2">
         <Button size="sm">
           All Blogs
-          <ArrowUpRight16Filled className="ml-2" />
+          <span className="i-fluent:arrow-up-right-16-filled text-xl ml-2"></span>
         </Button>
       </div>
     </div>

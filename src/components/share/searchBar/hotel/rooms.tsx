@@ -5,9 +5,7 @@ import {
   Button,
   DropdownMenuItem,
 } from "@/components/ui";
-import { DoorRegular, ArrowUndo16Regular } from "@fluentui/react-icons";
 import Counter from "../share/travelers/counter";
-
 
 interface RoomsProps {
   rooms: number;
@@ -19,13 +17,17 @@ function Rooms({ rooms, setRooms }: RoomsProps) {
     <div>
       <DropdownMenu>
         <DropdownMenuTrigger>
-          <div className="flex items-start gap-2 W-[200px]">
-            <DoorRegular className="text-gray-500" fontSize={24} />
+          <div className="flex items-center justify-between flex-col W-[200px]">
+            <div className="flex items-center gap-2">
+            <span className="i-fluent:door-16-regular text-gray-500 text-2xl"></span>
+            <p className="font-bold">Rooms</p>
+            </div>   
             <div>
-              <p className="font-bold">Rooms</p>
-              <p className="text-sm mt-1 text-gray-500">
-                {rooms < 2 ? "How many rooms" : `${rooms} rooms`}
-              </p>
+              <div>
+                <p className="text-sm mt-1 text-gray-500">
+                  {rooms < 2 ? "How many rooms" : `${rooms} rooms`}
+                </p>
+              </div>
             </div>
           </div>
         </DropdownMenuTrigger>
@@ -34,7 +36,7 @@ function Rooms({ rooms, setRooms }: RoomsProps) {
             <div className="flex flex-col gap-2 w-full">
               <div className="flex items-center justify-between h-16">
                 <div className="flex items-center gap-2">
-                  <DoorRegular className="text-gray-500" fontSize={24} />
+                  <span className="i-fluent:door-regular text-gray-500 text-2xl"></span>
                   <p className="font-bold">Rooms</p>
                 </div>
                 <div
@@ -53,7 +55,8 @@ function Rooms({ rooms, setRooms }: RoomsProps) {
                         setRooms(1);
                       }}
                     >
-                      <ArrowUndo16Regular /> Reset
+                      <span className="i-fluent:arrow-undo-16-regular text-2xl"></span>{" "}
+                      Reset
                     </Button>
                   )}
                 </div>
@@ -79,7 +82,9 @@ function Rooms({ rooms, setRooms }: RoomsProps) {
             <Counter
               lable="Rooms"
               subLable="How many rooms"
-              icon={<DoorRegular className="text-gray-500" fontSize={24} />}
+              icon={
+                <span className="i-fluent:door-regular text-gray-500 text-2xl"></span>
+              }
               count={rooms}
               onIncrement={() => setRooms(rooms + 1)}
               onDecrement={() => setRooms(rooms - 1)}

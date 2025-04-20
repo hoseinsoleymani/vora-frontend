@@ -1,11 +1,3 @@
-"use client";
-
-import {
-  Sparkle24Regular,
-  Clover24Regular,
-  Timeline24Regular,
-  ReceiptMoney24Regular,
-} from "@fluentui/react-icons";
 import { SortByComponent as SharedSortByComponent } from "@/components/share/SortByComponent/SortByComponent";
 
 interface SortByComponentProps {
@@ -37,10 +29,10 @@ const SortByComponent = ({ searchParams }: SortByComponentProps) => {
   };
 
   const sortOptions = [
-    { label: "The best value", icon: <Sparkle24Regular />, value: "The best value" },
-    { label: "The most popular", icon: <Clover24Regular />, value: "The most popular" },
-    { label: "The fastest", icon: <Timeline24Regular />, value: "The fastest" },
-    { label: "Price", icon: <ReceiptMoney24Regular />, value: "Price" },
+    { label: "The best value", icon: <span className="i-fluent:sparkle-24-regular text-2xl"></span>, value: "The best value" },
+    { label: "The most popular", icon: <span className="i-fluent:clover-24-regular text-2xl"></span>, value: "The most popular" },
+    { label: "The fastest", icon: <span className="i-fluent:timeline-24-regular text-2xl"></span>, value: "The fastest" },
+    { label: "Price", icon: <span className="i-fluent:receipt-money-24-regular text-2xl"></span>, value: "Price" },
   ];
 
   return (

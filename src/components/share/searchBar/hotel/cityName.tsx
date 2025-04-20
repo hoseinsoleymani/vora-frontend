@@ -1,4 +1,3 @@
-import { Location24Regular } from "@fluentui/react-icons";
 import { Region } from "../share/location/location"
 
 interface CityNameProps {
@@ -17,7 +16,7 @@ function cityName({ data, setLocation }: CityNameProps) {
             onClick={() => setLocation(city)}
           >
             <div className="flex items-center gap-3">
-              <Location24Regular className="text-gray-500" />
+              <span className="i-fluent:location-24-regular text-gray-500 text-2xl"></span>
               <div>
                 <p className="font-semibold text-sm">{city.name}</p>
                 <p className="text-sm font-light">{city.address.countryName}</p>

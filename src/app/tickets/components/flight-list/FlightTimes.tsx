@@ -1,5 +1,3 @@
-"use client";
-
 import { FlightLine, type StopInfo } from "@/components/share/FlightLineComponent";
 
 interface FlightTimesProps {

@@ -1,5 +1,4 @@
 "use client";
-import { Search16Regular } from "@fluentui/react-icons";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import CheckInAndOut from "./checkInAndOut";
@@ -76,7 +75,7 @@ function HotelSearch() {
           onClick={handleSearch}
           size={"icon"}
         >
-          <Search16Regular className="text-white" />
+          <span className="i-fluent:search-16-regular text-white text-xl"></span>
         </Button>
       </div>
     </div>

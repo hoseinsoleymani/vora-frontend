@@ -1,12 +1,5 @@
-"use client";
-
 import * as React from "react";
 import { cn } from "@/lib/utils";
-import {
-  ArrowReset20Regular,
-  Flow24Regular,
-  IosChevronRight20Regular,
-} from "@fluentui/react-icons";
 import { Button } from "@/components/ui/button";
 
 interface ProcessComponentProps {
@@ -32,7 +25,7 @@ const ProcessComponent = ({
     <div className="p-5 bg-white rounded-2xl">
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center justify-between space-x-4">
-            <Flow24Regular />
+            <span className="i-fluent:flow-24-regular text-gray-500 text-2xl"></span>
             <span className="font-semibold text-xl">{title}</span>
         </div>
         {resetButtonText && (
@@ -41,7 +34,7 @@ const ProcessComponent = ({
               <input key={key} type="hidden" name={key} value={value} />
             ))}
             <Button variant="outline" size="sm" type="submit">
-                <ArrowReset20Regular className="mr-2" />
+                <span className="i-fluent:arrow-reset-20-regular text-gray-500 text-xl mr-2"></span>
                 {resetButtonText}
             </Button>
           </form>
@@ -57,7 +50,7 @@ const ProcessComponent = ({
               key={index}
               className="flex items-center space-x-2"
             >
-              {index !== 0 && <IosChevronRight20Regular className="mr-4" />}
+              {index !== 0 && <span className="i-fluent:ios-chevron-right-20-regular text-gray-500 text-xl mr-4"></span>}
 
               <form action={formAction} method="GET" className="inline">
                 {Object.entries(formData).map(([key, value]) => (

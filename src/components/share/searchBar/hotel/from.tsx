@@ -5,11 +5,6 @@ import {
   DropdownMenuItem,
   Button,
 } from "@/components/ui";
-import {
-  Dismiss16Regular,
-  Location12Regular,
-  Search20Regular,
-} from "@fluentui/react-icons";
 import { useEffect, useState } from "react";
 import { Region } from "../share/location/location";
 import CityName from "./cityName";
@@ -67,7 +62,7 @@ function From({ setLocation }: FromProps) {
         <DropdownMenuTrigger asChild>
           <div className="flex items-start gap-2 w-[200px] cursor-pointer">
             <div className="border rounded-full w-8 h-8 flex items-center justify-center">
-              <Location12Regular className="text-gray-500" />
+              <span className="i-fluent:location-12-regular text-gray-500 text-2xl"></span>
             </div>
             <div>
               <p className="font-bold">From</p>
@@ -82,20 +77,20 @@ function From({ setLocation }: FromProps) {
             <div className="flex items-center justify-between gap-2 w-full">
               <div className="flex items-center gap-2">
                 <div className="border rounded-full w-8 h-8 flex items-center justify-center">
-                  <Location12Regular className="text-gray-500" />
+                  <span className="i-fluent:location-12-regular text-gray-500 text-2xl"></span>
                 </div>
                 <p className="font-bold">Where to?</p>
               </div>
               {selectedLocation && (
                 <Button variant={"outline"} onClick={handleRemoveLocation}>
-                  <Dismiss16Regular /> Remove
+                  <span className="i-fluent:dismiss-16-regular text-2xl"></span> Remove
                 </Button>
               )}
             </div>
           </DropdownMenuItem>
           <hr className="w-full border-gray-300 my-4" />
           <div className="relative">
-            <Search20Regular className="absolute top-1/2 left-4 -translate-y-1/2 text-gray-500" />
+            <span className="i-fluent:search-20-regular absolute top-1/2 left-4 -translate-y-1/2 text-gray-500 text-2xl"></span>
             <input
               type="text"
               placeholder="City or Airport"

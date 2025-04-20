@@ -1,5 +1,3 @@
-"use client";
-
 import {AirplaneSearch} from "@/components/share/searchBar/airplane/airplaineSearch";
 
 export interface SearchParams {

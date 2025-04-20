@@ -1,13 +1,6 @@
-"use client";
 //Todo: refactor this component to server action
 import { AiSearch, AirplaneSearch, HotelSearch } from "@/components/share/searchBar";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import {
-  Airplane16Regular,
-  Building16Regular,
-  Sparkle16Filled,
-} from "@fluentui/react-icons";
-
 
 function SearchBar() {
   return (
@@ -15,13 +8,13 @@ function SearchBar() {
       <Tabs defaultValue="Airplaine" className="w-full">
         <TabsList className="bg-white px-4 py-10 rounded-full">
           <TabsTrigger value="Airplaine">
-            <Airplane16Regular className="mr-2" /> Airplaine
+            <span className="i-fluent:airplane-16-regular text-2xl mr-2"></span> Airplaine
           </TabsTrigger>
           <TabsTrigger value="Stay">
-            <Building16Regular className="mr-2" /> Stay
+            <span className="i-fluent:building-16-regular text-2xl mr-2"></span> Stay
           </TabsTrigger>
           <TabsTrigger value="AIfeatures">
-            <Sparkle16Filled className="mr-2" /> AI features
+            <span className="i-fluent:sparkle-16-filled text-2xl mr-2"></span> AI features
           </TabsTrigger>
         </TabsList>
         <div className="mt-4">

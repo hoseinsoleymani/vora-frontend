@@ -1,9 +1,5 @@
+"use client";
 import { Button } from "@/components/ui";
-import {
-  Add16Regular,
-  CalendarReply24Regular,
-  Dismiss16Regular,
-} from "@fluentui/react-icons";
 import React, { useState } from "react";
 import {
   DropdownMenu,
@@ -41,7 +37,9 @@ function ReturnTicket({ returnDate, setReturnDate }: ReturnTicketProps) {
             variant={"outline"}
             onClick={() => setIsReturnTicket(true)}
           >
-            <Add16Regular className="text-gray-500" />
+            <div className="flex items-center justify-center">
+              <span className="i-fluent:add-24-filled text-gray-500 text-lg"></span>
+            </div>
           </Button>
           <p className="text-sm text-gray-500">Add Return Ticket</p>
         </div>
@@ -50,7 +48,7 @@ function ReturnTicket({ returnDate, setReturnDate }: ReturnTicketProps) {
           <DropdownMenu open={open} onOpenChange={setOpen}>
             <DropdownMenuTrigger asChild>
               <div className="flex items-start gap-2 cursor-pointer hover:opacity-80 transition-opacity duration-300">
-                <CalendarReply24Regular className="text-gray-500" />
+                <span className="i-fluent:calendar-reply-24-regular text-gray-500 text-2xl"></span>
                 <div>
                   <p className="font-bold">Return</p>
                   <p className="text-sm mt-1 text-gray-500">
@@ -61,7 +59,7 @@ function ReturnTicket({ returnDate, setReturnDate }: ReturnTicketProps) {
             </DropdownMenuTrigger>
             <DropdownMenuContent className="mt-10 px-4 py-3 rounded-xl animate-in fade-in-50 slide-in-from-top-2 duration-300">
               <div className="flex items-center gap-2">
-                <CalendarReply24Regular className="text-gray-500" />
+                <span className="i-fluent:calendar-reply-24-regular text-gray-500 text-2xl"></span>
                 <p className="font-bold text-lg">Return Date</p>
               </div>
               <hr className="w-full mt-4" />
@@ -78,7 +76,9 @@ function ReturnTicket({ returnDate, setReturnDate }: ReturnTicketProps) {
             variant={"destructive"}
             onClick={handleDismiss}
           >
-            <Dismiss16Regular className="text-white" />
+            <div className="flex items-center justify-center">
+              <span className="i-fluent:dismiss-16-regular text-white text-base"></span>
+            </div>
           </Button>
         </div>
       )}

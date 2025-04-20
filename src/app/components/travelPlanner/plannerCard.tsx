@@ -1,11 +1,5 @@
 import Image, { StaticImageData } from "next/image";
 import { Button } from "@/components/ui/button";
-import {
-  SearchSparkle16Regular,
-  SlideTextSparkle24Filled,
-  Location24Filled,
-  TicketDiagonal24Filled,
-} from "@fluentui/react-icons";
 
 interface PlannerCardProps {
   image: StaticImageData | string;
@@ -36,7 +30,7 @@ function PlannerCard({ image, backgroundImage, width = 1062, height = 314 }: Pla
             </div>
           </div>
           <Button variant="default" size="lg">
-            <SearchSparkle16Regular />
+            <span className="i-fluent:search-sparkle-16-regular text-2xl"></span>
             Try Service
           </Button>
         </div>
@@ -46,9 +40,9 @@ function PlannerCard({ image, backgroundImage, width = 1062, height = 314 }: Pla
         </p>
         <div className="flex items-center gap-4 mt-6">
           {[
-            { icon: <SlideTextSparkle24Filled />, title: "Save Money" },
-            { icon: <Location24Filled />, title: "Find Best Places" },
-            { icon: <TicketDiagonal24Filled />, title: "Great Deals" },
+            { icon: <span className="i-fluent:slide-text-sparkle-24-filled text-2xl"></span>, title: "Save Money" },
+            { icon: <span className="i-fluent:location-24-filled text-2xl"></span>, title: "Find Best Places" },
+            { icon: <span className="i-fluent:ticket-diagonal-24-filled text-2xl"></span>, title: "Great Deals" },
           ].map((item, index) => (
             <div key={index} className="flex flex-col gap-2">
               <div className="flex items-center gap-2">

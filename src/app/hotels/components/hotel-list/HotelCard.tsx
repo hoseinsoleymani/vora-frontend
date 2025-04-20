@@ -1,17 +1,6 @@
-"use client";
 
 import React from "react";
 import { Button } from "@/components/ui/button";
-import {
-  Star24Regular,
-  Star24Filled,
-  Eye24Regular,
-  Location16Regular,
-  Location24Regular,
-  Bed24Regular,
-  Calendar24Regular,
-  Person24Regular
-} from "@fluentui/react-icons";
 import { Skeleton } from "@/components/ui/skeleton";
 
 interface Hotel {
@@ -69,10 +58,12 @@ const HotelCard: React.FC<HotelCardProps> = ({
     for (let i = 0; i < 5; i++) {
       if (i < Math.floor(normalizedRating)) {
         stars.push(
-          <Star24Filled key={i} className="w-4 h-4 text-yellow-500" />
+          <span key={i} className="i-fluent:star-24-filled text-yellow-500"></span>
         );
       } else {
-        stars.push(<Star24Regular key={i} className="w-4 h-4 text-gray-400" />);
+        stars.push(
+          <span key={i} className="i-fluent:star-24-regular text-gray-400"></span>
+        );
       }
     }
     return stars;
@@ -91,7 +82,6 @@ const HotelCard: React.FC<HotelCardProps> = ({
   if (viewMode === "list") {
     return (
       <div className="w-full mx-auto my-6 bg-white shadow-md rounded-2xl overflow-hidden flex">
-        <span className="fluent:Eye24Regular"></span>
         <div className="w-48 h-48 flex-shrink-0 p-2">
           <img
             src={"product-image.png"}
@@ -112,7 +102,7 @@ const HotelCard: React.FC<HotelCardProps> = ({
             <div className="flex items-center gap-2">
               {renderRating(rating)}
               <Button variant="outline" size="sm" className="flex items-center gap-1 text-xs h-auto">
-                <Location24Regular className="w-3 h-3" />
+                <span className="i-fluent:location-24-regular text-lg"></span>
                 Show location on map
               </Button>
             </div>
@@ -120,15 +110,15 @@ const HotelCard: React.FC<HotelCardProps> = ({
 
           <div className="flex flex-col space-y-2 mt-2">
             <p className="text-sm text-gray-600 flex items-center gap-2">
-              <Bed24Regular className="text-gray-500 w-4 h-4" />
+              <span className="i-fluent:bed-24-regular text-lg text-gray-500"></span>
               {searchDetails.rooms} bedroom, 1 bathroom
             </p>
             <p className="text-sm text-gray-600 flex items-center gap-2">
-              <Calendar24Regular className="text-gray-500 w-4 h-4" />
+              <span className="i-fluent:calendar-24-regular text-lg text-gray-500"></span>
               {searchDetails.nights} nights
             </p>
             <p className="text-sm text-gray-600 flex items-center gap-2">
-              <Person24Regular className="text-gray-500 w-4 h-4" />
+              <span className="i-fluent:person-24-regular text-lg text-gray-500"></span>
               {searchDetails.adults} adults, {searchDetails.children} children
             </p>
           </div>
@@ -143,7 +133,7 @@ const HotelCard: React.FC<HotelCardProps> = ({
           </div>
 
           <Button variant="default" size="sm" className="w-full">
-            <Eye24Regular className="mr-1" />
+            <span className="i-fluent:eye-24-regular text-lg mr-1"></span>
             View & Reserve
           </Button>
         </div>
@@ -160,7 +150,6 @@ const HotelCard: React.FC<HotelCardProps> = ({
           className="w-full h-40 object-cover rounded-xl"
         />
       </div>
-      dddddddddddddd
 
       <div className="p-4 flex flex-col">
         <h2 className="text-base font-medium mb-2">{name}</h2>
@@ -171,21 +160,21 @@ const HotelCard: React.FC<HotelCardProps> = ({
 
         <div className="flex flex-col space-y-2 mb-3">
           <p className="text-sm text-gray-600 flex items-center gap-2">
-            <Bed24Regular className="text-gray-500 w-4 h-4" />
+            <span className="i-fluent:bed-24-regular text-lg text-gray-500"></span>
             {bedsAvailable} beds available
           </p>
           <p className="text-sm text-gray-600 flex items-center gap-2">
-            <Calendar24Regular className="text-gray-500 w-4 h-4" />
+            <span className="i-fluent:calendar-24-regular text-lg text-gray-500"></span>
             {nightsReserved} nights reserved
           </p>
           <p className="text-sm text-gray-600 flex items-center gap-2">
-            <Person24Regular className="text-gray-500 w-4 h-4" />
+            <span className="i-fluent:person-24-regular text-lg text-gray-500"></span>
             {adultsAllowed} adults allowed
           </p>
         </div>
 
         <Button variant="outline" size="sm" className="flex items-center gap-1 text-xs mb-3 w-full">
-          <Location24Regular className="w-3 h-3" />
+          <span className="i-fluent:location-24-regular text-lg"></span>
           Show location on map
         </Button>
 
@@ -199,7 +188,7 @@ const HotelCard: React.FC<HotelCardProps> = ({
             <div className="text-xs text-gray-500">Includes taxes and charges</div>
           </div>
           <Button variant="default" size="sm">
-            <Eye24Regular className="mr-1" />
+            <span className="i-fluent:eye-24-regular text-lg mr-1"></span>
             View
           </Button>
         </div>

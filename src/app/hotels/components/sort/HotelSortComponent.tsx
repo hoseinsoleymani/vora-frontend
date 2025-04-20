@@ -1,11 +1,5 @@
 "use client";
 
-import {
-  Calendar24Regular,
-  StarEmphasis24Regular,
-  Money24Regular,
-  NumberSymbolSquare24Regular,
-} from "@fluentui/react-icons";
 import { SortByComponent } from "@/components/share/SortByComponent/SortByComponent";
 import { useState, useEffect } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -47,10 +41,10 @@ const HotelSortComponent = ({ searchParams }: HotelSortProps) => {
   };
 
   const sortOptions = [
-    { label: "Most Popular", icon: <StarEmphasis24Regular />, value: "Most Popular" },
-    { label: "Guest Rating", icon: <StarEmphasis24Regular />, value: "Guest Rating" },
-    { label: "Price: Low to High", icon: <Money24Regular />, value: "Price: Low to High" },
-    { label: "Price: High to Low", icon: <NumberSymbolSquare24Regular />, value: "Price: High to Low" },
+    { label: "Most Popular", icon: <span className="i-fluent:star-emphasis-24-regular text-2xl"></span>, value: "Most Popular" },
+    { label: "Guest Rating", icon: <span className="i-fluent:star-emphasis-24-regular text-2xl"></span>, value: "Guest Rating" },
+    { label: "Price: Low to High", icon: <span className="i-fluent:money-24-regular text-2xl"></span>, value: "Price: Low to High" },
+    { label: "Price: High to Low", icon: <span className="i-fluent:number-symbol-square-24-regular text-2xl"></span>, value: "Price: High to Low" },
   ];
 
   if (loading) {

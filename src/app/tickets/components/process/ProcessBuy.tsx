@@ -1,5 +1,4 @@
 "use client";
-
 import { ProcessComponent } from "@/components/share/ProcessComponent/ProcessComponent";
 
 interface ProcessBuyProps {

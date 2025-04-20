@@ -1,5 +1,4 @@
 import { Button } from "@/components/ui/button";
-import { ReceiptSparkles16Regular } from "@fluentui/react-icons";
 
 interface Option {
   id: string;
@@ -32,7 +31,7 @@ const TabButtons: React.FC<TabButtonsProps> = ({ options, selectedTab, onTabChan
               selectedTab === option.id ? "opacity-100" : "opacity-0"
             }`}
           >
-            <ReceiptSparkles16Regular />
+            <span className="i-fluent:receipt-sparkles-16-regular text-2xl"></span>
           </span>
           {option.label}
         </Button>

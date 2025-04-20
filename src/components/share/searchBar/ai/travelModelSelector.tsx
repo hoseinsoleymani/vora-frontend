@@ -2,12 +2,7 @@ import React from "react";
 import StepContainer from "./stepContainer";
 import { Button } from "@/components/ui";
 import { useWizard } from "@/hooks";
-import {
-  Airplane16Regular,
-  VehicleSubway16Regular,
-  SelectAllOn16Regular,
-  Dismiss12Filled,
-} from "@fluentui/react-icons";
+
 type TravelModelType = "flight" | "train" | "noDifference" | "personal";
 
 function TravelModelSelector() {
@@ -19,14 +14,14 @@ function TravelModelSelector() {
     value: TravelModelType;
     icon: React.ReactNode;
   }[] = [
-    { label: "Flight", value: "flight", icon: <Airplane16Regular /> },
-    { label: "Train", value: "train", icon: <VehicleSubway16Regular /> },
+    { label: "Flight", value: "flight", icon: <span className="i-fluent:airplane-16-regular text-2xl"></span> },
+    { label: "Train", value: "train", icon: <span className="i-fluent:vehicle-subway-16-regular text-2xl"></span> },
     {
       label: "No Difference",
       value: "noDifference",
-      icon: <SelectAllOn16Regular />,
+      icon: <span className="i-fluent:select-all-on-16-regular text-2xl"></span>,
     },
-    { label: "Personal", value: "personal", icon: <Dismiss12Filled /> },
+    { label: "Personal", value: "personal", icon: <span className="i-fluent:dismiss-12-filled text-2xl"></span> },
   ];
 
   return (

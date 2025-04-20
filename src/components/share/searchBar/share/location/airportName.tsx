@@ -1,5 +1,4 @@
 import { Region } from "./location";
-import { ArrowRight12Regular } from "@fluentui/react-icons";
 
 interface AirportNameProps {
   data: Region[];
@@ -16,7 +15,7 @@ function AirportName({ data, setLocation }: AirportNameProps) {
           onClick={() => setLocation(airport)}
         >
           <div className="flex items-center gap-4">
-            <ArrowRight12Regular />
+            <span className="i-fluent:arrow-right-12-regular text-2xl"></span>
             <p className="font-semibold text-sm">
               {airport.iataCode}-{airport.name}
             </p>

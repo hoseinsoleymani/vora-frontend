@@ -1,4 +1,3 @@
-"use client";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Label } from "@/components/ui/label";
 import { Calendar } from "../ui";

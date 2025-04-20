@@ -1,4 +1,3 @@
-import { Person24Regular } from "@fluentui/react-icons";
 import Counter from "./counter";
 interface TravelersContentProps {
   adultCount: number;
@@ -34,7 +33,7 @@ function TravelersContent({
       <Counter
         lable="Adult"
         subLable="Above 16 years old"
-        icon={<Person24Regular />}
+        icon={<span className="i-fluent:person-24-regular text-2xl"></span>}
         count={adultCount}
         onIncrement={() => setAdultCount(adultCount + 1)}
         onDecrement={() => setAdultCount(Math.max(0, adultCount - 1))}
@@ -48,7 +47,7 @@ function TravelersContent({
       <Counter
         lable="Children"
         subLable="Ages 2 to 16"
-        icon={<Person24Regular />}
+        icon={<span className="i-fluent:person-24-regular text-2xl"></span>}
         count={childCount}
         onIncrement={() => setChildCount(childCount + 1)}
         onDecrement={() => setChildCount(Math.max(0, childCount - 1))}
@@ -62,7 +61,7 @@ function TravelersContent({
       <Counter
         lable="Infants"
         subLable="Younger than 2"
-        icon={<Person24Regular />}
+        icon={<span className="i-fluent:person-24-regular text-2xl"></span>}
         count={infantCount}
         onIncrement={() => setInfantCount(infantCount + 1)}
         onDecrement={() => setInfantCount(Math.max(0, infantCount - 1))}

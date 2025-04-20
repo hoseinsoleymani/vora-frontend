@@ -1,14 +1,10 @@
+"use client";
 import {
   DropdownMenu,
   DropdownMenuTrigger,
   DropdownMenuContent,
   Button,
 } from "@/components/ui";
-import {
-  Person24Regular,
-  Checkmark16Regular,
-  ArrowUndo16Regular,
-} from "@fluentui/react-icons";
 import { useState } from "react";
 import { TravelerSummary } from "./TravelerSummary";
 import TravelersHeader from "./travelersHeader";
@@ -43,7 +39,7 @@ function Travelers({
           <div>
             <div className="flex items-center justify-between h-16">
               <div className="flex items-center gap-2">
-                <Person24Regular className="text-gray-500" />
+                <span className="i-fluent:person-24-regular text-gray-500 text-2xl"></span>
                 <p className="font-bold">Travelers</p>
               </div>
               <div
@@ -64,7 +60,7 @@ function Travelers({
                       setInfantCount(0);
                     }}
                   >
-                    <ArrowUndo16Regular /> Reset
+                    <span className="i-fluent:arrow-undo-16-regular text-2xl"></span> Reset
                   </Button>
                 )}
               </div>
@@ -103,7 +99,7 @@ function Travelers({
               className="text-xs gap-2"
               onClick={() => setIsOpen(false)}
             >
-              <Checkmark16Regular /> Done
+              <span className="i-fluent:checkmark-16-regular text-2xl"></span> Done
             </Button>
           </div>
         </DropdownMenuContent>
