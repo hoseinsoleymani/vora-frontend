@@ -97,6 +97,7 @@ function Location({
                 title === "From" ? "rounded-full" : "rounded-lg"
               } min-w-[32px] max-w-[32px] h-8 flex items-center justify-center overflow-hidden`}
             >
+              
               <div className="flex items-center justify-center w-full h-full">
                 {icon}
               </div>
