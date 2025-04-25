@@ -19,7 +19,7 @@ const getFlightOffer = async (id: string, params: FlightOfferParams) => {
     });
 
     const response = await fetch(
-      `http://5.161.155.143:5000/flight/offer/${id}?${query.toString()}`
+      `https://api.voratrip.com/flight/offer/${id}?${query.toString()}`
     );
 
     if (!response.ok) {

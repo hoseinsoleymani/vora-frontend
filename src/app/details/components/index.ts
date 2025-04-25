@@ -10,11 +10,10 @@ export * from "./flightdetails/layoverInfo";
 export * from "./flightdetails/fareDetails";
 export * from "./flightdetails/bagsInfo";
 export * from "./pricesummary/travelDetailsCard";
-export * from  "./passengerform/passengersForm";
-export * from  "./passengerform/passengerFormSection";
-export * from "./passengerform/passengersHeader";
-export * from "./payment"
-export * from "./paymentLayout"
-export * from "../action/flightoffer"
-
-
+export * from "./passengerform/passengersForm";
+export * from "./passengerform/passengerFormSection";
+export * from "./passengerform/loginModul";
+export * from "./payment";
+export * from "./paymentLayout";
+export * from "../action/flightoffer";
+export * from "./passengerform/addPassport";

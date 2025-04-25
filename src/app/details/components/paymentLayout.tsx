@@ -1,15 +1,18 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import {
   FlightDetails,
   PriceSummary,
   PassengersForm,
   Payment,
   PassengersFormData,
+  LoginModul,
 } from "@/app/details/components";
 import { StepNavigator } from "@/components/ui/stepNavigator";
 import { useWizard } from "@/hooks/useWizard";
 import { FlightSegment } from "@/app/details/page";
+import { useAuth } from "@/app/(auth)";
+import { Navbar } from "@/components/ui";
 interface PaymentLayoutProps {
   destination: string;
   from: string;
@@ -41,6 +44,8 @@ function PaymentLayout({
     goToStep,
   } = useWizard();
   const [formMethods, setFormMethods] = React.useState<any>(null);
+  const [open, setOpen] = useState(false);
+  const { isLoggedIn } = useAuth();
 
   const steps = [
     { title: "Review Trip", number: 1, key: "review-trip" },
@@ -61,6 +66,10 @@ function PaymentLayout({
       nextStep();
     }
     if (currentStep === 1) {
+      if (!isLoggedIn) {
+        setOpen(true);
+        return;
+      }
       if (formMethods) {
         formMethods.handleSubmit((passengers: PassengersFormData) => {
           setStepData("passengers", passengers);
@@ -86,6 +95,8 @@ function PaymentLayout({
           onSubmit={() => handelPayment()}
           setFormMethods={setFormMethods}
           travellers={travellers}
+          open={open}
+          setOpen={setOpen}
         />
       ),
       "2": <Payment />,
@@ -94,28 +105,31 @@ function PaymentLayout({
   };
 
   return (
-    <div className="container mx-auto px-4 py-6 gap-6 flex">
-      <div className="w-2/3 flex flex-col gap-6">
-        <StepNavigator
-          currentStep={currentStep}
-          totalSteps={totalSteps}
-          onBack={prevStep}
-          steps={steps}
-          goToStep={goToStep}
-        />
-        <div className="bg-white px-12 py-8 shadow-lg rounded-2xl h-fit">
-          {selectedStepMap()}
+    <div className="container mx-auto  ">
+      <Navbar />
+      <div className="flex px-4 py-6 gap-6">
+        <div className="w-2/3 flex flex-col gap-6">
+          <StepNavigator
+            currentStep={currentStep}
+            totalSteps={totalSteps}
+            onBack={prevStep}
+            steps={steps}
+            goToStep={goToStep}
+          />
+          <div className="bg-white px-12 py-8 shadow-lg rounded-2xl h-fit">
+            {selectedStepMap()}
+          </div>
         </div>
-      </div>
-      <div className="w-1/3 bg-white p-6 shadow-lg rounded-2xl h-fit">
-        <PriceSummary
-          nextStep={handelPayment}
-          destination={destination}
-          from={from}
-          adults={adults}
-          totalPrice={totalPrice}
-          travellers={travellers}
-        />
+        <div className="w-1/3 bg-white p-6 shadow-lg rounded-2xl h-fit">
+          <PriceSummary
+            nextStep={handelPayment}
+            destination={destination}
+            from={from}
+            adults={adults}
+            totalPrice={totalPrice}
+            travellers={travellers}
+          />
+        </div>
       </div>
     </div>
   );

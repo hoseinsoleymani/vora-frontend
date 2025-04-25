@@ -1,11 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import React from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Login } from "../actions/auth";
 import { useRouter } from "next/navigation";
+import { useAuth } from "@/app/(auth)/authProvider";
 type FormLogin = {
   email: string;
   password: string;
@@ -18,6 +18,7 @@ const schema = z.object({
 
 function FormLogin() {
   const router = useRouter();
+  const { setIsLoggedIn } = useAuth();
   const {
     register,
     handleSubmit,
@@ -29,6 +30,7 @@ function FormLogin() {
   const onSubmit = async (data: FormLogin) => {
     const response = await Login(data);
     if (response.success) {
+      setIsLoggedIn(true);
       reset();
       router.push("/");
     }

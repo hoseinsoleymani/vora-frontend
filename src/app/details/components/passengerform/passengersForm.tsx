@@ -1,11 +1,11 @@
 "use client";
-import React, { useEffect } from "react";
-import { PassengersHeader } from "./passengersHeader";
+import React, { useEffect, useState } from "react";
+import { LoginModul } from "./loginModul";
 import { PassengerFormSection } from "./passengerFormSection";
 import { FormProvider, useFieldArray, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-
+import { useAuth } from "@/app/(auth)/authProvider";
 interface PassengerData {
   passportName: string;
   passportFamilyName: string;
@@ -58,9 +58,18 @@ interface PassengersFormProps {
   onSubmit: () => void;
   setFormMethods?: (methods: any) => void;
   travellers: [];
+  open: boolean;
+  setOpen: (open: boolean) => void;
 }
 
-function PassengersForm({ onSubmit, setFormMethods, travellers }: PassengersFormProps) {
+function PassengersForm({
+  onSubmit,
+  setFormMethods,
+  travellers,
+  open,
+  setOpen,
+}: PassengersFormProps) {
+  const { isLoggedIn } = useAuth();
   const methods = useForm<PassengersFormData>({
     resolver: zodResolver(passengersFormSchema),
     mode: "onChange",
@@ -95,7 +104,10 @@ function PassengersForm({ onSubmit, setFormMethods, travellers }: PassengersForm
 
   return (
     <div className="flex flex-col">
-      <PassengersHeader />
+      <div className="flex items-center justify-between">
+        <h3 className="text-lg font-medium">Passengers</h3>
+        {!isLoggedIn && <LoginModul open={open} setOpen={setOpen} />}
+      </div>
       <div className="flex flex-col gap-8">
         <FormProvider {...methods}>
           <form

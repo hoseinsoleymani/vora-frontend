@@ -10,6 +10,7 @@ import { Dispatch, SetStateAction } from "react";
 import React from "react";
 import { signupAction } from "../actions/signup";
 import { useRouter } from "next/navigation";
+import { useAuth } from "@/app/(auth)";
 interface SignupSectionProps {
   setShowTabBar: Dispatch<SetStateAction<boolean>>;
 }
@@ -26,6 +27,7 @@ function SignupSection({ setShowTabBar }: SignupSectionProps) {
   const { currentStep, nextStep, prevStep, setStepData, data } = useWizard();
   const router = useRouter();
   const formRef = React.useRef<HTMLFormElement>(null);
+  const { setIsLoggedIn} = useAuth()
 
   const handleFirstStepNext = () => {
     setShowTabBar(false);
@@ -62,6 +64,7 @@ function SignupSection({ setShowTabBar }: SignupSectionProps) {
     };
     const response = await signupAction(signupData);
     if (response.success) {
+      setIsLoggedIn(true)
       router.push("/");
     } else {
       console.log(response.error);

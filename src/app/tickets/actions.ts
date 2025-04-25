@@ -202,7 +202,7 @@ export async function fetchFlightData(
   const formattedDate = formatDateForAPI(departureDate);
 
   try {
-    const url = `http://5.161.155.143:5000/flight/offer/search?origin=${formattedOrigin}&destination=${formattedDestination}&departure_date=${formattedDate}&adults=${adults}&page=${page}&page_size=${pageSize}`;
+    const url = `https://api.voratrip.com/flight/offer/search?origin=${formattedOrigin}&destination=${formattedDestination}&departure_date=${formattedDate}&adults=${adults}&page=${page}&page_size=${pageSize}`;
 
     const res = await fetch(url, {
       cache: "no-store", // Ensure fresh data

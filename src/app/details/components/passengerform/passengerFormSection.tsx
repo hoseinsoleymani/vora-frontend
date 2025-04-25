@@ -6,6 +6,7 @@ import {
   SelectTrigger,
   SelectValue,
   SelectGroup,
+  Button,
 } from "@/components/ui";
 import { Input } from "@/components/ui/input";
 import React from "react";
@@ -13,8 +14,8 @@ import { useFormContext, Controller } from "react-hook-form";
 import { ChevronDown24Regular } from "@fluentui/react-icons";
 import countries from "i18n-iso-countries";
 import enLocale from "i18n-iso-countries/langs/en.json";
-import { spawn } from "child_process";
-import { Span } from "next/dist/trace";
+import { useAuth } from "@/app/(auth)";
+import { AddPassport } from "@/app/details/components";
 
 interface PassengerData {
   passportName: string;
@@ -36,6 +37,7 @@ interface PassengerFormSectionProps {
 }
 
 function PassengerFormSection({ index, isPrimary }: PassengerFormSectionProps) {
+  const { isLoggedIn } = useAuth();
   const {
     register,
     control,
@@ -54,15 +56,22 @@ function PassengerFormSection({ index, isPrimary }: PassengerFormSectionProps) {
 
   return (
     <div className="border border-[#E0E0E0] rounded-lg p-4 mt-4">
-      <div className="flex items-center gap-2">
-        <h3 className="text-lg">Adult {index + 1} information</h3>
-        <p className="text-sm text-[#757575]">
-          {isPrimary ? "Primary Passenger" : ""}
-        </p>
+      <div className="flex items-center justify-between">
+        <div>
+          <div className="flex items-center gap-2">
+            <h3 className="text-lg">Adult {index + 1} information</h3>
+            <p className="text-sm text-[#757575]">
+              {isPrimary ? "Primary Passenger" : ""}
+            </p>
+          </div>
+          <p className="text-[#757575] mt-1">
+            Add the general information about the passenger
+          </p>
+        </div>
+        {isLoggedIn && (
+          <AddPassport />
+        )}
       </div>
-      <p className="text-[#757575] mt-1">
-        Add the general information about the passenger
-      </p>
       <div className="flex flex-col gap-2 w-full mt-4">
         <div className="grid grid-cols-2 gap-4 w-full">
           <div className="flex flex-col gap-2">
@@ -80,7 +89,9 @@ function PassengerFormSection({ index, isPrimary }: PassengerFormSectionProps) {
               size="lg"
               placeholder="Passport Family Name"
               {...register(`${inputBaseName}.passportFamilyName`)}
-              errorMessage={errors["adults"]?.[index]?.passportFamilyName?.message}
+              errorMessage={
+                errors["adults"]?.[index]?.passportFamilyName?.message
+              }
             />
           </div>
         </div>
