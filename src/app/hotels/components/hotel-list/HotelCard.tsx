@@ -160,7 +160,6 @@ const HotelCard: React.FC<HotelCardProps> = ({
           className="w-full h-40 object-cover rounded-xl"
         />
       </div>
-      dddddddddddddd
 
       <div className="p-4 flex flex-col">
         <h2 className="text-base font-medium mb-2">{name}</h2>
