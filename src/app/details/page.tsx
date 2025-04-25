@@ -44,6 +44,7 @@ async function page({
   const id = params?.offerId;
   const orgin = params?.origin;
   const destination = params?.destination;
+  const adults = params.adults;
   const departure_date = params?.departure_date;
   const flightOffer = await getFlightOffer(id, {
     origin: params.origin,
@@ -55,12 +56,10 @@ async function page({
   });
 
   const flightItinerary: FlightSegment[] = flightOffer.itineraries[0].segments;
-  const adults = params.adults;
-  const travelerPricings: [] = flightOffer.travelerPricings;
-  const totalPrice = flightOffer.price.total
-  
-
-  console.log("Full Flight Offer:", flightOffer);
+  const {
+    travelerPricings,
+    price: { total: totalPrice },
+  } = flightOffer;
 
   return (
     <WizardProvider totalSteps={3}>
