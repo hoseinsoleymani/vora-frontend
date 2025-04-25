@@ -358,4 +358,36 @@ export async function fetchWeatherData(): Promise<WeatherData[]> {
     console.error("Error fetching weather data:", error);
     return [];
   }
+}
+
+export interface HotelDetail {
+  id: string;
+  name: string;
+  description: string;
+  images: string[];
+  amenities: string[];
+  price: number;
+  rating: number;
+  location: {
+    address: string;
+    city: string;
+    country: string;
+  };
+}
+
+export async function getHotelById(id: string): Promise<HotelDetail | null> {
+  try {
+    // TODO: Replace with actual API call
+    const response = await fetch(`YOUR_API_ENDPOINT/hotels/${id}`);
+    
+    if (!response.ok) {
+      throw new Error('Failed to fetch hotel details');
+    }
+    
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error fetching hotel details:', error);
+    return null;
+  }
 } 
