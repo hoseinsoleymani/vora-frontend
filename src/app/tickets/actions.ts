@@ -92,7 +92,7 @@ export async function fetchPriceCalendarData(
   const formattedDate = formatDateForAPI(departureDate);
 
   try {
-    const url = `http://5.161.155.143:5000/flight/calendar?origin=${formattedOrigin}&destination=${formattedDestination}&departure_date=${formattedDate}`;
+    const url = `https://api.voratrip.com/flight/calendar?origin=${formattedOrigin}&destination=${formattedDestination}&departure_date=${formattedDate}`;
 
     const res = await fetch(url, {
       cache: "no-store",

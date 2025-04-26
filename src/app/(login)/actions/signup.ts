@@ -10,7 +10,7 @@ interface SignupData {
 
 export async function signupAction(data: SignupData) {
   try {
-    const response = await fetch("http://5.161.155.143:5000/user/sign-up/", {
+    const response = await fetch("https://api.voratrip.com/user/sign-up/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

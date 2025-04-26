@@ -3,7 +3,7 @@ import { cookies } from "next/headers";
 
 const Login = async (data: { email: string; password: string }) => {
   try {
-    const response = await fetch("http://5.161.155.143:5000/user/log-in/", {
+    const response = await fetch("https://api.voratrip.com/user/log-in/", {
       method: "POST",
       body: JSON.stringify(data),
       headers: {

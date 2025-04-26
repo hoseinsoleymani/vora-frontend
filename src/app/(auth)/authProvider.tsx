@@ -21,7 +21,7 @@ export function AuthProvider({ children, token }: AuthProviderProps) {
       if (!token) return;
 
       try {
-        const response = await fetch("http://5.161.155.143:5000/user/token/verify/", {
+        const response = await fetch("https://api.voratrip.com/user/token/verify/", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

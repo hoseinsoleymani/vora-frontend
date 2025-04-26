@@ -1,6 +1,6 @@
 'use server';
 
-const API_BASE_URL = "http://5.161.155.143:5000";
+const API_BASE_URL = "https://api.voratrip.com";
 
 const formatDateForAPI = (date: string): string => {
   const [year, month, day] = date.split('-');
