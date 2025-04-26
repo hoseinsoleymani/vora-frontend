@@ -13,6 +13,7 @@ import {
 import { useEffect, useState } from "react";
 import { Region } from "../share/location/location";
 import CityName from "./cityName";
+import { Input } from "@/components/ui/input";
 
 interface FromProps {
   setLocation: (location: string) => void;
@@ -96,8 +97,9 @@ function From({ setLocation }: FromProps) {
           <hr className="w-full border-gray-300 my-4" />
           <div className="relative">
             <Search20Regular className="absolute top-1/2 left-4 -translate-y-1/2 text-gray-500" />
-            <input
+            <Input
               type="text"
+              size="sm"
               placeholder="City or Airport"
               className="w-full outline-none border rounded-full px-4 py-2 text-sm text-gray-500 pl-10"
               value={searchLocation}

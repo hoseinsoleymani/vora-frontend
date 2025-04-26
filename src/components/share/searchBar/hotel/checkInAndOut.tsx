@@ -30,6 +30,9 @@ const calendarClassNames = {
   caption_label: "text-xl font-bold px-5",
 };
 
+const tomorrow = new Date();
+tomorrow.setDate(tomorrow.getDate() + 1);
+
 const CheckInAndOut = ({
   checkInDate,
   setCheckInDate,
@@ -56,6 +59,18 @@ const CheckInAndOut = ({
           checkOutDate ? `- ${checkOutDate.toLocaleDateString()}` : ""
         }`
       : "Pick a date";
+
+  const getDayAfter = (date: Date): Date => {
+    const nextDay = new Date(date);
+    nextDay.setDate(date.getDate() + 1);
+    return nextDay;
+  };
+
+
+  const disabledDateForCheckout = checkInDate
+    ? getDayAfter(checkInDate)
+    : tomorrow;
+  const disabledDays = { before: disabledDateForCheckout };
 
   return (
     <DropdownMenu open={open} onOpenChange={setOpen}>
@@ -135,6 +150,7 @@ const CheckInAndOut = ({
             classNames={calendarClassNames}
             selected={{ from: checkInDate, to: checkOutDate }}
             onSelect={handleDateSelect}
+            disabled={disabledDays}
           />
           <Calendar
             mode="range"
@@ -143,6 +159,7 @@ const CheckInAndOut = ({
             classNames={calendarClassNames}
             selected={{ from: checkInDate, to: checkOutDate }}
             onSelect={handleDateSelect}
+            disabled={disabledDays}
           />
           <Button
             variant="ghost"
