@@ -14,6 +14,7 @@ import { useEffect, useState } from "react";
 import { Region } from "../share/location/location";
 import CityName from "./cityName";
 import { Input } from "@/components/ui/input";
+import { API_BASE_URL } from "@/lib";
 
 interface FromProps {
   setLocation: (location: string) => void;
@@ -31,7 +32,7 @@ function From({ setLocation }: FromProps) {
         return;
       }
       const response = await fetch(
-        `https://api.voratrip.com/hotel/location/search?keyword=${encodeURIComponent(
+        `${API_BASE_URL}/hotel/location/search?keyword=${encodeURIComponent(
           searchLocation
         )}&sub_type=CITY`
       );

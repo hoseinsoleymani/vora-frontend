@@ -1,6 +1,7 @@
 'use server';
 
-const API_BASE_URL = "https://api.voratrip.com";
+import { API_BASE_URL } from "@/lib";
+
 
 const formatDateForAPI = (date: string): string => {
   const [year, month, day] = date.split('-');

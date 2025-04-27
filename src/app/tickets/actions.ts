@@ -1,5 +1,6 @@
 "use server";
 
+import { API_BASE_URL } from "@/lib";
 import { formatDuration } from "@/utils/formatDurationTime";
 
 // Define StopInfo locally as it is part of the Flight structure returned by actions
@@ -92,7 +93,7 @@ export async function fetchPriceCalendarData(
   const formattedDate = formatDateForAPI(departureDate);
 
   try {
-    const url = `https://api.voratrip.com/flight/calendar?origin=${formattedOrigin}&destination=${formattedDestination}&departure_date=${formattedDate}`;
+    const url = `${API_BASE_URL}/flight/calendar?origin=${formattedOrigin}&destination=${formattedDestination}&departure_date=${formattedDate}`;
 
     const res = await fetch(url, {
       cache: "no-store",
@@ -202,7 +203,7 @@ export async function fetchFlightData(
   const formattedDate = formatDateForAPI(departureDate);
 
   try {
-    const url = `https://api.voratrip.com/flight/offer/search?origin=${formattedOrigin}&destination=${formattedDestination}&departure_date=${formattedDate}&adults=${adults}&page=${page}&page_size=${pageSize}`;
+    const url = `${API_BASE_URL}/flight/offer/search?origin=${formattedOrigin}&destination=${formattedDestination}&departure_date=${formattedDate}&adults=${adults}&page=${page}&page_size=${pageSize}`;
 
     const res = await fetch(url, {
       cache: "no-store", // Ensure fresh data

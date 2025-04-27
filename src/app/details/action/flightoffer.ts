@@ -1,3 +1,5 @@
+import { API_BASE_URL } from "@/lib";
+
 interface FlightOfferParams {
   origin: string;
   destination: string;
@@ -19,7 +21,7 @@ const getFlightOffer = async (id: string, params: FlightOfferParams) => {
     });
 
     const response = await fetch(
-      `https://api.voratrip.com/flight/offer/${id}?${query.toString()}`
+      `${API_BASE_URL}/flight/offer/${id}?${query.toString()}`
     );
 
     if (!response.ok) {

@@ -1,4 +1,5 @@
 "use client";
+import { API_BASE_URL } from "@/lib";
 import { createContext, useContext, useEffect, useState } from "react";
 
 interface AuthContextType {
@@ -21,7 +22,7 @@ export function AuthProvider({ children, token }: AuthProviderProps) {
       if (!token) return;
 
       try {
-        const response = await fetch("https://api.voratrip.com/user/token/verify/", {
+        const response = await fetch(`${API_BASE_URL}/user/token/verify/`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

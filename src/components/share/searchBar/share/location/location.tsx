@@ -10,6 +10,7 @@ import React, { useEffect, useState } from "react";
 import HeaderAirportSearch from "./headerAirportSearch";
 import AirportName from "./airportName";
 import { Input } from "@/components/ui/input";
+import { API_BASE_URL } from "@/lib";
 
 interface LocationProps {
   title: "From" | "Destination";
@@ -56,7 +57,7 @@ function Location({
         return;
       }
       const response = await fetch(
-        `https://api.voratrip.com/flight/location/search?keyword=${encodeURIComponent(
+        `${API_BASE_URL}/flight/location/search?keyword=${encodeURIComponent(
           searchLocation
         )}`
       );
