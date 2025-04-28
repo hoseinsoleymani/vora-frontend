@@ -2,61 +2,42 @@
 
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { RoomPriceCard } from "../../room-price";
+import { Skeleton } from "@/components/ui/skeleton";
 
-export const RoomPricesSection = () => {
-  const rooms = [
-    {
-      id: "1",
-      name: "Standard Room",
-      image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-      price: {
-        currency: "USD",
-        total: "150"
-      },
-      capacity: {
-        adults: 2,
-        children: 1
-      },
-      amenities: ["WiFi", "TV", "Parking", "Accessibility"],
-      cancellationPolicy: "Non-refundable",
-      breakfastIncluded: true,
-      freeCancellation: false
-    },
-    {
-      id: "2",
-      name: "Deluxe Room",
-      image: "https://images.unsplash.com/photo-1618773928121-c32242e63f39?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-      price: {
-        currency: "USD",
-        total: "250"
-      },
-      capacity: {
-        adults: 2,
-        children: 2
-      },
-      amenities: ["WiFi", "TV", "Parking", "Accessibility"],
-      cancellationPolicy: "Free cancellation until 24 hours before check-in",
-      breakfastIncluded: true,
-      freeCancellation: true
-    },
-    {
-      id: "3",
-      name: "Suite",
-      image: "https://images.unsplash.com/photo-1520250497591-112f5f251d1f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-      price: {
-        currency: "USD",
-        total: "350"
-      },
-      capacity: {
-        adults: 2,
-        children: 2
-      },
-      amenities: ["WiFi", "TV", "Parking", "Accessibility"],
-      cancellationPolicy: "Free cancellation until 48 hours before check-in",
-      breakfastIncluded: true,
-      freeCancellation: true
-    }
-  ];
+interface HotelRoom {
+  id: string;
+  name: string;
+  price: {
+    currency: string;
+    total: string;
+  };
+  capacity: {
+    adults: number;
+    children: number;
+  };
+  amenities: string[];
+  cancellationPolicy: string;
+  breakfastIncluded: boolean;
+  freeCancellation: boolean;
+}
+
+interface RoomPricesSectionProps {
+  rooms: HotelRoom[];
+}
+
+export const RoomPricesSection: React.FC<RoomPricesSectionProps & { loading?: boolean }> = ({
+  rooms,
+  loading = false
+}) => {
+  if (loading) {
+    return (
+      <div className="space-y-6">
+        <Skeleton className="h-8 w-1/3 mb-4" />
+        <Skeleton className="h-40 w-full mb-4" />
+        <Skeleton className="h-40 w-full mb-4" />
+      </div>
+    );
+  }
 
   return (
     <div className="space-y-6">

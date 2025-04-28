@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import { Tabs, TabsList, TabsContent } from "@/components/ui/tabs";
 import { 
   TextDescription24Regular,
@@ -17,15 +18,54 @@ import { RoomPricesSection } from "./sections/RoomPricesSection";
 import { TabTrigger } from "./common/TabTrigger";
 import { PageHeader } from "./common/PageHeader";
 import { Separator } from "./common/Separator";
+import { Skeleton } from "@/components/ui/skeleton";
+
+// Types
+interface HotelLocation {
+  address: string;
+  city: string;
+  country: string;
+}
+
+interface HotelRoom {
+  id: string;
+  name: string;
+  price: {
+    currency: string;
+    total: string;
+  };
+  capacity: {
+    adults: number;
+    children: number;
+  };
+  amenities: string[];
+  cancellationPolicy: string;
+  breakfastIncluded: boolean;
+  freeCancellation: boolean;
+}
 
 interface HotelInformationProps {
   description: string;
-  location: {
-    address: string;
-  };
+  location: HotelLocation;
+  rooms: HotelRoom[];
 }
 
-export const HotelInformation = ({ description, location }: HotelInformationProps) => {
+export const HotelInformation: React.FC<HotelInformationProps & { loading?: boolean }> = ({
+  description,
+  location,
+  rooms,
+  loading = false
+}) => {
+  if (loading) {
+    return (
+      <div className="bg-white rounded-3xl p-8">
+        <Skeleton className="h-8 w-1/3 mb-4" />
+        <Skeleton className="h-64 w-full mb-8" />
+        <Skeleton className="h-96 w-full" />
+      </div>
+    );
+  }
+
   const tabs = [
     {
       value: "description",
@@ -81,7 +121,7 @@ export const HotelInformation = ({ description, location }: HotelInformationProp
         </TabsContent>
 
         <TabsContent value="room-prices">
-          <RoomPricesSection />
+          <RoomPricesSection rooms={rooms} />
         </TabsContent>
 
         <TabsContent value="facilities">

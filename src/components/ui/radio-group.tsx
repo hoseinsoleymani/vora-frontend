@@ -15,17 +15,30 @@ const radioVariants = cva("flex flex-col space-y-2", {
   },
 });
 
-export interface RadioGroupProps {
+export interface RadioGroupProps extends RadioGroupPrimitive.RadioGroupProps {
   label?: string;
   options: { value: string; label: string; price?: string }[];
   variant?: "basic" | "gray";
 }
 
-const RadioGroup: React.FC<RadioGroupProps> = ({ label, options, variant = "basic" }) => {
+const RadioGroup: React.FC<RadioGroupProps> = ({
+  label,
+  options,
+  variant = "basic",
+  value,
+  onValueChange,
+  className,
+  ...props
+}) => {
   return (
     <div className={cn(radioVariants({ variant }))}>
       {label && <span className="text-sm">{label}</span>}
-      <RadioGroupPrimitive.Root className="space-y-2">
+      <RadioGroupPrimitive.Root
+        className={cn("space-y-2", className)}
+        value={value}
+        onValueChange={onValueChange}
+        {...props}
+      >
         {options.map((option) => (
           <label key={option.value} className="flex items-center justify-between w-full">
             <div className="flex items-center gap-2">

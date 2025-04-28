@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import {
   Star24Regular,
@@ -88,27 +89,37 @@ const HotelCard: React.FC<HotelCardProps> = ({
   const nightsReserved = Math.floor(Math.abs(latitude) % 7) + 1;
   const adultsAllowed = Math.floor(Math.abs(longitude) % 3) + 1;
 
+  const createHotelUrl = () => {
+    const params = new URLSearchParams();
+    if (searchDetails.nights) params.set('nights', searchDetails.nights.toString());
+    if (searchDetails.adults) params.set('adults', searchDetails.adults.toString());
+    if (searchDetails.children) params.set('children', searchDetails.children.toString());
+    if (searchDetails.rooms) params.set('rooms', searchDetails.rooms.toString());
+    return `/hotels/${id}?${params.toString()}`;
+  };
+
   if (viewMode === "list") {
     return (
       <div className="w-full mx-auto my-6 bg-white shadow-md rounded-2xl overflow-hidden flex">
-        <span className="fluent:Eye24Regular"></span>
         <div className="w-48 h-48 flex-shrink-0 p-2">
-          <img
-            src={"product-image.png"}
-            alt={name}
-            className="w-full h-full object-cover rounded-xl"
-            onError={(e) => {
-              const target = e.target as HTMLImageElement;
-              target.src = "https://placehold.co/600x400";
-            }}
-          />
+          <Link href={createHotelUrl()} className="block h-full">
+            <img
+              src={"product-image.png"}
+              alt={name}
+              className="w-full h-full object-cover rounded-xl cursor-pointer"
+              onError={(e) => {
+                const target = e.target as HTMLImageElement;
+                target.src = "https://placehold.co/600x400";
+              }}
+            />
+          </Link>
         </div>
 
         <div className="flex-1 m-5 pr-5">
           <div className="flex items-center justify-between mb-3">
-            <h2 className="text-lg font-semibold truncate max-w-[200px]">
+            <Link href={createHotelUrl()} className="text-lg font-semibold truncate max-w-[200px] hover:text-primary transition-colors">
               {name}
-            </h2>
+            </Link>
             <div className="flex items-center gap-2">
               {renderRating(rating)}
               <Button variant="outline" size="sm" className="flex items-center gap-1 text-xs h-auto">
@@ -142,10 +153,12 @@ const HotelCard: React.FC<HotelCardProps> = ({
             <div className="text-sm text-gray-500">Includes taxes and charges</div>
           </div>
 
-          <Button variant="default" size="sm" className="w-full">
-            <Eye24Regular className="mr-1" />
-            View & Reserve
-          </Button>
+          <Link href={createHotelUrl()}>
+            <Button variant="default" size="sm" className="w-full">
+              <Eye24Regular className="mr-1" />
+              View & Reserve
+            </Button>
+          </Link>
         </div>
       </div>
     );
@@ -154,15 +167,19 @@ const HotelCard: React.FC<HotelCardProps> = ({
   return (
     <div className="w-full mx-auto my-4 bg-white shadow-md rounded-2xl overflow-hidden flex flex-col">
       <div className="w-full p-3 flex items-center justify-center">
-        <img
-          src={"product-image.png"} // Placeholder image
-          alt={name}
-          className="w-full h-40 object-cover rounded-xl"
-        />
+        <Link href={createHotelUrl()} className="block w-full">
+          <img
+            src={"product-image.png"}
+            alt={name}
+            className="w-full h-40 object-cover rounded-xl cursor-pointer"
+          />
+        </Link>
       </div>
 
       <div className="p-4 flex flex-col">
-        <h2 className="text-base font-medium mb-2">{name}</h2>
+        <Link href={createHotelUrl()} className="text-base font-medium mb-2 hover:text-primary transition-colors">
+          {name}
+        </Link>
 
         <div className="flex items-center mb-3">
           {renderRating(rating)}
@@ -197,10 +214,12 @@ const HotelCard: React.FC<HotelCardProps> = ({
             </div>
             <div className="text-xs text-gray-500">Includes taxes and charges</div>
           </div>
-          <Button variant="default" size="sm">
-            <Eye24Regular className="mr-1" />
-            View
-          </Button>
+          <Link href={createHotelUrl()}>
+            <Button variant="default" size="sm">
+              <Eye24Regular className="mr-1" />
+              View
+            </Button>
+          </Link>
         </div>
       </div>
     </div>

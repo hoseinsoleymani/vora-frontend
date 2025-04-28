@@ -1,4 +1,8 @@
+// Remove Fluent UI icon imports
+/*
 import { Star24Filled, Star24Regular } from "@fluentui/react-icons";
+*/
+import { cn } from "@/lib/utils"; // Import cn
 
 interface RatingStarsProps {
   rating: number;
@@ -8,9 +12,11 @@ export const RatingStars: React.FC<RatingStarsProps> = ({ rating }) => {
   const stars = [];
   for (let i = 0; i < 5; i++) {
     if (i < Math.floor(rating)) {
-      stars.push(<Star24Filled key={i} className="w-5 h-5 text-yellow-500" />);
+      // Use span with i-fluent:star-24-filled and existing styles
+      stars.push(<span key={i} className={cn("i-fluent:star-24-filled", "w-5 h-5 text-yellow-500")} />);
     } else {
-      stars.push(<Star24Regular key={i} className="w-5 h-5 text-gray-400" />);
+      // Use span with i-fluent:star-24-regular and existing styles
+      stars.push(<span key={i} className={cn("i-fluent:star-24-regular", "w-5 h-5 text-gray-400")} />);
     }
   }
   return <div className="flex items-center gap-1">{stars}</div>;
