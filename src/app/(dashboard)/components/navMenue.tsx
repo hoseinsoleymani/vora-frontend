@@ -1,8 +1,8 @@
 import React from "react";
 import Image from "next/image";
 import Logo from "../../../../public/img/Logo.png";
-import { SectionType } from "../dashboard/page";
 import { Button } from "@/components/ui/button";
+import { SectionType } from "./layoutpanel";
 
 interface NavMenueProps {
   section: SectionType;
