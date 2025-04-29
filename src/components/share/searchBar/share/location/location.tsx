@@ -62,6 +62,7 @@ function Location({
         )}`
       );
       const data = await response.json();
+      console.log(data);
       setSearchResults(data);
     } catch (error) {
       console.error("Error fetching location data:", error);
@@ -74,6 +75,7 @@ function Location({
       getLocation();
     }
   }, [searchLocation]);
+  
 
   const handleLocationSelect = (selectedLocation: Region) => {
     setLocation(selectedLocation.iataCode);

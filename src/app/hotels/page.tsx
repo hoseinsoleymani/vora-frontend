@@ -4,7 +4,7 @@ import {
   ProcessHotel,
   HotelSortComponent,
   HotelList,
-  WeatherCalendar
+  WeatherCalendar,
 } from "./components";
 import { getHotels, getLocationCode, HotelResponse } from "./actions";
 
@@ -36,8 +36,8 @@ function getDefaultDate(offsetDays: number = 0): string {
   const date = new Date();
   date.setDate(date.getDate() + offsetDays);
   const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, '0');
-  const day = String(date.getDate()).padStart(2, '0');
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
   return `${year}-${month}-${day}`;
 }
 
@@ -74,7 +74,7 @@ export default async function Page({ searchParams }: PageProps) {
     }
   }
 
-  const currentSearchParams: HotelSearchParams = { 
+  const currentSearchParams: HotelSearchParams = {
     ...plainSearchParams,
     city: cityCodeForSearch || undefined,
     check_in_date: checkIn,
@@ -93,13 +93,12 @@ export default async function Page({ searchParams }: PageProps) {
       </div>
 
       <div className="grid grid-cols-12 gap-6 mt-24 px-6">
-        <div className="col-span-3 bg-white p-6 rounded-2xl shadow-md">
-        </div>
+        <div className="col-span-3 bg-white p-6 rounded-2xl shadow-md"></div>
 
         <div className="col-span-9 px-4">
-          <ProcessHotel 
-            steps={steps} 
-            currentStep={currentStep} 
+          <ProcessHotel
+            steps={steps}
+            currentStep={currentStep}
             searchParams={currentSearchParams}
           />
 
@@ -107,7 +106,7 @@ export default async function Page({ searchParams }: PageProps) {
 
           <HotelSortComponent searchParams={currentSearchParams} />
 
-          <HotelList 
+          <HotelList
             searchParams={currentSearchParams}
             initialHotels={hotelData.hotels}
             totalCount={hotelData.totalCount}
@@ -117,4 +116,4 @@ export default async function Page({ searchParams }: PageProps) {
       </div>
     </div>
   );
-} 
+}
