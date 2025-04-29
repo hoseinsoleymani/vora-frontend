@@ -30,7 +30,7 @@ function PassengersInfo({ travelers_data }: PassengersInfoProps) {
       {travelers_data.map((passenger, index) => (
         <div className="flex flex-col gap-2" key={index}>
           <div className="flex items-center gap-2">
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 px-2">
               <span className="i-fluent:person-20-regular"></span>
               <p>Adult {index + 1} information</p>
               {index === 0 && (
