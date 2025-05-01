@@ -30,7 +30,7 @@ export interface InputProps
   label?: string;
   leftIcon?: React.ReactNode;
   rightIcon?: React.ReactNode;
-  errorMessage?: string;
+  errorMessage?: string | null;
   size?: "default" | "sm" | "lg";
 }
 
@@ -63,7 +63,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
             ref={ref}
             className={cn(
               inputVariants({ variant, size }),
-              "w-full placeholder-gray-400 focus:outline-none",
+              "w-full placeholder-gray-400 focus:outline-none outline-none",
               leftIcon && "pl-10",
               rightIcon && "pr-10",
               className

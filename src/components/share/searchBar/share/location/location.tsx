@@ -9,6 +9,8 @@ import { Search20Regular, Dismiss16Regular } from "@fluentui/react-icons";
 import React, { useEffect, useState } from "react";
 import HeaderAirportSearch from "./headerAirportSearch";
 import AirportName from "./airportName";
+import { Input } from "@/components/ui/input";
+import { API_BASE_URL } from "@/lib";
 
 interface LocationProps {
   title: "From" | "Destination";
@@ -55,7 +57,7 @@ function Location({
         return;
       }
       const response = await fetch(
-        `http://5.161.155.143:5000/flight/location/search?keyword=${encodeURIComponent(
+        `${API_BASE_URL}/flight/location/search?keyword=${encodeURIComponent(
           searchLocation
         )}`
       );
@@ -97,6 +99,7 @@ function Location({
                 title === "From" ? "rounded-full" : "rounded-lg"
               } min-w-[32px] max-w-[32px] h-8 flex items-center justify-center overflow-hidden`}
             >
+              
               <div className="flex items-center justify-center w-full h-full">
                 {icon}
               </div>
@@ -136,10 +139,11 @@ function Location({
           <hr className="w-full border-gray-300 my-4" />
           <div className="relative">
             <Search20Regular className="absolute top-1/2 left-4 -translate-y-1/2 text-gray-500" />
-            <input
+            <Input
+              size="sm"
               type="text"
               placeholder="City or Airport"
-              className="w-full outline-none border rounded-full px-4 py-2 text-sm text-gray-500 pl-10"
+              className="w-full outline-none border rounded-full py-2 text-sm text-gray-500 pl-10"
               value={searchLocation}
               onChange={(e) => setSearchLocation(e.target.value)}
             />

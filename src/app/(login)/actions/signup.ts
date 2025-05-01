@@ -1,4 +1,5 @@
 "use server";
+import { API_BASE_URL } from "@/lib";
 import { cookies } from "next/headers";
 interface SignupData {
   email: string;
@@ -10,7 +11,7 @@ interface SignupData {
 
 export async function signupAction(data: SignupData) {
   try {
-    const response = await fetch("http://5.161.155.143:5000/user/sign-up/", {
+    const response = await fetch(`${API_BASE_URL}/user/sign-up/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

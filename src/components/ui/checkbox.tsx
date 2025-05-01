@@ -3,20 +3,17 @@ import * as CheckboxPrimitive from "@radix-ui/react-checkbox";
 import { cn } from "@/lib/utils";
 import { cva, type VariantProps } from "class-variance-authority";
 
-const checkboxVariants = cva(
-  "flex items-center space-x-2 cursor-pointer",
-  {
-    variants: {
-      variant: {
-        basic: "text-black", 
-        gray: "text-gray-300", 
-      },
+const checkboxVariants = cva("flex items-center space-x-2 cursor-pointer", {
+  variants: {
+    variant: {
+      basic: "text-black",
+      gray: "text-gray-300",
     },
-    defaultVariants: {
-      variant: "basic",
-    },
-  }
-);
+  },
+  defaultVariants: {
+    variant: "basic",
+  },
+});
 
 export interface CheckboxProps {
   label: string;
@@ -27,7 +24,7 @@ const Checkbox: React.FC<CheckboxProps> = ({ label, variant = "basic" }) => {
   return (
     <label className={cn(checkboxVariants({ variant }))}>
       <CheckboxPrimitive.Root
-        className="relative w-5 h-5 border rounded transition-all focus:outline-none"
+        className="relative w-4 h-4  rounded-full transition-all focus:outline-none"
         style={{
           borderColor: "red",
           backgroundColor: variant === "basic" ? "#FBDAD9" : "black", // Variable background
