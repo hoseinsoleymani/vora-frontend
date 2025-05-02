@@ -16,7 +16,7 @@ interface AuthProviderProps {
 
 export function AuthProvider({ children, token }: AuthProviderProps) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
+  
   useEffect(() => {
     const getCurrentUser = async () => {
       if (!token) return;

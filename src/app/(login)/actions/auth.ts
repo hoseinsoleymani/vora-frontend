@@ -1,9 +1,10 @@
 "use server";
+import { API_BASE_URL } from "@/lib/fetch";
 import { cookies } from "next/headers";
 
 const Login = async (data: { email: string; password: string }) => {
   try {
-    const response = await fetch("${API_BASE_URL}/user/log-in/", {
+    const response = await fetch(`${API_BASE_URL}/user/log-in/`, {
       method: "POST",
       body: JSON.stringify(data),
       headers: {
@@ -27,7 +28,6 @@ const Login = async (data: { email: string; password: string }) => {
         maxAge: 60 * 60 * 5,
       });
     }
-    console.log(result);
     return { success: true, message: "success login", data: result };
   } catch (error) {
     console.log(error);
