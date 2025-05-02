@@ -1,5 +1,9 @@
 import React from "react";
-import { ContactInfo, PassengersInfo, DetailsSectionProps } from "@/app/(dashboard)";
+import {
+  ContactInfo,
+  PassengersInfo,
+  DetailsSectionProps,
+} from "@/app/(dashboard)/components";
 
 function PassengerDetails({
   email,
