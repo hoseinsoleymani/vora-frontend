@@ -20,7 +20,6 @@ import { PageHeader } from "./common/PageHeader";
 import { Separator } from "./common/Separator";
 import { Skeleton } from "@/components/ui/skeleton";
 
-// Types
 interface HotelLocation {
   address: string;
   city: string;
@@ -138,4 +137,4 @@ export const HotelInformation: React.FC<HotelInformationProps & { loading?: bool
       </Tabs>
     </div>
   );
-}; 
+};
