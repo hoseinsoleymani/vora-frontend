@@ -34,7 +34,6 @@ export default async function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable} bg-gray-1`}>
         <AuthProvider token={token}>
           {children}
-          <Footer />
         </AuthProvider>
       </body>
     </html>

@@ -13,7 +13,7 @@ type FormLogin = {
 
 const schema = z.object({
   email: z.string().email(),
-  password: z.string().min(8),
+  password: z.string().min(2),
 });
 
 function FormLogin() {
@@ -32,7 +32,7 @@ function FormLogin() {
     if (response.success) {
       setIsLoggedIn(true);
       reset();
-      router.push("/");
+      router.push("/dashboard");
     }
   };
 
