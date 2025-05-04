@@ -8,6 +8,7 @@ import { HotelDetailContent } from "./components/hotel-detail/HotelDetailContent
 import { HotelDetailSkeleton } from "./components/hotel-detail/HotelDetailSkeleton";
 import { HotelDetailError } from "./components/hotel-detail/HotelDetailError";
 import { HotelSearch } from "@/components/share/searchBar/hotel/hotelSearch";
+import { useSearchParams } from "next/navigation";
 
 interface HotelLocation {
   address: string;
@@ -66,6 +67,7 @@ export default function HotelDetailPage({ params }: { params: Promise<{ id: stri
   const [rooms, setRooms] = useState<HotelRoom[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const searchParams = useSearchParams();
 
   const resolvedParams = React.use(params);
 
@@ -77,7 +79,12 @@ export default function HotelDetailPage({ params }: { params: Promise<{ id: stri
 
       const [hotel, hotelRooms] = await Promise.all([
         getHotelById(resolvedParams.id),
-        getHotelRooms(resolvedParams.id)
+        getHotelRooms(resolvedParams.id, {
+          nights: parseInt(searchParams.get('nights') || '1'),
+          adults: parseInt(searchParams.get('adults') || '2'),
+          children: parseInt(searchParams.get('children') || '0'),
+          rooms: parseInt(searchParams.get('rooms') || '1')
+        })
       ]);
 
       if (isMounted) {
@@ -95,7 +102,7 @@ export default function HotelDetailPage({ params }: { params: Promise<{ id: stri
       }
     }
     return () => { isMounted = false; };
-  }, [resolvedParams.id]);
+  }, [resolvedParams.id, searchParams]);
 
   useEffect(() => {
     const cleanup = fetchHotelData();

@@ -86,7 +86,13 @@ const HotelCard: React.FC<HotelCardProps> = ({
   }
 
   const createHotelUrl = () => {
-    return `/hotels/${id}`;
+    const params = new URLSearchParams({
+      nights: searchDetails.nights.toString(),
+      adults: searchDetails.adults.toString(),
+      children: searchDetails.children.toString(),
+      rooms: searchDetails.rooms.toString()
+    });
+    return `/hotels/${id}?${params.toString()}`;
   };
 
   if (viewMode === "list") {
