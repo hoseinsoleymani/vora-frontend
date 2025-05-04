@@ -15,14 +15,12 @@ interface SearchParams { nights: number; adults: number; children: number; rooms
 interface HotelDetailContentProps {
   hotelData: HotelData;
   rooms: HotelRoom[];
-  searchParams: SearchParams;
   onGalleryOpen: () => void;
 }
 
 export const HotelDetailContent: React.FC<HotelDetailContentProps> = ({ 
   hotelData, 
   rooms, 
-  searchParams, 
   onGalleryOpen 
 }) => {
   return (
@@ -37,7 +35,6 @@ export const HotelDetailContent: React.FC<HotelDetailContentProps> = ({
         <HotelBookingSidebar
           hotelData={hotelData}
           rooms={rooms}
-          searchParams={searchParams}
           loading={false} // Content is being displayed
         />
       </div>

@@ -1,7 +1,6 @@
 'use server';
 
-import { API_BASE_URL } from "@/lib";
-
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 const formatDateForAPI = (date: string): string => {
   const [year, month, day] = date.split('-');
@@ -190,6 +189,19 @@ interface LocationResponse {
   };
 }
 
+const convertToEUR = (amount: string, currency: string): string => {
+  const rates: { [key: string]: number } = {
+    'MXN': 0.055, // 1 MXN = 0.055 EUR
+    'USD': 0.92,  // 1 USD = 0.92 EUR
+    'GBP': 1.17,  // 1 GBP = 1.17 EUR
+    'EUR': 1      // 1 EUR = 1 EUR
+  };
+
+  const rate = rates[currency] || 1;
+  const amountInEUR = parseFloat(amount) * rate;
+  return amountInEUR.toFixed(2);
+};
+
 export async function getHotels(
   city: string,
   checkInDate: string,
@@ -270,9 +282,9 @@ export async function getHotels(
         },
         guests: offer.guests,
         price: {
-          currency: offer.price?.currency,
-          base: offer.price?.base,
-          total: offer.price?.total,
+          currency: '€',
+          base: convertToEUR(offer.price?.base, offer.price?.currency),
+          total: convertToEUR(offer.price?.total, offer.price?.currency),
           taxes: offer.price?.taxes,
           variations: offer.price?.variations
         },

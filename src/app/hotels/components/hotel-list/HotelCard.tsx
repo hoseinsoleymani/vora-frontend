@@ -35,8 +35,8 @@ interface HotelCardProps {
     total: string;
   };
   rating?: number;
-  latitude?: number;
-  longitude?: number;
+  beds?: number;
+  roomCategory?: string;
   searchDetails?: {
     nights: number;
     adults: number;
@@ -54,8 +54,8 @@ const HotelCard: React.FC<HotelCardProps> = ({
     total: "N/A"
   },
   rating = 0,
-  latitude = 0,
-  longitude = 0,
+  beds,
+  roomCategory,
   searchDetails = {
     nights: 1,
     adults: 1,
@@ -85,17 +85,8 @@ const HotelCard: React.FC<HotelCardProps> = ({
     return `${numericPrice.toLocaleString()} ${price.currency}`;
   }
 
-  const bedsAvailable = Math.floor(Math.abs(longitude) % 5) + 1;
-  const nightsReserved = Math.floor(Math.abs(latitude) % 7) + 1;
-  const adultsAllowed = Math.floor(Math.abs(longitude) % 3) + 1;
-
   const createHotelUrl = () => {
-    const params = new URLSearchParams();
-    if (searchDetails.nights) params.set('nights', searchDetails.nights.toString());
-    if (searchDetails.adults) params.set('adults', searchDetails.adults.toString());
-    if (searchDetails.children) params.set('children', searchDetails.children.toString());
-    if (searchDetails.rooms) params.set('rooms', searchDetails.rooms.toString());
-    return `/hotels/${id}?${params.toString()}`;
+    return `/hotels/${id}`;
   };
 
   if (viewMode === "list") {
@@ -132,7 +123,8 @@ const HotelCard: React.FC<HotelCardProps> = ({
           <div className="flex flex-col space-y-2 mt-2">
             <p className="text-sm text-gray-600 flex items-center gap-2">
               <Bed24Regular className="text-gray-500 w-4 h-4" />
-              {searchDetails.rooms} bedroom, 1 bathroom
+              {beds ? `${beds} beds` : `${searchDetails.rooms} room(s)`}
+              {roomCategory && ` (${roomCategory})`}
             </p>
             <p className="text-sm text-gray-600 flex items-center gap-2">
               <Calendar24Regular className="text-gray-500 w-4 h-4" />
@@ -140,7 +132,8 @@ const HotelCard: React.FC<HotelCardProps> = ({
             </p>
             <p className="text-sm text-gray-600 flex items-center gap-2">
               <Person24Regular className="text-gray-500 w-4 h-4" />
-              {searchDetails.adults} adults, {searchDetails.children} children
+              {searchDetails.adults} adult{searchDetails.adults !== 1 ? 's' : ''}
+              {searchDetails.children > 0 && `, ${searchDetails.children} child${searchDetails.children !== 1 ? 'ren' : ''}`}
             </p>
           </div>
         </div>
@@ -188,15 +181,17 @@ const HotelCard: React.FC<HotelCardProps> = ({
         <div className="flex flex-col space-y-2 mb-3">
           <p className="text-sm text-gray-600 flex items-center gap-2">
             <Bed24Regular className="text-gray-500 w-4 h-4" />
-            {bedsAvailable} beds available
+            {beds ? `${beds} beds` : `${searchDetails.rooms} room(s)`}
+            {roomCategory && ` (${roomCategory})`}
           </p>
           <p className="text-sm text-gray-600 flex items-center gap-2">
             <Calendar24Regular className="text-gray-500 w-4 h-4" />
-            {nightsReserved} nights reserved
+            {searchDetails.nights} night{searchDetails.nights !== 1 ? 's' : ''}
           </p>
           <p className="text-sm text-gray-600 flex items-center gap-2">
             <Person24Regular className="text-gray-500 w-4 h-4" />
-            {adultsAllowed} adults allowed
+            {searchDetails.adults} adult{searchDetails.adults !== 1 ? 's' : ''}
+            {searchDetails.children > 0 && `, ${searchDetails.children} child${searchDetails.children !== 1 ? 'ren' : ''}`}
           </p>
         </div>
 

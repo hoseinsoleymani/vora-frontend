@@ -1,4 +1,5 @@
-// Types
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
+
 interface HotelLocation {
   address: string;
   city: string;
@@ -70,9 +71,22 @@ const staticData = {
   ]
 };
 
+const convertToEUR = (amount: string, currency: string): string => {
+  const rates: { [key: string]: number } = {
+    'MXN': 0.055,
+    'USD': 0.92,
+    'GBP': 1.17,
+    'EUR': 1
+  };
+
+  const rate = rates[currency] || 1;
+  const amountInEUR = parseFloat(amount) * rate;
+  return amountInEUR.toFixed(2);
+};
+
 export async function getHotelById(id: string): Promise<HotelData> {
   try {
-    const response = await fetch(`http://5.161.155.143:5000/hotel/offer/${id}`, {
+    const response = await fetch(`${API_BASE_URL}/hotel/offer/${id}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -87,20 +101,19 @@ export async function getHotelById(id: string): Promise<HotelData> {
     const hotel = data.hotel;
     const offer = data.offers[0];
 
-   
     return {
-      id: hotel.hotelId,
+      id: offer.id,
       name: hotel.name,
       description: offer.room.description.text,
-      images: staticData.images, 
+      images: staticData.images,
       rating: hotel.rating?.rating || 4.5,
-      price: offer.price.total,
-      currency: offer.price.currency,
-      amenities: staticData.amenities, 
+      price: convertToEUR(offer.price.total, offer.price.currency),
+      currency: '€',
+      amenities: staticData.amenities,
       location: {
-        address: "Paris, France", 
-        city: "Paris",
-        country: "France"
+        address: hotel.cityCode || "Address not available",
+        city: hotel.cityCode || "City not available",
+        country: hotel.address?.countryCode || "Country not available"
       }
     };
   } catch (error) {
@@ -116,7 +129,7 @@ export async function getHotelRooms(hotelId: string, searchParams: {
   rooms?: number;
 }): Promise<HotelRoom[]> {
   try {
-    const response = await fetch(`http://5.161.155.143:5000/hotel/offer/${hotelId}`, {
+    const response = await fetch(`${API_BASE_URL}/hotel/offer/${hotelId}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -130,21 +143,20 @@ export async function getHotelRooms(hotelId: string, searchParams: {
     const data = await response.json();
     const offer = data.offers[0];
 
-    
     return [{
       id: offer.id,
       name: offer.room.typeEstimated.category,
       price: {
-        currency: offer.price.currency,
-        total: offer.price.total
+        currency: '€',
+        total: convertToEUR(offer.price.total, offer.price.currency)
       },
       capacity: {
         adults: offer.guests.adults,
-        children: 0 
+        children: 0
       },
-      amenities: ["WiFi", "TV", "Safe", "AC"], 
+      amenities: ["WiFi", "TV", "Safe", "AC"],
       cancellationPolicy: offer.policies.cancellations[0].description.text,
-      breakfastIncluded: offer.boardType === "ROOM_ONLY" ? false : true,
+      breakfastIncluded: offer.boardType !== "ROOM_ONLY",
       freeCancellation: offer.policies.refundable.cancellationRefund === "REFUNDABLE_UP_TO_DEADLINE"
     }];
   } catch (error) {

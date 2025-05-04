@@ -11,10 +11,9 @@ interface HotelData { id: string; name: string; description: string; images: str
 interface SearchParams { nights: number; adults: number; children: number; rooms: number; }
 
 interface HotelDetailSkeletonProps {
-  searchParams: SearchParams;
 }
 
-export const HotelDetailSkeleton: React.FC<HotelDetailSkeletonProps> = ({ searchParams }) => {
+export const HotelDetailSkeleton: React.FC<HotelDetailSkeletonProps> = () => {
   return (
     <div className="grid grid-cols-12 gap-6">
       <HotelMainContent
@@ -27,7 +26,6 @@ export const HotelDetailSkeleton: React.FC<HotelDetailSkeletonProps> = ({ search
         <HotelBookingSidebar
           hotelData={{} as HotelData} // Pass empty data for skeleton
           rooms={[]} // Pass empty data for skeleton
-          searchParams={searchParams}
           loading={true} // Show skeleton
         />
       </div>

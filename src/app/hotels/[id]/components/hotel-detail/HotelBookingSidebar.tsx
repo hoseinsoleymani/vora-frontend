@@ -2,8 +2,9 @@
 
 import React, { useState, useMemo } from 'react';
 import { Button } from "@/components/ui/button";
-import { RadioGroup } from "@/components/ui/radio-group";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Skeleton } from "@/components/ui/skeleton";
+import { Label } from "@/components/ui/label";
 
 // --- Types (Re-added from dynamic version) ---
 interface HotelLocation { address: string; city: string; country: string; }
@@ -19,13 +20,11 @@ interface HotelRoom {
   breakfastIncluded: boolean;
   freeCancellation: boolean;
 }
-interface SearchParams { nights: number; adults: number; children: number; rooms: number; }
 
 // --- Props Interface (Re-added) ---
 interface HotelBookingSidebarProps {
   hotelData: HotelData;
   rooms: HotelRoom[];
-  searchParams: SearchParams;
   loading?: boolean;
 }
 
@@ -40,8 +39,7 @@ const extraFeatures = [
 // --- Component (Combined Static UI + Dynamic Data) ---
 export const HotelBookingSidebar: React.FC<HotelBookingSidebarProps> = ({
   hotelData,
-  rooms = [],
-  searchParams,
+  rooms,
   loading = false
 }) => {
 
@@ -59,7 +57,7 @@ export const HotelBookingSidebar: React.FC<HotelBookingSidebarProps> = ({
     if (!selectedRoom) return 0; // Cannot calculate without a selected room
 
     const roomPricePerNight = parseFloat(selectedRoom.price.total.replace(/[^\d.-]/g, '')); // Extract number from price string
-    const nights = searchParams.nights || 1; // Default to 1 night if not specified
+    const nights = 1; // Default to 1 night
     const roomTotal = roomPricePerNight * nights;
 
     const extraFeaturePrice = selectedExtraFeature ? selectedExtraFeature.price : 0;
@@ -70,7 +68,7 @@ export const HotelBookingSidebar: React.FC<HotelBookingSidebarProps> = ({
     return roomTotal + extraFeaturePrice + serviceFee + discount;
   };
 
-  const totalPrice = useMemo(calculateTotalPrice, [selectedRoom, selectedExtraFeature, searchParams.nights]);
+  const totalPrice = useMemo(calculateTotalPrice, [selectedRoom, selectedExtraFeature]);
 
   // --- Render Loading State (Re-added) ---
   if (loading) {
@@ -138,11 +136,6 @@ export const HotelBookingSidebar: React.FC<HotelBookingSidebarProps> = ({
         <h2 className="text-lg font-medium">
           {selectedRoom ? `Rooms From ${selectedRoom.price.total} ${selectedRoom.price.currency}` : 'Select a Room'}
         </h2>
-        {/* Dynamic Search Params */}
-        <span className="text-gray-500 text-sm">
-            {searchParams.nights} night{searchParams.nights !== 1 ? 's' : ''}, {searchParams.adults} adult{searchParams.adults !== 1 ? 's' : ''}
-            {searchParams.children > 0 && `, ${searchParams.children} child${searchParams.children !== 1 ? 'ren' : ''}`}
-        </span>
       </div>
 
       {/* Dynamic Rooms RadioGroup */}
@@ -150,11 +143,20 @@ export const HotelBookingSidebar: React.FC<HotelBookingSidebarProps> = ({
         <h3 className="text-lg font-medium mb-4">Rooms</h3>
         {roomOptions.length > 0 ? (
             <RadioGroup
-              // Assuming RadioGroup accepts value, onValueChange and options
               value={selectedRoomId}
               onValueChange={(value: string) => setSelectedRoomId(value)}
-              options={roomOptions}
-            />
+              className="space-y-2" // Added for spacing between items
+            >
+              {roomOptions.map((option) => (
+                <div key={option.value} className="flex items-center space-x-2">
+                  <RadioGroupItem value={option.value} id={`room-${option.value}`} />
+                  <Label htmlFor={`room-${option.value}`} className="flex justify-between w-full">
+                    <span>{option.label}</span>
+                    <span>{option.price}</span>
+                  </Label>
+                </div>
+              ))}
+            </RadioGroup>
         ) : (
              <p className="text-sm text-gray-500">No rooms matching your criteria found.</p>
         )}
@@ -166,11 +168,20 @@ export const HotelBookingSidebar: React.FC<HotelBookingSidebarProps> = ({
       <div className="mb-8">
         <h3 className="text-lg font-medium mb-4">Extra feature</h3>
         <RadioGroup
-          // Assuming RadioGroup accepts value, onValueChange and options
           value={selectedExtraFeatureValue}
           onValueChange={(value: string) => setSelectedExtraFeatureValue(value)}
-          options={extraFeatureOptions}
-        />
+          className="space-y-2" // Added for spacing between items
+        >
+          {extraFeatureOptions.map((option) => (
+            <div key={option.value} className="flex items-center space-x-2">
+              <RadioGroupItem value={option.value} id={`extra-${option.value}`} />
+              <Label htmlFor={`extra-${option.value}`} className="flex justify-between w-full">
+                 <span>{option.label}</span>
+                 <span>{option.price}</span>
+              </Label>
+            </div>
+          ))}
+        </RadioGroup>
       </div>
 
       <div className="w-full h-px bg-gray-200 mb-8"></div>
@@ -181,8 +192,8 @@ export const HotelBookingSidebar: React.FC<HotelBookingSidebarProps> = ({
         {selectedRoom ? (
           <div className="space-y-4 text-sm">
             <div className="flex items-center justify-between gap-8">
-              <span>{selectedRoom.price.total} {selectedRoom.price.currency} x {searchParams.nights} Night{searchParams.nights !== 1 ? 's' : ''}</span>
-              <span className="ml-auto">{`${selectedRoom.price.currency} ${(parseFloat(selectedRoom.price.total.replace(/[^\d.-]/g, '')) * searchParams.nights).toFixed(2)}`}</span>
+              <span>{selectedRoom.price.total} {selectedRoom.price.currency} x 1 Night</span>
+              <span className="ml-auto">{`${selectedRoom.price.currency} ${selectedRoom.price.total.replace(/[^\d.-]/g, '')}`}</span>
             </div>
             {selectedExtraFeature && (
                  <div className="flex items-center justify-between gap-8">
@@ -220,7 +231,6 @@ export const HotelBookingSidebar: React.FC<HotelBookingSidebarProps> = ({
                 selectedRoomId,
                 selectedExtraFeatureValue,
                 totalPrice,
-                searchParams
             });
         }}
       >

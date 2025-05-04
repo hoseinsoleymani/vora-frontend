@@ -1,5 +1,5 @@
 import { Skeleton } from "@/components/ui/skeleton";
-import { cn } from "@/lib/utils";
+import { Camera24Regular } from "@fluentui/react-icons";
 
 interface HotelGalleryProps {
   images: string[];
@@ -86,7 +86,7 @@ export const HotelGallery: React.FC<HotelGalleryProps> = ({
           />
           {canShowAll && (
             <div className="absolute inset-0 flex items-center justify-center gap-2 bg-black/40 rounded-lg transition-opacity duration-200">
-              <span className={cn("i-fluent:camera-24-regular", "w-4 h-4 text-white")} />
+              <Camera24Regular className="w-4 h-4 text-white" />
               <span className="text-sm font-medium text-white">Show all photos</span>
             </div>
           )}
