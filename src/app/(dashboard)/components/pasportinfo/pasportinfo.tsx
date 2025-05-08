@@ -11,7 +11,7 @@ import { useEffect, useState } from "react";
 export interface PassportInfo {
   id: number;
   passanger_name: string;
-  sexuality: string;
+  sexuality: "MALE" | "FEMALE" | "OTHER";
   birthday: string;
   passport_number: string;
   passport_expiration_date: string;

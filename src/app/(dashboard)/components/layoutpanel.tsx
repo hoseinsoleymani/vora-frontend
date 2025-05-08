@@ -5,7 +5,9 @@ import {
   Dashboard,
   Order,
   PasportInfo,
+  VisaRequest,
 } from "@/app/(dashboard)/components";
+import { VisaProvider } from "@/hooks";
 
 export type SectionType =
   | "Dashboard"
@@ -25,7 +27,11 @@ function LayoutPanel({ token }: { token: string }) {
       "Payment List": <div>Payment</div>,
       Cart: <div>Cart</div>,
       "Passport Info": <PasportInfo token={token} />,
-      "Request Visa": <div>Visa</div>,
+      "Request Visa": (
+        <VisaProvider>
+          <VisaRequest token={token} />
+        </VisaProvider>
+      ),
     };
     return sectionMap[section];
   };

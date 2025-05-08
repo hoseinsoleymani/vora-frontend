@@ -35,7 +35,8 @@ function DeletePassportInfo({
           },
         }
       );
-
+      console.log(response);
+      
       if (response.ok) {
         setOpen(false);
         getData();
