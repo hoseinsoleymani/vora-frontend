@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui";
 import { useState } from "react";
-import { PassengerDetails } from "@/app/(dashboard)";
+import { PassengerDetails } from "@/app/(dashboard)/components";
 
 type ActiveTab = "Ticket Details" | "Passenger Details";
 

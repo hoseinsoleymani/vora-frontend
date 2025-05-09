@@ -1,6 +1,13 @@
-"use client"
-import { useState } from 'react'
-import { NavMenue , Dashboard, Order } from "@/app/(dashboard)";
+"use client";
+import { useState } from "react";
+import {
+  NavMenue,
+  Dashboard,
+  Order,
+  PasportInfo,
+  VisaRequest,
+} from "@/app/(dashboard)/components";
+import { VisaProvider } from "@/hooks";
 
 export type SectionType =
   | "Dashboard"
@@ -10,26 +17,30 @@ export type SectionType =
   | "Passport Info"
   | "Request Visa";
 
-function LayoutPanel({token} : {token : string}) {
-    const [section, setSection] = useState<SectionType>("Dashboard");
+function LayoutPanel({ token }: { token: string }) {
+  const [section, setSection] = useState<SectionType>("Dashboard");
 
-    const selectSectionMap = (section: SectionType) => {
-      const sectionMap = {
-        "Dashboard": <Dashboard />,
-        "Orders": <Order token={token}/>,
-        "Payment List": <div>Payment</div>,
-        "Cart": <div>Cart</div>,
-        "Passport Info": <div>Passport</div>,
-        "Request Visa": <div>Visa</div>,
-      };
-      return sectionMap[section];
+  const selectSectionMap = (section: SectionType) => {
+    const sectionMap = {
+      Dashboard: <Dashboard />,
+      Orders: <Order token={token} />,
+      "Payment List": <div>Payment</div>,
+      Cart: <div>Cart</div>,
+      "Passport Info": <PasportInfo token={token} />,
+      "Request Visa": (
+        <VisaProvider>
+          <VisaRequest token={token} />
+        </VisaProvider>
+      ),
     };
+    return sectionMap[section];
+  };
   return (
     <div className="flex">
-    <NavMenue section={section} setSection={setSection} />
-    <div className="w-6/7 ml-[16.666667%]">{selectSectionMap(section)}</div>
-  </div>
-  )
+      <NavMenue section={section} setSection={setSection} />
+      <div className="w-6/7 ml-[16.666667%]">{selectSectionMap(section)}</div>
+    </div>
+  );
 }
 
-export  {LayoutPanel}
+export { LayoutPanel };
