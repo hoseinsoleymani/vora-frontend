@@ -26,7 +26,7 @@ function DeletePassportInfo({
   const DeletePassportInfo = async () => {
     try {
       const response = await fetch(
-        `${API_BASE_URL}/panel/passport-info/${id}`,
+        `${API_BASE_URL}/panel/passport-info/${id}/`,
         {
           method: "DELETE",
           headers: {
