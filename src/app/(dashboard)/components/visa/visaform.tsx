@@ -40,8 +40,8 @@ function VisaForm({ register, control, errors, reset }: VisaFormProps) {
   useEffect(() => {
     if (selectedPassenger) {
       reset({
-        passport_first_name: selectedPassenger.passanger_name || "",
-        passport_last_name: selectedPassenger.passanger_name || "",
+        passport_first_name: selectedPassenger.passanger_first_name || "",
+        passport_last_name: selectedPassenger.passanger_last_name || "",
         birthday: selectedPassenger.birthday || "",
         passport_number: selectedPassenger.passport_number || "",
         sexuality: selectedPassenger.sexuality || "",

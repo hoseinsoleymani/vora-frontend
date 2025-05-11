@@ -37,7 +37,7 @@ function LayoutPanel({ token }: { token: string }) {
   };
   return (
     <div className="flex">
-      <NavMenue section={section} setSection={setSection} />
+      <NavMenue section={section} setSection={setSection} token={token}/>
       <div className="w-6/7 ml-[16.666667%]">{selectSectionMap(section)}</div>
     </div>
   );

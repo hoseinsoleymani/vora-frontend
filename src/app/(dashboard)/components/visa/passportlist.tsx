@@ -1,7 +1,7 @@
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { useVisa } from "@/hooks";
 
-function AddPassport() {
+function PassportList() {
   const { visaRequests, setSelectedPassenger } = useVisa();
 
   const handleSelect = (id: string) => {
@@ -24,7 +24,7 @@ function AddPassport() {
             />
             <div className="w-full">
               <div className="flex items-center justify-between">
-                <h3 className="font-bold">{passenger.passanger_name}</h3>
+                <h3 className="font-bold">{passenger.passanger_first_name} {passenger.passanger_last_name}</h3>
                 <p className="text-sm">{passenger.sexuality}</p>
               </div>
               <div className="flex flex-col gap-1 mt-3">
@@ -47,4 +47,4 @@ function AddPassport() {
   );
 }
 
-export { AddPassport };
+export { PassportList };

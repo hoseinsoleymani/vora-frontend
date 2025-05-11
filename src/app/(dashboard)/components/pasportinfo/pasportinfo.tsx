@@ -10,7 +10,8 @@ import { useEffect, useState } from "react";
 
 export interface PassportInfo {
   id: number;
-  passanger_name: string;
+  passanger_first_name: string;
+  passanger_last_name : string
   sexuality: "MALE" | "FEMALE" | "OTHER";
   birthday: string;
   passport_number: string;

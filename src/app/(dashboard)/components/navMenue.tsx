@@ -3,13 +3,17 @@ import Image from "next/image";
 import Logo from "../../../../public/img/Logo.png";
 import { Button } from "@/components/ui/button";
 import { SectionType } from "./layoutpanel";
+import {API_BASE_URL} from "@/lib"
+import { useRouter } from "next/navigation";
 
 interface NavMenueProps {
   section: SectionType;
   setSection: (section: SectionType) => void;
+  token : string
 }
 
-function NavMenue({ section, setSection }: NavMenueProps) {
+function NavMenue({ section, setSection , token }: NavMenueProps) {
+  const router = useRouter();
   const sectionList = [
     {
       icon: "i-fluent:home-24-filled",
@@ -38,6 +42,16 @@ function NavMenue({ section, setSection }: NavMenueProps) {
     },
   ];
 
+  const logOut = async () => {
+    try {
+      const response = await fetch("/api", { method: "POST" });
+      if (response.ok) {
+        router.push("/login");
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
   return (
     <div className="w-1/7 fixed left-0 top-0 h-screen border-r border-gray-200">
       <div className="py-14 flex flex-col w-full h-full">
@@ -63,7 +77,7 @@ function NavMenue({ section, setSection }: NavMenueProps) {
             <span className="i-fluent:person-24-regular"></span>
             <span className="font-300">Settings and Profile</span>
           </Button>
-          <Button variant="ghost" className="w-full justify-start">
+          <Button variant="ghost" className="w-full justify-start" onClick={() =>logOut()}>
             <span className="i-fluent:sign-out-24-regular"></span>
             <span className="font-300">Sign out</span>
           </Button>

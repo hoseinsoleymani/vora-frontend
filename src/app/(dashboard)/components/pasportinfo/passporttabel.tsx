@@ -50,7 +50,7 @@ function PassportTabel({ passportData , token , getData }: PassportTabelProps) {
                   {index + 1}
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm">
-                  {passport.passanger_name}
+                  {passport.passanger_first_name} {passport.passanger_last_name}
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm">
                   {passport.sexuality}

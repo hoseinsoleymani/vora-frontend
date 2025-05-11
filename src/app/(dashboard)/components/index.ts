@@ -26,5 +26,5 @@ export * from "./visa/requstvisa";
 export * from "./visa/requstvisaform";
 export * from "./visa/visaprogressbar"
 export * from "./visa/visaform";
-export * from "./visa/addpassport";
+export * from "./visa/passportlist";
 export * from "./visa/vistype"

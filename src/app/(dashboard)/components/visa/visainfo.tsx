@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui";
-import { AddPassport, VisaForm, VisType } from "@/app/(dashboard)/components";
+import { PassportList, VisaForm, VisType } from "@/app/(dashboard)/components";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -95,7 +95,7 @@ function VisaInfo({
         </div>
         <div>
           {passengerList ? (
-            <AddPassport />
+            <PassportList />
           ) : (
             <VisaForm
               register={register}
