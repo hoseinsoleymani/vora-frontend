@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
-import Logo from "../../../../public/img/Logo.png";
-import { ServiceCard } from "@/app/(dashboard)";
+import Logo from "../../../../../public/img/Logo.png";
+import { ServiceCard } from "@/app/(dashboard)/components";
 
 const voraServices = [
   {
