@@ -33,7 +33,6 @@ export function AuthProvider({ children, token }: AuthProviderProps) {
         if (response.ok) {
           setIsLoggedIn(true);
           const data = await response.json();
-          console.log("User data:", data);
         } else {
           console.warn("Token is invalid");
         }
