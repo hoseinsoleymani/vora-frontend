@@ -53,7 +53,7 @@ function AirplaneSearch() {
 
       router.push(`/tickets?${params.toString()}`);
     } catch (error) {
-      console.error("خطا در جستجوی پروازها:", error);
+      console.error("Error searching flights:", error);
     }
   };
 

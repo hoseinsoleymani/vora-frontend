@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import {
   Star24Regular,
@@ -34,8 +35,8 @@ interface HotelCardProps {
     total: string;
   };
   rating?: number;
-  latitude?: number;
-  longitude?: number;
+  beds?: number;
+  roomCategory?: string;
   searchDetails?: {
     nights: number;
     adults: number;
@@ -53,8 +54,8 @@ const HotelCard: React.FC<HotelCardProps> = ({
     total: "N/A"
   },
   rating = 0,
-  latitude = 0,
-  longitude = 0,
+  beds,
+  roomCategory,
   searchDetails = {
     nights: 1,
     adults: 1,
@@ -84,31 +85,38 @@ const HotelCard: React.FC<HotelCardProps> = ({
     return `${numericPrice.toLocaleString()} ${price.currency}`;
   }
 
-  const bedsAvailable = Math.floor(Math.abs(longitude) % 5) + 1;
-  const nightsReserved = Math.floor(Math.abs(latitude) % 7) + 1;
-  const adultsAllowed = Math.floor(Math.abs(longitude) % 3) + 1;
+  const createHotelUrl = () => {
+    const params = new URLSearchParams({
+      nights: searchDetails.nights.toString(),
+      adults: searchDetails.adults.toString(),
+      children: searchDetails.children.toString(),
+      rooms: searchDetails.rooms.toString()
+    });
+    return `/hotels/${id}?${params.toString()}`;
+  };
 
   if (viewMode === "list") {
     return (
       <div className="w-full mx-auto my-6 bg-white shadow-md rounded-2xl overflow-hidden flex">
-        <span className="fluent:Eye24Regular"></span>
         <div className="w-48 h-48 flex-shrink-0 p-2">
-          <img
-            src={"product-image.png"}
-            alt={name}
-            className="w-full h-full object-cover rounded-xl"
-            onError={(e) => {
-              const target = e.target as HTMLImageElement;
-              target.src = "https://placehold.co/600x400";
-            }}
-          />
+          <Link href={createHotelUrl()} className="block h-full">
+            <img
+              src={"product-image.png"}
+              alt={name}
+              className="w-full h-full object-cover rounded-xl cursor-pointer"
+              onError={(e) => {
+                const target = e.target as HTMLImageElement;
+                target.src = "https://placehold.co/600x400";
+              }}
+            />
+          </Link>
         </div>
 
         <div className="flex-1 m-5 pr-5">
           <div className="flex items-center justify-between mb-3">
-            <h2 className="text-lg font-semibold truncate max-w-[200px]">
+            <Link href={createHotelUrl()} className="text-lg font-semibold truncate max-w-[200px] hover:text-primary transition-colors">
               {name}
-            </h2>
+            </Link>
             <div className="flex items-center gap-2">
               {renderRating(rating)}
               <Button variant="outline" size="sm" className="flex items-center gap-1 text-xs h-auto">
@@ -121,7 +129,8 @@ const HotelCard: React.FC<HotelCardProps> = ({
           <div className="flex flex-col space-y-2 mt-2">
             <p className="text-sm text-gray-600 flex items-center gap-2">
               <Bed24Regular className="text-gray-500 w-4 h-4" />
-              {searchDetails.rooms} bedroom, 1 bathroom
+              {beds ? `${beds} beds` : `${searchDetails.rooms} room(s)`}
+              {roomCategory && ` (${roomCategory})`}
             </p>
             <p className="text-sm text-gray-600 flex items-center gap-2">
               <Calendar24Regular className="text-gray-500 w-4 h-4" />
@@ -129,7 +138,8 @@ const HotelCard: React.FC<HotelCardProps> = ({
             </p>
             <p className="text-sm text-gray-600 flex items-center gap-2">
               <Person24Regular className="text-gray-500 w-4 h-4" />
-              {searchDetails.adults} adults, {searchDetails.children} children
+              {searchDetails.adults} adult{searchDetails.adults !== 1 ? 's' : ''}
+              {searchDetails.children > 0 && `, ${searchDetails.children} child${searchDetails.children !== 1 ? 'ren' : ''}`}
             </p>
           </div>
         </div>
@@ -142,10 +152,12 @@ const HotelCard: React.FC<HotelCardProps> = ({
             <div className="text-sm text-gray-500">Includes taxes and charges</div>
           </div>
 
-          <Button variant="default" size="sm" className="w-full">
-            <Eye24Regular className="mr-1" />
-            View & Reserve
-          </Button>
+          <Link href={createHotelUrl()}>
+            <Button variant="default" size="sm" className="w-full">
+              <Eye24Regular className="mr-1" />
+              View & Reserve
+            </Button>
+          </Link>
         </div>
       </div>
     );
@@ -154,16 +166,19 @@ const HotelCard: React.FC<HotelCardProps> = ({
   return (
     <div className="w-full mx-auto my-4 bg-white shadow-md rounded-2xl overflow-hidden flex flex-col">
       <div className="w-full p-3 flex items-center justify-center">
-        <img
-          src={"product-image.png"} // Placeholder image
-          alt={name}
-          className="w-full h-40 object-cover rounded-xl"
-        />
+        <Link href={createHotelUrl()} className="block w-full">
+          <img
+            src={"product-image.png"}
+            alt={name}
+            className="w-full h-40 object-cover rounded-xl cursor-pointer"
+          />
+        </Link>
       </div>
-      dddddddddddddd
 
       <div className="p-4 flex flex-col">
-        <h2 className="text-base font-medium mb-2">{name}</h2>
+        <Link href={createHotelUrl()} className="text-base font-medium mb-2 hover:text-primary transition-colors">
+          {name}
+        </Link>
 
         <div className="flex items-center mb-3">
           {renderRating(rating)}
@@ -172,15 +187,17 @@ const HotelCard: React.FC<HotelCardProps> = ({
         <div className="flex flex-col space-y-2 mb-3">
           <p className="text-sm text-gray-600 flex items-center gap-2">
             <Bed24Regular className="text-gray-500 w-4 h-4" />
-            {bedsAvailable} beds available
+            {beds ? `${beds} beds` : `${searchDetails.rooms} room(s)`}
+            {roomCategory && ` (${roomCategory})`}
           </p>
           <p className="text-sm text-gray-600 flex items-center gap-2">
             <Calendar24Regular className="text-gray-500 w-4 h-4" />
-            {nightsReserved} nights reserved
+            {searchDetails.nights} night{searchDetails.nights !== 1 ? 's' : ''}
           </p>
           <p className="text-sm text-gray-600 flex items-center gap-2">
             <Person24Regular className="text-gray-500 w-4 h-4" />
-            {adultsAllowed} adults allowed
+            {searchDetails.adults} adult{searchDetails.adults !== 1 ? 's' : ''}
+            {searchDetails.children > 0 && `, ${searchDetails.children} child${searchDetails.children !== 1 ? 'ren' : ''}`}
           </p>
         </div>
 
@@ -198,10 +215,12 @@ const HotelCard: React.FC<HotelCardProps> = ({
             </div>
             <div className="text-xs text-gray-500">Includes taxes and charges</div>
           </div>
-          <Button variant="default" size="sm">
-            <Eye24Regular className="mr-1" />
-            View
-          </Button>
+          <Link href={createHotelUrl()}>
+            <Button variant="default" size="sm">
+              <Eye24Regular className="mr-1" />
+              View
+            </Button>
+          </Link>
         </div>
       </div>
     </div>
