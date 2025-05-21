@@ -127,17 +127,17 @@ const HotelList = ({
       <div className={viewMode === "list" ? "space-y-4 mt-5" : "grid grid-cols-3 gap-4 mt-5"}>
         {hotels.map((hotelOffer) => (
           <HotelCard 
-            key={hotelOffer.hotel.hotelId} 
+            key={hotelOffer.offers[0].id} 
             viewMode={viewMode} 
-            id={hotelOffer.hotel.hotelId}
+            id={hotelOffer.offers[0].id}
             name={hotelOffer.hotel.name}
             price={{
               currency: hotelOffer.offers[0]?.price?.currency || "USD",
               total: hotelOffer.offers[0]?.price?.total || "N/A"
             }}
             rating={hotelOffer.hotel.rating}
-            latitude={hotelOffer.hotel.latitude}
-            longitude={hotelOffer.hotel.longitude}
+            beds={hotelOffer.offers[0]?.room?.typeEstimated?.beds}
+            roomCategory={hotelOffer.offers[0]?.room?.typeEstimated?.category}
             searchDetails={{
               nights,
               adults,
