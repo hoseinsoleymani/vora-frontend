@@ -58,17 +58,12 @@ const Navbar = () => {
             </DropdownMenuContent>
           </DropdownMenu>
 
-          <DropdownMenu>
-            <DropdownMenuTrigger className="hover:border-b hover:border-b-black">
-              About Us
-            </DropdownMenuTrigger>
-            <DropdownMenuContent>
-              <DropdownMenuLabel>About Us</DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>Option 1</DropdownMenuItem>
-              <DropdownMenuItem>Option 2</DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+          <Link
+            href="/aboutus"
+            className=" hover:border-b hover:border-b-black focus:border-b"
+          >
+          About Us
+          </Link>
         </div>
       </div>
 
