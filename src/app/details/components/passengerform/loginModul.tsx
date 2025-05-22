@@ -16,6 +16,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useAuth } from "@/app/(auth)";
 import { Login } from "@/app/(login)";
+import { useGoogleLogin } from "@react-oauth/google";
+import { googleLogin } from "@/app/(login)/actions/goolelogin";
 
 interface PassengerForm {
   email: string;
@@ -49,6 +51,36 @@ function LoginModul({ open, setOpen }: LoginModulProps) {
     }
   };
 
+  const handleLoginSuccess = async (tokenResponse: any) => {
+    const { access_token } = tokenResponse;
+
+    if (!access_token) {
+      console.error("No access_token received from Google.");
+      return;
+    }
+
+    try {
+      const result = await googleLogin(access_token);
+
+      if (result.success) {
+        
+      } else {
+        console.error("Login failed:", result);
+      }
+    } catch (error) {
+      console.error("Error during login:", error);
+    }
+  };
+
+  const login = useGoogleLogin({
+    onSuccess: handleLoginSuccess,
+    onError: (error) => {
+      console.error("Google login error:", error);
+      
+    },
+    flow: "implicit",
+  });
+
   return (
     <div className="flex items-center gap-4">
       <p>To use your personal Passbook</p>
@@ -67,6 +99,7 @@ function LoginModul({ open, setOpen }: LoginModulProps) {
               <Button
                 variant={"outline"}
                 className="w-full flex items-center gap-2 justify-start rounded-lg"
+                onClick={() => login()}
               >
                 <GoogleIcon className="h-6 w-6" />
                 Continue with Google

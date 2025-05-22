@@ -3,6 +3,8 @@ import { FormLogin } from "@/app/(login)";
 import { SocialLoginButtons } from "@/app/(login)";
 
 function LoginSection() {
+
+  
   return (
     <div className="flex flex-col w-full">
       <SocialLoginButtons />

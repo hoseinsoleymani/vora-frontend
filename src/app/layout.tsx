@@ -4,9 +4,9 @@ import "./globals.css";
 import "@unocss/reset/normalize.css";
 import "@unocss/reset/sanitize/sanitize.css";
 import "@unocss/reset/sanitize/assets.css";
-import { Navbar, Footer } from "@/components/ui";
 import { AuthProvider } from "./(auth)/authProvider";
 import { cookies } from "next/headers";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,9 +32,9 @@ export default async function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning={true}>
       <body className={`${geistSans.variable} ${geistMono.variable} bg-gray-1`}>
-        <AuthProvider token={token}>
-          {children}
-        </AuthProvider>
+        <GoogleOAuthProvider clientId="152510528576-p4v1ocit2pj0ocjhfeuh3oprt79t3ja1.apps.googleusercontent.com">
+          <AuthProvider token={token}>{children}</AuthProvider>
+        </GoogleOAuthProvider>
       </body>
     </html>
   );
