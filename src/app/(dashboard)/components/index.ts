@@ -24,7 +24,11 @@ export * from "./visa/visatable";
 export * from "./visa/visapaymentinfo";
 export * from "./visa/requstvisa";
 export * from "./visa/requstvisaform";
-export * from "./visa/visaprogressbar"
+export * from "./visa/visaprogressbar";
 export * from "./visa/visaform";
 export * from "./visa/passportlist";
-export * from "./visa/vistype"
+export * from "./visa/vistype";
+export * from "./order/detailsticket";
+export * from "./order/flightsegments"
+export * from "./order/flightinfo"
+

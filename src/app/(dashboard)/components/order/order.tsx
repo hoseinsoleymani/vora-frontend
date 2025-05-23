@@ -12,12 +12,37 @@ interface Order {
   order_type: 1 | 2;
 }
 
-interface flightOrder {
+export interface flightOrder {
   order_type: 1;
   offer_data?: Array<{
     price: {
       total: number;
     };
+    itineraries: Array<{
+      segments: Array<{
+        aircraft: {
+          code: string;
+        };
+        co2Emissions: Array<{
+          cabin: string;
+          weight: number;
+          weightUnit: string;
+        }>;
+        arrival: {
+          at: string;
+          iataCode: string;
+          terminal: string;
+        };
+        carrierCode: string;
+        departure: {
+          at: string;
+          iataCode: string;
+          terminal: string;
+        };
+        duration: string;
+        number: string;
+      }>;
+    }>;
   }>;
   travelers_data: Array<{
     contact: {
@@ -40,18 +65,17 @@ interface flightOrder {
 }
 
 interface hotelOrder {
-  order_type: 2
+  order_type: 2;
   offer_data: {
     price: {
-      total : number
-    }
-  }
+      total: number;
+    };
+  };
 }
 function Order({ token }: { token: string }) {
-  const [flightOrder, setFlightOrder] = useState<flightOrder>();
+  const [flightOrders, setFlightOrders] = useState<flightOrder[]>([]);
   const [hotelOrder, setHotelOrder] = useState<hotelOrder>();
   const [loading, setLoading] = useState(false);
-
   const getData = async () => {
     setLoading(true);
     try {
@@ -62,19 +86,18 @@ function Order({ token }: { token: string }) {
       });
       const data = await response.json();
       console.log(data);
-      data.forEach((item: Order) => {
-        if (item.order_type === 1) {
-          setFlightOrder(item as flightOrder);
-        } else {
-          setHotelOrder(item as hotelOrder);
-        }
-      });
+
+      const flights = data.filter((item: Order) => item.order_type === 1);
+      setFlightOrders(flights as flightOrder[]);
+      const hotels = data.filter((item: Order) => item.order_type === 2);
+      setHotelOrder(hotels as hotelOrder);
     } catch (error) {
       console.log(error);
     } finally {
       setLoading(false);
     }
   };
+
   useEffect(() => {
     getData();
   }, []);
@@ -82,13 +105,14 @@ function Order({ token }: { token: string }) {
   if (loading) {
     return <PassengersLoading />;
   }
+  console.log(flightOrders);
 
-  const flightTotalPrice = flightOrder?.offer_data?.[0]?.price?.total ?? 0;
-  const flightTravelerData = flightOrder?.travelers_data?.[0]?.contact ?? {
+  const flightTotalPrice = flightOrders[0]?.offer_data?.[0]?.price?.total ?? 0;
+  const flightTravelerData = flightOrders[0]?.travelers_data?.[0]?.contact ?? {
     emailAddress: "",
     phones: [],
   };
-  const flightPassengersData = flightOrder?.travelers_data;
+  const flightPassengersData = flightOrders[0]?.travelers_data;
 
   const flightPhoneNumber = flightTravelerData?.phones?.[0]
     ? `${flightTravelerData.phones[0].countryCallingCode}${flightTravelerData.phones[0].number}`
@@ -98,7 +122,7 @@ function Order({ token }: { token: string }) {
   return (
     <div className="mt-14">
       <h3 className="text-2xl font-bold">order</h3>
-      {flightOrder ? (
+      {flightOrders ? (
         <div className="mt-14">
           <div className="flex items-center gap-2">
             <span className="i-fluent:ticket-diagonal-24-regular"></span>
@@ -110,11 +134,18 @@ function Order({ token }: { token: string }) {
               email={flightTravelerData?.emailAddress}
               phoneNumber={flightPhoneNumber}
               travelers_data={flightPassengersData ?? []}
+              flightOrder={flightOrders[0]}
             />
           </div>
-          {/* {hotelOrder && (
-            <HotelOrder totalPrice={hotelTotalPrice}/>
-          )} */}
+          <div className="flex flex-col gap-8 mt-20">
+            <div className="flex items-center ga-2">
+              <span className="i-fluent:archive-24-regular"></span>
+              <h3 className="text-lg font-bold">Archive Orders</h3>
+            </div>
+            <p className="text-2xl font-300 text-gray-5">
+              No Record of previous orders is here to be <br /> shown!
+            </p>
+          </div>
         </div>
       ) : (
         <p className="font-300 text-gray-5 text-3xl mt-32 leading-15">

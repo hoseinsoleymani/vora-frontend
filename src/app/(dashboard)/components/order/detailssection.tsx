@@ -1,6 +1,10 @@
 import { Button } from "@/components/ui";
 import { useState } from "react";
-import { PassengerDetails } from "@/app/(dashboard)/components";
+import {
+  PassengerDetails,
+  DetailsTicket,
+  flightOrder,
+} from "@/app/(dashboard)/components";
 
 type ActiveTab = "Ticket Details" | "Passenger Details";
 
@@ -25,18 +29,20 @@ export interface DetailsSectionProps {
     };
     dateOfBirth: string;
   }>;
+  flightOrder?: flightOrder;
 }
 
 function DetailsSection({
   email,
   phoneNumber,
   travelers_data,
+  flightOrder,
 }: DetailsSectionProps) {
-  const [activeTab, setActiveTab] = useState<ActiveTab>("Passenger Details");
+  const [activeTab, setActiveTab] = useState<ActiveTab>("Ticket Details");
 
   const selectTabMap = (tab: ActiveTab) => {
     const tabMap = {
-      "Ticket Details": <div>Ticket Details</div>,
+      "Ticket Details": <DetailsTicket flightOrder={flightOrder} />,
       "Passenger Details": (
         <PassengerDetails
           email={email}
