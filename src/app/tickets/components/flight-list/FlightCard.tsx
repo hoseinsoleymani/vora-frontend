@@ -81,16 +81,6 @@ const FlightCard = ({ searchParams }: FlightCardProps) => {
         <p className="text-gray-500 text-center mt-2">
           Try changing your search criteria or try again later.
         </p>
-        <div className="mt-4 p-4 bg-gray-50 rounded border border-gray-200">
-          <p className="text-sm text-gray-600">Debug info:</p>
-          <pre className="text-xs mt-2 overflow-auto max-h-32">
-            {JSON.stringify(
-              { origin, destination, departureDate, adults, page },
-              null,
-              2
-            )}
-          </pre>
-        </div>
       </div>
     );
   }

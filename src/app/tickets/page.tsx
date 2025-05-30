@@ -1,4 +1,4 @@
-import { Navbar } from "@/components/ui";
+import { Navbar, Footer } from "@/components/ui";
 import { 
   AirplaneSearchWrapper,
   ProcessBuy,
@@ -70,6 +70,7 @@ export default async function Page({ searchParams }: PageProps) {
           <FlightCard searchParams={plainSearchParams} />
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

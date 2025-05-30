@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useCallback } from "react";
-import { Navbar } from "@/components/ui";
+import { Navbar, Footer } from "@/components/ui";
 import { ImageGalleryDialog } from "./components/hotel-detail/ImageGalleryDialog";
 import { getHotelById, getHotelRooms } from "./hotel.actions";
 import { HotelDetailContent } from "./components/hotel-detail/HotelDetailContent";
@@ -147,6 +147,7 @@ export default function HotelDetailPage({ params }: { params: Promise<{ id: stri
           onOpenChange={setIsGalleryOpen}
         />
       )}
+      <Footer />
     </div>
   );
 } 

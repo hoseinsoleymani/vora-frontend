@@ -5,7 +5,8 @@ import Faq from "./components/faq/faq";
 import TravelBanner from "./components/travelStats/travelBanner";
 import TravelPlannerCard from "./components/travelPlanner/TravelPlannerCard";
 import TravelBlogs from "./components/travelBlogs/travelBlogs";
-import { Navbar } from "@/components/ui/navbar";
+import { Navbar, Footer } from "@/components/ui";
+
 export default function Home() {
   return (
     <div className="container mx-auto  px-4">
@@ -31,6 +32,7 @@ export default function Home() {
       <section className="mt-60">
         <Faq />
       </section>
+      <Footer />
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import { Navbar } from "@/components/ui";
+import { Navbar, Footer } from "@/components/ui";
 import { HotelSearch } from "@/components/share/searchBar/hotel/hotelSearch";
 import {
   ProcessHotel,
@@ -114,6 +114,7 @@ export default async function Page({ searchParams }: PageProps) {
           />
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

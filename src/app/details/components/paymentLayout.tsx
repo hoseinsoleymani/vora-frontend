@@ -12,7 +12,8 @@ import { StepNavigator } from "@/components/ui/stepNavigator";
 import { useWizard } from "@/hooks/useWizard";
 import { FlightSegment } from "@/app/details/page";
 import { useAuth } from "@/app/(auth)";
-import { Navbar } from "@/components/ui";
+import { Navbar, Footer } from "@/components/ui";
+
 interface PaymentLayoutProps {
   destination: string;
   from: string;
@@ -105,7 +106,7 @@ function PaymentLayout({
   };
 
   return (
-    <div className="container mx-auto  ">
+    <div className="container mx-auto">
       <Navbar />
       <div className="flex px-4 py-6 gap-6">
         <div className="w-2/3 flex flex-col gap-6">
@@ -131,6 +132,7 @@ function PaymentLayout({
           />
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
