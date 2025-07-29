@@ -1,11 +1,12 @@
 import PageIntro from "./components/pageIntro/pageIntro";
 import SearchBar from "./components/searchBar";
 import Offer from "./components/offer/offer";
-import Faq from "./components/faq/faq"; 
+import Faq from "./components/faq/faq";
 import TravelBanner from "./components/travelStats/travelBanner";
 import TravelPlannerCard from "./components/travelPlanner/TravelPlannerCard";
 import TravelBlogs from "./components/travelBlogs/travelBlogs";
 import { Navbar } from "@/components/ui/navbar";
+import { Footer } from "@/components/ui";
 export default function Home() {
   return (
     <div className="container mx-auto  px-4">
@@ -13,10 +14,10 @@ export default function Home() {
       <section className="mt-8">
         <PageIntro />
       </section>
-      <section className="mt-8">
+      <section className="mt-8 flex items-center justify-center w-full">
         <SearchBar />
       </section>
-      <section className="mt-50">
+      <section className="mt-40 ">
         <Offer />
       </section>
       <section className="mt-50">
@@ -31,6 +32,7 @@ export default function Home() {
       <section className="mt-60">
         <Faq />
       </section>
+      <Footer />
     </div>
   );
 }

@@ -34,8 +34,8 @@ function TravelPlannerCard() {
   const visibleTabs = getVisibleTabs();
 
   return (
-    <div className="flex flex-col items-center w-full">
-      <div className="flex justify-between items-end w-full gap-[133px]">
+    <div className="flex flex-col items-center w-full justify-center">
+      <div className="flex justify-center items-end w-full gap-[133px]">
         <HeaderSection />
         <TabButtons options={options} selectedTab={selectedTab} onTabChange={handleTabChange} />
       </div>

@@ -10,7 +10,7 @@ function FightSearchBar() {
 
   return (
     <StepContainer title="Where do you want to go?">
-      <div className="flex items-center justify-between ">
+      <div className="flex items-center gap-30">
         <Region
           title="From"
           icon={<ArrowUp16Regular />}

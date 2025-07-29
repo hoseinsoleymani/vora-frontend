@@ -8,7 +8,7 @@ function TravelDateSelector() {
 
   return (
     <StepContainer title="When do you want to travel?">
-      <div className="flex gap-4">
+      <div className="flex gap-30">
         <DatePicker
           date={data.travelDate}
           setDate={(date: Date | undefined) => setStepData("travelDate", date)}

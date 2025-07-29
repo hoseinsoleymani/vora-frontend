@@ -26,7 +26,7 @@ function WizardLayout({
   isLastStep,
 }: WizardLayoutProps) {
   return (
-    <div className="w-full">
+    <div className="w-full flex flex-col">
       <ProgressBar
         currentStep={currentStep}
         totalSteps={totalSteps}

@@ -2,11 +2,11 @@ import { Button } from "@/components/ui/button";
 import { ArrowUpRight16Filled } from "@fluentui/react-icons";
 function HeaderSection() {
   return (
-    <div className="grid grid-cols-3 items-center">
-      <div className="col-span-1">
+    <div className="flex items-center justify-center gap-120">
+      <div className="flex flex-col gap-4">
         <h2 className="text-2xl font-bold">Travel Blogs</h2>
         <p className="mt-4">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do<br/>
           eiusmod tempor incididunt ut labore et dolore magna 
         </p>
       </div>

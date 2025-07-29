@@ -95,7 +95,7 @@ function Location({
     <div>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <div className="flex items-start gap-2 w-[200px] cursor-pointer">
+          <div className="flex items-start gap-2  cursor-pointer">
             <div
               className={`border ${
                 title === "From" ? "rounded-full" : "rounded-lg"

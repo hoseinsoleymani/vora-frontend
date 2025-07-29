@@ -6,6 +6,7 @@ import {
   SortByComponent,
   FlightCard
 } from "./components";
+import { Footer } from "@/components/ui";
 
 interface SearchParams {
   origin?: string;
@@ -70,6 +71,7 @@ export default async function Page({ searchParams }: PageProps) {
           <FlightCard searchParams={plainSearchParams} />
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

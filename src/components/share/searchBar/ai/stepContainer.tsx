@@ -7,7 +7,7 @@ interface StepContainerProps {
 
 function StepContainer({ children, title }: StepContainerProps) {
   return (
-    <div className="flex flex-col gap-2 w-full px-8 py-4 min-h-[150px]">
+    <div className="flex flex-col gap-2 w-full py-4">
       <h2 className="font-bold mt-2">{title}</h2>
       <div className="mt-6">{children}</div>
     </div>

@@ -49,7 +49,7 @@ function HotelSearch() {
   };
 
   return (
-    <div className="bg-white rounded-lg px-8 py-4 flex gap-4 w-full items-center justify-between h-24">
+    <div className="bg-white rounded-3xl px-8 py-4 flex gap-4  items-center justify-between h-24 w-[1100px]">
       <From setLocation={setLocation} />
 
       <CheckInAndOut

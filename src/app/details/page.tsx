@@ -1,6 +1,7 @@
 import { WizardProvider } from "@/hooks/useWizard";
 import { PaymentLayout } from "./components/paymentLayout";
 import { getFlightOffer } from "./components";
+import { Footer } from "@/components/ui";
 
 export interface FlightSegment {
   aircraft: {
@@ -73,6 +74,7 @@ async function page({
         departure_date={departure_date}
         offerId={id}
       />
+      <Footer />
     </WizardProvider>
   );
 }

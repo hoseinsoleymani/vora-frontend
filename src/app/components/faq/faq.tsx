@@ -3,8 +3,8 @@ import FAQItem from "./faqItem";
 
 function Faq() {
   return (
-    <div>
-      <div>
+    <div className="flex flex-col justify-center items-center w-full">
+      <div className="flex flex-col gap-px items-start w-3/4">
         <h2 className="text-2xl font-bold">FAQs</h2>
         <p className="mt-4">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -12,7 +12,7 @@ function Faq() {
           eiusmod tempor incididunt ut labore et dolore magna aliqua.
         </p>
       </div>
-      <div className="mt-12 flex flex-col gap-4">
+      <div className="mt-12 flex flex-col gap-4 w-3/4">
         <FAQItem
           question="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor"
           answer="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor"

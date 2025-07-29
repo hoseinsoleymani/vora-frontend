@@ -24,7 +24,7 @@ function DatePicker({ date, setDate }: DatePickerProps) {
     <div>
       <DropdownMenu open={open} onOpenChange={setOpen}>
         <DropdownMenuTrigger asChild>
-          <div className="flex items-start gap-2 w-[200px] cursor-pointer">
+          <div className="flex items-start gap-2  cursor-pointer">
             <CalendarArrowRight24Regular className="text-gray-500" />
             <div>
               <p className="font-bold">Depart</p>

@@ -67,7 +67,7 @@ function From({ setLocation }: FromProps) {
     <div>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <div className="flex items-start gap-2 w-[200px] cursor-pointer">
+          <div className="flex items-start gap-2 cursor-pointer">
             <div className="border rounded-full w-8 h-8 flex items-center justify-center">
               <Location12Regular className="text-gray-500" />
             </div>

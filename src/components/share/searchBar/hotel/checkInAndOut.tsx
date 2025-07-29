@@ -75,7 +75,7 @@ const CheckInAndOut = ({
   return (
     <DropdownMenu open={open} onOpenChange={setOpen}>
       <DropdownMenuTrigger>
-        <div className="flex items-start gap-2 w-[200px]">
+        <div className="flex items-start gap-2 ">
           <CalendarArrowRight24Regular className="text-gray-500" />
           <div>
             <p className="font-bold">Check in and out</p>
