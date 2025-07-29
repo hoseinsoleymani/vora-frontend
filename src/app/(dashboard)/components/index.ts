@@ -28,3 +28,4 @@ export * from "./visa/visaprogressbar"
 export * from "./visa/visaform";
 export * from "./visa/addpassport";
 export * from "./visa/vistype"
+export * from "./visa/visarules"
