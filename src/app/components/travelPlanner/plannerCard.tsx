@@ -41,14 +41,13 @@ function PlannerCard({ image, backgroundImage, width = 1062, height = 314 }: Pla
           </Button>
         </div>
         <p className="mt-6">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          
         </p>
         <div className="flex items-center gap-4 mt-6">
           {[
-            { icon: <SlideTextSparkle24Filled />, title: "Save Money" },
-            { icon: <Location24Filled />, title: "Find Best Places" },
-            { icon: <TicketDiagonal24Filled />, title: "Great Deals" },
+            { icon: <SlideTextSparkle24Filled />, title: "Custom Trips Just for You" ,desc : "Every trip is designed to precisely match your needs, budget, and preferences."},
+            { icon: <Location24Filled />, title: "Personalized Travel Planning", desc : "Just tell us your budget, and we’ll deliver a complete travel package."},
+            { icon: <TicketDiagonal24Filled />, title: "Destination Selection", desc : "We suggest accommodations that perfectly match your budget and personal taste." },
           ].map((item, index) => (
             <div key={index} className="flex flex-col gap-2">
               <div className="flex items-center gap-2">
@@ -56,7 +55,7 @@ function PlannerCard({ image, backgroundImage, width = 1062, height = 314 }: Pla
                 <p className="font-bold">{item.title}</p>
               </div>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.
+                {item.desc}
               </p>
             </div>
           ))}

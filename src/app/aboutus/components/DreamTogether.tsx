@@ -6,23 +6,23 @@ import { Airplane24Filled, BuildingHome24Filled, ContactCardRibbon24Filled, Spar
 const dreamFeatures = [
   {
     icon: <Airplane24Filled className="text-2xl text-gray-700" />,
-    title: "Buying Airplane Ticket",
-    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut.",
+    title: "Accommodation Requests",
+    desc: "We take you to the heart of the best places to experience calmness and sweet memories during your travels.",
   },
   {
     icon: <BuildingHome24Filled className="text-2xl text-gray-700" />,
-    title: "Request Stay",
-    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut.",
+    title: "Flight Booking",
+    desc: "We offer the best flights at the most suitable prices according to your budget, so you can start your trip worry-free.",
   },
   {
     icon: <ContactCardRibbon24Filled className="text-2xl text-gray-700" />,
-    title: "Request UEA Visa",
-    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut.",
+    title: "Smart Features",
+    desc: "vora, leveraging smart technologies, selects your trip precisely based on your budget, taste, and schedule",
   },
   {
     icon: <Sparkle24Filled className="text-2xl text-gray-700" />,
-    title: "Advanced AI Features",
-    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut.",
+    title: "UAE Visa",
+    desc: "vora provides complete and up-to-date UAE visa services, making the visa application process easy and fast for you.",
   },
 ];
 
@@ -41,9 +41,9 @@ export function DreamTogether() {
         </div>
       </div>
       <div className="flex-1 flex flex-col items-start max-w-xl w-full">
-        <h2 className="text-4xl font-black leading-tight mb-2 text-gray-800">Let's Dream,<br />Together!</h2>
+        <h2 className="text-4xl font-black leading-tight mb-2 text-gray-800">Enjoy a Delightful<br />Travel Experience with Us</h2>
         <p className="text-gray-600 text-base leading-relaxed mb-8">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          A journey that begins from the heart of your desires and continues with peace, excitement, and unforgettable memories.We don’t just create trips; we create moments you’ll always long for.
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
           {dreamFeatures.map((feature, index) => (
