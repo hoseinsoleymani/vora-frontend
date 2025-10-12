@@ -21,12 +21,12 @@ function TravelBanner() {
           <Image src={VoraLogo} alt="Vora Logo" />
         </div>
         <h2 className="text-3xl font-bold leading-relaxed mt-4">
-          Go anywhere,
-          <br /> you want
+          Leading in Technology
+          <br /> 
         </h2>
         <p className="mt-4 text-gray-600">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          Using the latest AI technologies, we’ve taken travel planning to a whole new level.Our system analyzes your budget in detail and offers the best destinations, hotels, and travel programs.This advanced technology minimizes planning time and prevents extra costs—so you can enjoy a stress-free and exceptional travel experience.
+
         </p>
         <div className="flex items-center gap-6 mt-8">
           <TravelStats number={2000} text="Travelers" />

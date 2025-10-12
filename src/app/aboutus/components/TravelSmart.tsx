@@ -5,18 +5,18 @@ import Image from "next/image";
 const travelFeatures = [
   {
     icon: "/img/AI icon - based on budget.svg",
-    title: "Travel Planner",
-    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet",
+    title: "Flight Booking",
+    desc: "At vora, airplane tickets are suggested based on your budget.We help you find and purchase the best possible flight at the lowest price that fits your financial capability",
   },
   {
     icon: "/img/AI icon - Planner.svg",
-    title: "Travel based on Budget",
-    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet",
+    title: "Destination Selection",
+    desc: "Your travel destination is suggested according to your budget, interests, and preferred time. Simply enter your desired budget to receive the best economical and attractive options.",
   },
   {
     icon: "/img/AI icon - based on budget.svg",
-    title: "Budget Calculator",
-    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet",
+    title: "Accommodation Selection",
+    desc: "vora recommends the best accommodations based on your budget and taste. From luxury hotels to budget plans, everything is arranged for your comfort and satisfaction.",
   },
 ];
 
@@ -27,7 +27,7 @@ export function TravelSmart() {
         <div className="flex-1 min-w-[260px] max-w-[340px]">
           <h2 className="text-4xl font-black leading-tight mb-2">Travel safe,<br />Travel Smart!</h2>
           <p className="text-gray-600 text-base leading-relaxed mt-4">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            vora, with smart planning, designs a precise trip tailored to your budget and calculates all travel costs completely and transparently.
           </p>
         </div>
         <div className="flex-[2] flex flex-col gap-10">

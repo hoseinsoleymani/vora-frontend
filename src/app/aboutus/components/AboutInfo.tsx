@@ -3,9 +3,9 @@ import React from "react";
 import Image from "next/image";
 
 const infoCards = [
-  { title: "20 +", desc: "Years of experience", text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet" },
-  { title: "20 +", desc: "Years of experience", text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet" },
-  { title: "20 +", desc: "Years of experience", text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet" },
+  { title: "Transparency", desc: " and Honesty in Service", text: "Providing honest and reliable services is the foundation of our work to ensure a safe and satisfying journey for you." },
+  { title: "Advanced Technologies", desc: "Utilizing Advanced Technologies", text: "By leveraging advanced technologies and artificial intelligence, we make travel planning more precise, faster, and smarter. These technologies enable us to offer the best travel options that fit your budget and taste." },
+  { title: "20 +", desc: "Years of experience", text: "vora is the first and only website that completely manages all stages of your trip—from selecting the destination, hotel, flight tickets, to transportation—in a fully intelligent way." },
 ];
 
 export function AboutInfo() {
@@ -19,7 +19,8 @@ export function AboutInfo() {
           </div>
         </div>
         <div className="flex-1 text-gray-700 leading-relaxed text-justify text-base">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+vora was founded with the goal of simplifying travel planning and providing a smart, affordable experience. Using artificial intelligence technology, we design trips tailored to your budget, preferences, and schedule.
+
         </div>
       </div>
       <div className="flex flex-col md:flex-row gap-6 w-full justify-center">

@@ -4,10 +4,11 @@ function HeaderSection() {
   return (
     <div className="flex items-center justify-center gap-120">
       <div className="flex flex-col gap-4">
-        <h2 className="text-2xl font-bold">Travel Blogs</h2>
+        <h2 className="text-2xl font-bold">Essential Travel Blogs</h2>
         <p className="mt-4">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do<br/>
-          eiusmod tempor incididunt ut labore et dolore magna 
+         We’ve prepared a series of essential and helpful topics<br/>
+          to boost your knowledge and readiness for travel.
+ 
         </p>
       </div>
 

@@ -4,12 +4,11 @@ function SiteInfo() {
   return (
     <div className="w-[736px]">
       <h2 className="text-5xl font-bold leading-relaxed">
-        Discover the best <br /> destinations in the world
+       Build Your Dream <br /> Trip Within Your Budget
       </h2>
 
       <p className="mt-6">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua.
+        With just a few clicks, we design a complete, personalized, and cost-effective trip for you.Choose your destination, hotel, and travel duration—all smartly and precisely tailored to your budget.
       </p>
     </div>
   );
