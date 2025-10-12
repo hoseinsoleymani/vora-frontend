@@ -77,7 +77,7 @@ function FlightDetails({
                 day: "numeric",
               }),
             }}
-            flightNumber={segment.number}
+            flightNumber={segment.flightNumber}
             flightClass="Economy"
             operatedBy={segment.operating.carrierCode}
             aircraftType={segment.aircraft.code}

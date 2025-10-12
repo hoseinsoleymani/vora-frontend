@@ -9,7 +9,7 @@ import {
 } from "@fluentui/react-icons";
 
 interface FlightAmenitiesProps {
-  aircraftType: string;
+  aircraftType?: string;
 }
 
 function FlightAmenities({ aircraftType }: FlightAmenitiesProps) {
@@ -18,7 +18,7 @@ function FlightAmenities({ aircraftType }: FlightAmenitiesProps) {
       <div className="flex flex-col gap-2">
         <div className="flex items-center gap-2">
           <Airplane16Regular />
-          <p className="text-xs font-medium">{aircraftType}</p>
+          <p className="text-xs font-medium">{aircraftType || "Aircraft Type"}</p>
         </div>
         <div className="flex items-center gap-2">
           <Wifi1Regular />

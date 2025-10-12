@@ -2,14 +2,18 @@ import { WizardProvider } from "@/hooks/useWizard";
 import { PaymentLayout } from "./components/paymentLayout";
 import { getFlightOffer } from "./components";
 import { Footer } from "@/components/ui";
+import { cookies } from "next/headers";
 
 export interface FlightSegment {
   aircraft: {
     code: string;
+    iataCode: string;
+    terminal?: string;
   };
   arrival: {
     at: string;
     iataCode: string;
+    terminal?: string;
   };
   carrierCode: string;
   departure: {
@@ -19,7 +23,7 @@ export interface FlightSegment {
   };
   duration: string;
   id: string;
-  number: string;
+  flightNumber: string;
   numberOfStops: number;
   operating: {
     carrierCode: string;
@@ -56,23 +60,32 @@ async function page({
     page_size: Number(params.page_size) || 10,
   });
 
+  console.log(flightOffer);
+  
+  const airlineNameFa = flightOffer.AirlineNameFa;
   const flightItinerary: FlightSegment[] = flightOffer.itineraries[0].segments;
+  const duration = flightOffer.itineraries[0].duration;
+  const token = (await cookies()).get("arvan_access")?.value;
+  const flightNumber = flightOffer.itineraries[0].segments[0].flightNumber;
   const {
-    travelerPricings,
-    price: { total: totalPrice },
+    travelerPricing,
+    price: { grandTotal: grandTotal },
   } = flightOffer;
-
+  console.log(flightItinerary);
+  
   return (
     <WizardProvider totalSteps={3}>
       <PaymentLayout
+        duration={duration}
         destination={destination}
         from={orgin}
         flightItinerary={flightItinerary}
         adults={adults}
-        totalPrice={totalPrice}
-        travellers={travelerPricings}
+        totalPrice={Number(grandTotal)}
+        travellers={travelerPricing}
         departure_date={departure_date}
         offerId={id}
+        airlineNameFa={airlineNameFa}
       />
       <Footer />
     </WizardProvider>

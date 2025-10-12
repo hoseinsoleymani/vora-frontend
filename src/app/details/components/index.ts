@@ -17,3 +17,4 @@ export * from "./payment";
 export * from "./paymentLayout";
 export * from "../action/flightoffer";
 export * from "./passengerform/addPassport";
+export * from "./flightdetails/flightdetail";

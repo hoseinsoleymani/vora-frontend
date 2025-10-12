@@ -7,12 +7,14 @@ import {
   Payment,
   PassengersFormData,
   LoginModul,
+  FlightDetail,
 } from "@/app/details/components";
 import { StepNavigator } from "@/components/ui/stepNavigator";
 import { useWizard } from "@/hooks/useWizard";
 import { FlightSegment } from "@/app/details/page";
 import { useAuth } from "@/app/(auth)";
 import { Navbar } from "@/components/ui";
+import { useSearchParams } from "next/navigation";
 interface PaymentLayoutProps {
   destination: string;
   from: string;
@@ -22,6 +24,8 @@ interface PaymentLayoutProps {
   travellers: [];
   departure_date: string;
   offerId: string;
+  duration: string; 
+  airlineNameFa: string;
 }
 
 function PaymentLayout({
@@ -33,6 +37,8 @@ function PaymentLayout({
   travellers,
   departure_date,
   offerId,
+  duration,
+  airlineNameFa,
 }: PaymentLayoutProps) {
   const {
     currentStep,
@@ -46,7 +52,11 @@ function PaymentLayout({
   const [formMethods, setFormMethods] = React.useState<any>(null);
   const [open, setOpen] = useState(false);
   const { isLoggedIn } = useAuth();
-
+  const searchParams = useSearchParams();
+const params = {
+    origin: searchParams.get("origin") || "",
+    destination: searchParams.get("destination") || "",
+}
   const steps = [
     { title: "Review Trip", number: 1, key: "review-trip" },
     { title: "Passenger Info", number: 2, key: "passenger-info" },
@@ -85,10 +95,11 @@ function PaymentLayout({
   const selectedStepMap = () => {
     const stepMap: Record<string, React.ReactNode> = {
       "0": (
-        <FlightDetails
-          flightDeparture={{ destination, from, model: "Outbound" }}
-          flightItinerary={flightItinerary}
-        />
+        <FlightDetail flightDeparture={{
+          from: params.origin,
+          destination: params.destination,
+          model: "Outbound",
+        }} flightItinerary={flightItinerary} duration={duration} airlineNameFa={airlineNameFa}/>
       ),
       "1": (
         <PassengersForm
@@ -116,7 +127,7 @@ function PaymentLayout({
             steps={steps}
             goToStep={goToStep}
           />
-          <div className="bg-white px-12 py-8 shadow-lg rounded-2xl h-fit">
+          <div className="bg-white p-6 shadow-lg rounded-2xl h-fit">
             {selectedStepMap()}
           </div>
         </div>

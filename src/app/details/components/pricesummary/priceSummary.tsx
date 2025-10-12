@@ -45,8 +45,9 @@ function PriceSummary({
         }}
         onEditClick={handleEditClick}
       />
-      <hr className="w-full border-[#E0E0E0] my-6" />
-      <div className="flex flex-col gap-4">
+      <hr className="w-full border-[#E0E0E0] " />
+      <div className="flex flex-col gap-6">
+        <h3 className="text-2xl">Price summary</h3>
         {travellers &&
           travellers.map((traveller, index) => (
             <div key={index} className="flex flex-col gap-4">
@@ -69,7 +70,7 @@ function PriceSummary({
             </div>
           ))}
       </div>
-      <hr className="w-full border-[#E0E0E0] my-6" />
+      <hr className="w-full border-[#E0E0E0]" />
       <div className="flex justify-between items-center">
         <p className="text-lg">Total price</p>
         <p className="text-lg font-bold">$ {totalPrice}</p>
